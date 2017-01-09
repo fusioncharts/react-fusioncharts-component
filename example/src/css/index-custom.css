@@ -1,0 +1,166 @@
+body {
+    overflow-x: hidden;
+}
+#gtd-dashboard-container-1 {
+  height: 100px;
+  border: 2px solid red;
+  text-align: center;
+  text-transform: uppercase;
+  padding-top: 30px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#dashboard #dashboard-container object {
+  width: 1247px;
+  height: 770px;
+}
+
+#dashboard.tab-pane h3{
+  margin: 0px;
+  text-align: center;
+  font-family: "AvenirLTStd-Light",sans-serif;
+  text-transform: uppercase;
+  background-color: #0e2429;
+    color: #F6BD0F;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    margin-top: -30px;
+}
+
+pre {
+    max-height: 305px;
+}
+
+/* From the passportjs.org website */
+.masthead {
+  /*padding:  0px 60px;*/
+}
+
+.masthead .logo {
+  height: 38px;
+  width: 210px;
+}
+
+.masthead h3 {
+  margin-top: 10px;
+}
+
+.masthead h3 a {
+  color: #333333;;
+  text-decoration: none;
+}
+
+.masthead h3 a:hover {
+  color: #333333;
+  text-decoration: none;
+}
+
+.jumbotron {
+  background-color: #4990E2 !important;
+  padding: 10px 0px;
+  box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+  padding-bottom: 0px;
+}
+
+.jumbotron .logo {
+  height: 60px;
+  width: 119px;
+  float: left;
+  margin-right: 15px;
+  margin-top: 26px;
+}
+
+.gh-pages-tab-content .download-plugin-btn {
+  border: 2px solid #E46A3A !important;
+  background-color: #E46A3A !important;
+  color: #fff !important;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.jumbotron h1, .jumbotron p {
+  color: #fff !important;
+}
+
+.jumbotron p {
+    margin-left: 133px;
+}
+
+.chart-space {
+    width: 100%;
+    height: 476px;
+}
+pre.code-tab {
+    white-space: initial;
+}
+.charts-example {
+	min-height: 825px;
+}
+.list-group {
+	height: 924px;
+	overflow-y: scroll;
+	border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+}
+.tablist {
+	padding-left: 30px;
+}
+#charts-example {
+	margin-top: 50px;
+}
+
+.gh-pages-navbar-pills>li>a {
+  padding: 10px 0px;
+}
+
+.gh-pages-nav-tabs {
+  border-bottom: 1px solid transparent !important;
+  margin-top: 25px;
+}
+
+.gh-pages-nav-tabs>li {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.gh-pages-nav-tabs>li>a {
+  color: rgba(255,255,255,.7);
+  background-color: transparent !important;
+  text-transform: uppercase;
+  transition: color .2s;
+  border: 0 !important;
+  border-bottom: 2px solid transparent !important;
+}
+
+.gh-pages-nav-tabs>li>a:hover {
+  border-color: transparent !important;
+  color: #fff;
+}
+
+.gh-pages-nav-tabs>li.active>a, .gh-pages-nav-tabs>li.active>a:hover, .gh-pages-nav-tabs>li.active>a:focus {
+  color: #fff;
+  background-color: transparent !important;
+  border: 0px !important;
+  border-bottom: 2px solid #fff !important;
+  cursor: pointer;
+}
+
+.gh-pages-home-page-col-md-4 {
+  padding: 0px 30px;
+}
+
+.h3-spacing {
+  margin-top: 40px;
+}
+
+#jsfiddle {
+  margin-top: 20px;
+}
+
+.masthead .nav>li>a, .masthead .nav>li>a:hover, .masthead .nav>li>a:focus {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
