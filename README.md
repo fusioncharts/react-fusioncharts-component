@@ -1,3 +1,5 @@
+### [Demos and Documentation](http://fusioncharts.github.io/react-fusioncharts-component/)
+
 ## Introduction
 
 FusionCharts Suite XT is a front-end, JavaScript-based, comprehensive collection of 90+ charts and  1000+ maps. This includes basic and complex charts like the column and bar charts, pie and doughnut charts, treemap, heatmap, logarithmic charts, and so on; gauges like the angular gauge, bulb gauge, thermometer gauge, and so on; and maps for all continents, major countries, and all US states.
