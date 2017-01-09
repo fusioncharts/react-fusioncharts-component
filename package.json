@@ -4,13 +4,13 @@
   "description": "React FusionCharts",
   "main": "lib/ReactFC.js",
   "author": "FusionCharts",
-  "homepage": "https://github.com/fusioncharts/react-fusioncharts",
+  "homepage": "http://www.fusioncharts.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fusioncharts/react-fusioncharts.git"
+    "url": "https://github.com/fusioncharts/react-fusioncharts-component.git"
   },
   "bugs": {
-    "url": "https://github.com/fusioncharts/react-fusioncharts/issues"
+    "url": "https://github.com/fusioncharts/react-fusioncharts-component/issues"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
@@ -69,6 +69,15 @@
   },
   "keywords": [
     "react",
-    "react-component"
+    "react-component",
+    "javascript-charts",
+    "interactive-charts",
+    "charts",
+    "graphs",
+    "visualization",
+    "data-visualization",
+    "dataviz",
+    "browserify",
+    "webpack"
   ]
 }
