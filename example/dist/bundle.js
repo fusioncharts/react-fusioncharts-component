@@ -1,5 +1,4 @@
 require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"react-fusioncharts":[function(require,module,exports){
-(function (global){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -20,11 +19,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var FusionCharts = typeof window !== 'undefined' ? window['FusionCharts'] : typeof global !== 'undefined' ? global['FusionCharts'] : null;
+var _fusioncharts = require('fusioncharts');
 
-if (typeof FusionCharts === 'undefined') {
-    FusionCharts = require('fusioncharts');
-}
+var _fusioncharts2 = _interopRequireDefault(_fusioncharts);
 
 var ReactFC = (function (_React$Component) {
     _inherits(ReactFC, _React$Component);
@@ -43,7 +40,7 @@ var ReactFC = (function (_React$Component) {
         this.fcConfig = props;
         this.renderAt = propsObj.renderAt;
 
-        this.chartObj = new FusionCharts(this.fcConfig);
+        this.chartObj = new _fusioncharts2['default'](this.fcConfig);
 
         this.getRenderAt = function () {
             return _this.renderAt || _this.chartObj.id + '-container';
@@ -105,5 +102,4 @@ var ReactFC = (function (_React$Component) {
 exports['default'] = ReactFC;
 module.exports = exports['default'];
 
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"fusioncharts":undefined,"react":undefined}]},{},[]);
