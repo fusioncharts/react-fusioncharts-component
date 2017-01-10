@@ -20,9 +20,9 @@ var _react = (typeof window !== "undefined" ? window['React'] : typeof global !=
 
 var _react2 = _interopRequireDefault(_react);
 
-var FusionCharts = typeof window !== "undefined" ? window['FusionCharts'] : typeof global !== "undefined" ? global['FusionCharts'] : null;
+var FusionCharts = typeof window !== 'undefined' ? window['FusionCharts'] : typeof global !== 'undefined' ? global['FusionCharts'] : null;
 
-if (typeof FusionCharts === "undefined") {
+if (typeof FusionCharts === 'undefined') {
     FusionCharts = require('fusioncharts');
 }
 
@@ -36,13 +36,12 @@ var ReactFC = (function (_React$Component) {
 
         _get(Object.getPrototypeOf(ReactFC.prototype), 'constructor', this).call(this, props);
 
-        this.state = {
-            caption: props.name
-        };
+        var propsObj = props;
+
+        this.state = {};
 
         this.fcConfig = props;
-        this.renderAt = props.renderAt;
-        // this.fcConfig.renderAt = undefined;
+        this.renderAt = propsObj.renderAt;
 
         this.chartObj = new FusionCharts(this.fcConfig);
 
