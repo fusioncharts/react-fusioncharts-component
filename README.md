@@ -24,7 +24,8 @@ npm install react react-dom fusioncharts react-fusioncharts --save
 #### Step 2: Add the HTML container element for rendering the chart
 
 In your HTML, find the section where you wish to render the chart place a `<div>` for the FusionCharts to be rendered.
-    `<div id='chart-container'></div>`
+
+`<div id='chart-container'></div>`
 
 #### Step 3: Import react-fusioncharts package from npm
 
