@@ -1,9 +1,9 @@
 import React from 'react';
 
-var FusionCharts = (typeof window !== "undefined" ? window['FusionCharts'] :
-		typeof global !== "undefined" ? global['FusionCharts'] : null);
+var FusionCharts = (typeof window !== 'undefined' ? window['FusionCharts'] :
+		typeof global !== 'undefined' ? global['FusionCharts'] : null);
 
-if (typeof FusionCharts === "undefined") {
+if (typeof FusionCharts === 'undefined') {
 	FusionCharts = require('fusioncharts');
 }
 
@@ -11,13 +11,13 @@ class ReactFC extends React.Component {
     constructor (props) {
         super(props);
 
+        let propsObj = props;
+
         this.state = {
-            caption: props.name
         };
 
         this.fcConfig = props;
-        this.renderAt = props.renderAt;
-        // this.fcConfig.renderAt = undefined;
+        this.renderAt = propsObj.renderAt;
 
         this.chartObj = new FusionCharts(this.fcConfig);
 
