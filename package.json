@@ -1,0 +1,83 @@
+{
+  "name": "react-fusioncharts",
+  "version": "1.0.0",
+  "description": "React FusionCharts",
+  "main": "lib/ReactFC.js",
+  "author": "FusionCharts",
+  "homepage": "http://www.fusioncharts.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fusioncharts/react-fusioncharts-component.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fusioncharts/react-fusioncharts-component/issues"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "classnames": "^2.1.2",
+    "colors": "^1.1.2",
+    "fusionmaps": "^3.11.3",
+    "jquery": "^3.1.1",
+    "prism": "^1.0.0",
+    "prismjs": "^1.6.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-eslint": "^4.1.3",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "chai": "^3.5.0",
+    "eslint": "^1.6.0",
+    "eslint-plugin-react": "^3.5.1",
+    "expect": "^1.13.0",
+    "fusioncharts": "^3.11.3",
+    "gulp": "^3.9.0",
+    "karma": "^1.3.0",
+    "karma-babel-preprocessor": "^6.0.1",
+    "karma-browserify": "^5.1.0",
+    "karma-chai": "^0.1.0",
+    "karma-coverage": "^1.1.1",
+    "karma-mocha": "^1.3.0",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-spec-reporter": "0.0.26",
+    "karma-webpack": "^1.8.1",
+    "mocha": "^3.2.0",
+    "react": "^0.14.0",
+    "react-addons-test-utils": "15.3.0",
+    "react-component-gulp-tasks": "^0.7.6",
+    "react-dom": "^0.14.0",
+    "webpack": "^1.14.0"
+  },
+  "peerDependencies": {
+    "react": "^0.14.0"
+  },
+  "browserify-shim": {
+    "react": "global:React"
+  },
+  "scripts": {
+    "build": "gulp clean && NODE_ENV=production gulp build",
+    "examples": "gulp dev:server",
+    "lint": "eslint ./; true",
+    "publish:site": "NODE_ENV=production gulp publish:examples",
+    "release": "NODE_ENV=production gulp release",
+    "start": "gulp dev",
+    "test": "scripts/test",
+    "jsunit": "karma start karma.conf.js",
+    "watch": "gulp watch:lib"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "javascript-charts",
+    "interactive-charts",
+    "charts",
+    "graphs",
+    "visualization",
+    "data-visualization",
+    "dataviz",
+    "browserify",
+    "webpack"
+  ]
+}

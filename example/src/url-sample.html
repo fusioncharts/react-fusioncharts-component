@@ -1,0 +1,57 @@
+<!doctype html>
+<head>
+	<title>react-fc</title>
+	<link rel="stylesheet" href="example.css">
+</head>
+<body>
+	<div class="container">
+		<h1>react-fc</h1>
+		<h2><a href="https://github.com/rohitkr/react-fc">View project on GitHub</a></h2>
+		<!-- the example app is rendered into this div -->
+		<div id="app"></div>
+		<div class="hint">
+			<!-- put any hints about your component example here -->
+		</div>
+		<div class="footer">
+			
+		</div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.1/react.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.1/react-dom.js"></script>
+
+	<script src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
+
+<!-- 	
+	<script src="../../node_modules/react/dist/react.js"></script>
+	<script src="../../node_modules/react-dom/dist/react-dom.js"></script>
+	<script src="../../node_modules/fusioncharts/fusioncharts.js"></script>
+	<script src="../../node_modules/fusioncharts/fusioncharts.charts.js"></script>
+	<script src="../../node_modules/fusioncharts/fusioncharts.powercharts.js"></script>
+ -->
+
+	<script src="../../dist/react-fusioncharts.js"></script>
+
+	<script type="text/javascript">
+		
+		var config = {
+			type: "Spline",
+			width:600,
+		    height: 400,
+		  	dataFormat: "json",
+		  	dataSource: {data: [{value: 500}, {value: 400}, {value: 600}]}
+		};
+
+
+		var App = React.createClass({
+			render () {
+				return (
+					React.createElement(ReactFC, config)
+				);
+			}
+		});
+
+		ReactDOM.render(React.createElement(App, null), document.getElementById('app'));
+
+	</script>
+</body>

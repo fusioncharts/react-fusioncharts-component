@@ -1,0 +1,546 @@
+<!doctype html>
+<html>
+    <head>
+        <title>React FusionCharts Demos</title>
+        <link rel="canonical" href="http://www.fusioncharts.com/reactjs-charts/"/>
+
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+
+    </head>
+    <body>
+        <div class="row">
+            <div class="container">
+                <div class="masthead">
+                    <ul class="nav nav-pills pull-right gh-pages-navbar-pills">
+                        <li><a href="http://fusioncharts.github.io/react-fusioncharts/">React-FusionCharts Home</a></li>
+                    </ul>
+                    <h3><a href="http://fusioncharts.com/"><img src="images/210x38xlogo.png.pagespeed.ic.KZD9tJ7qIK.png" class="logo"></a></h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="jumbotron">
+            <div class="container">
+                <img src="images/react-fc-logo.png" class="logo">
+                <h1>React-FusionCharts</h1>
+                <p>Simple ReactJS component for FusionCharts JavaScript Charting Library.</p>
+            </div>
+            <div class="container">
+              <ul class="nav nav-tabs gh-pages-nav-tabs" role="tablist">
+                <li id='home-navigate' role="presentation" class="navigation-tab active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+                <li id='getting-started-navigate' role="presentation" class="navigation-tab"><a href="#getting-started" aria-controls="getting-started" role="tab" data-toggle="tab">Getting Started</a></li>
+                <li id='dashboard-navigate' role="presentation" class="navigation-tab"><a href="#dashboard" aria-controls="dashboard" role="tab" data-toggle="tab">Dashboard</a></li>
+                <li id='demos-navigate' role="presentation" class="navigation-tab"><a href="#demos" aria-controls="demos" role="tab" data-toggle="tab">Demos</a></li>
+              </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="tab-content gh-pages-tab-content">
+                <div role="tabpanel" class="container tab-pane active" id="home">
+                    <div class="row">
+                        <div class="col-md-4 gh-pages-home-page-col-md-4">
+                            <h3>About React-FusionCharts</h3>
+                            <hr>
+                            <p>
+                            This project allows to build ReactJS UI components for <a href="http://fusioncharts.com">FusionCharts JavaScript Charting Library</a>. It makes adding rich, interactive charting to your ReactJS Projects easy and works in the <i>React Way</i>.
+                            </p>
+                            <p><a class="btn btn-primary btn-lg download-plugin-btn" href="#" role="button"><i class="glyphicon glyphicon-download"></i> Download (1.0)</a></p>
+                        </div>
+                        <div class="col-md-4 gh-pages-home-page-col-md-4">
+                            <h3>Features</h3>
+                            <hr>
+                            <p>
+                            <ul>
+                                <li>Add a chart using just a single component</li>
+                                <li>Auto-updates your chart object on modifying the dataSource</li>
+                                <li>Option to include interactivity between charts</li>
+                                <li>Offers advanced control by giving you access to full FusionCharts object</li>
+                                <li>Has variety of ways to add a chart, from JSON URL to Props Array Binding</li>
+                            </ul>
+                            </p>
+                        </div>
+                        <div class="col-md-4 gh-pages-home-page-col-md-4">
+                            <h3>Community</h3>
+                            <hr>
+                            <p>
+                            <ul>
+                                <li><a href="https://github.com/fusioncharts/react-fusioncharts">Github Repo</a></li>
+                                <li><a href="https://github.com/fusioncharts/react-fusioncharts/issues">Issues</a></li>
+                                <li><a href="http://twitter.com/fusioncharts">FusionCharts Twitter</a></li>
+                                <li><a href="http://stackoverflow.com/questions/tagged/fusioncharts">Stack Overflow</a></li>
+                            </ul>
+
+                            <h3 class="h3-spacing">Support</h3>
+                            <hr>
+                            <p>Simply open up <a href="https://github.com/fusioncharts/react-fusioncharts/issues/new">a github issue</a> with your question/bug report/suggestion.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="container tab-pane" id="getting-started">
+                    <div class="col-md-12">
+                            <h3>Quick Start</h3>
+                            <br>
+
+                            <ul class="nav nav-tabs" role="tablist" id="enable_interactivity">
+                                  <li role="presentation" class="active"><a href="#npm_installation" aria-controls="npm_installation" role="tab" data-toggle="tab">Install from npm</a></li>                            
+                                  <li role="presentation" class=""><a href="#static_charts" aria-controls="static_charts" role="tab" data-toggle="tab">Non-Interactive Mode</a></li>
+                                  
+                                  <li role="presentation"><a href="#interactive_charts" aria-controls="interactive_charts" role="tab" data-toggle="tab">Interactive Mode</a></li>
+                            </ul>
+
+                                    <div class="tab-content">
+                                      
+                                      <div role="tabpanel" class="tab-pane fade in active" id="npm_installation">
+<h3>Step 1: Install fusioncharts, react, react-dom, and react-fusioncharts npm package</h3>
+<p>Execute the commands below in the terminal to install
+<code class="language-javascript" >fusioncharts</code>, <code class="language-javascript" >react</code>, <code class="language-javascript" >react-dom</code> and <code class="language-javascript" >react-fusioncharts</code> node modules. </p>
+<pre class="language-javascript" ><code class="language-javascript" >npm install react --save
+npm install react-dom --save
+npm install fusioncharts --save
+npm install react-fusioncharts --save
+
+// or single line
+npm install react react-dom fusioncharts react-fusioncharts --save
+</code></pre>
+<br>
+<h3>Step 2: Add the HTML container element for rendering the chart</h3>
+<p>In your HTML, find the section where you wish to render the chart place a <code class="language-markup" >&lt;div></code> for the FusionCharts to be rendered.</p>
+<pre class="language-markup" ><code class="language-markup" >&lt;div id='chart-container'>&lt;/div></code></pre>
+<br>
+<h3>Step 3: Import react-fusioncharts package from npm</h3>
+<p>Import <code class="language-javascript" >react</code>, <code class="language-javascript" >react-dom</code>, <code class="language-javascript" >fusioncharts</code>, and <code class="language-javascript" >react-fusioncharts</code> modules, in this order, through npm. In your JavaScript code, define an object that consists of all the configurations and their values, required to render FusionCharts.</p>
+<pre class="language-javascript" >
+<code class="language-javascript" >import React from 'react';
+import ReactDOM from 'react-dom';
+import fusioncharts from 'fusioncharts';
+// Load the charts module
+import charts from 'fusioncharts/fusioncharts.charts';
+import react-fusioncharts from 'react-fusioncharts';
+
+// Pass fusioncharts as a dependency of charts
+charts(FusionCharts)
+
+var chartConfigs = {
+    type: ...,
+    renderAt: ...,
+    className: ..., // ReactJS attribute-name for DOM classes
+    dataFormat: ...,
+    dataSource: ...
+};</code></pre>
+<br>
+<h3>Step 4: Pass the configurations required for FusionCharts and render the chart</h3>
+
+<p>FusionCharts plugin for <code class="language-javascript" >react</code> can be used in two ways.</p>
+<p><b>1. </b>Use the <code class="language-javascript" >ReactFC</code> component directly in <code class="language-javascript" >ReactDOM</code> to render the chart.  The configurations are passed as props of the component.</p>
+<p><b>2. </b>Create multiple <code class="language-javascript" >ReactFC</code> component inside your custom defined component to render individual charts. This way you would be able to hold the state in your custom defined component and will be able to perform various activities using the component’s lifecycle hooks.</p>
+<p>&nbsp;</p>
+<b>Method 1: </b> Render the chart in the <code class="language-javascript" >React</code> application
+for a standalone chart, we can choose to make a component class or directly render the chart with the <code class="language-javascript" >ReactFC</code> component class. The object containing the chart configuration properties are passed to the FusionCharts component as props, as shown below
+
+<pre class="language-markup" ><code class="language-markup" >ReactDOM.render(
+    &lt;ReactFC {...chartConfigs} />,
+    document.getElementById('chart-container')
+);
+</code></pre>
+
+<p><b>Method 2: </b> Create a custom MyApp component to render the chart as shown below:</p> 
+<pre class="language-markup" ><code class="language-markup" >var MyApp = React.createClass({
+    ..., // Rest of the React Component Code
+    render: function () {
+        return (
+            &lt;ReactFC {...categoryChartConfigs} />
+            &lt;ReactFC {...revenueChartConfigs} />
+        );
+    }
+});
+
+ReactDOM.render(
+    &lt;MyApp />,
+    document.getElementById('chart-container')
+);
+</code></pre>
+<p>&nbsp;</p>
+<p>While it is recommended to create an object, with the configuration properties, and passing the values defined, you can also pass the configuration properties separately as shown below:</p>
+<pre class="language-markup" >
+<code class="language-markup" >ReactDOM.render(
+    &lt;ReactFC
+        type: ...,
+        renderAt: ...,
+        className: ...,
+        dataFormat: ...,
+        dataSource: ... />,
+    document.getElementById('chart-container')
+);</code>
+</pre>
+<p>&nbsp;</p>
+<p>Your chart should now render when the page is loaded.</p>
+<br>
+
+<h3>Licensing</h3>
+<p style="margin-bottom:30px;">React-FusionCharts is open-source and distributed under the terms of the MIT/X11 License. You will still need to download and include FusionCharts in your page. This project provides no direct functionality. You can <a href="http://fusioncharts.com/download/">Download an evaluation</a>. You will still need to purchase a FusionCharts license to use in a commercial environment (FusionCharts is <a href="http://www.fusioncharts.com/download/free/">free for non-commercial and personal use</a>) .</p>                                      
+                                      </div>
+
+
+                                      <div role="tabpanel" class="tab-pane fade in " id="static_charts">
+<h3>Step 1: Include react-fusioncharts.js</h3>
+<p>In your HTML, include <code class="language-markup" >react-fusioncharts.js</code> after all other scripts:</p>
+<pre class="language-markup" ><code class="language-markup" >&lt;script type="text/javascript" src="/path/to/fusioncharts.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/path/to/react.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/path/to/react-fusioncharts.js"&gt;&lt;/script&gt;</code></pre>
+<br>
+<h3>Step 2: Add the HTML element where FusionCharts is to be rendered</h3>
+<p>In your HTML, find the section where you wish to add the chart place a <code class="language-markup" >&lt;div></code> for the FusionCharts to be rendered.</p>
+<pre class="language-markup" ><code class="language-markup" >&lt;div id='chart-container'>&lt;/div></code></pre>
+<br>
+<h3>Step 3: Populate required configurations</h3>
+<p>In your JavaScript code, define an object which consists of all the configurations and their values, required to get FusionCharts up.</p>
+<pre class="language-markup" ><code class="language-markup" >var chartConfigs = {
+    type: ...,
+    renderAt: ...,
+    className: ..., // ReactJS attribute-name for DOM classes
+    dataFormat: ...,
+    dataSource: ...
+};</code></pre>
+<br>
+<h3>Step 4: Pass Configurations and Render chart</h3>
+<p>There are two definitive ways of building a FusionChart in React.js; either it is a part of a component heirarchy or is a lone chart. For a singular FusionChart, we can choose to make a component class or directly render with the React-FusionCharts component class. The object containing the configurations is passed to the FusionCharts component as 'props':</p>
+<pre class="language-markup" ><code class="language-markup" >ReactDOM.render(
+    &lt;ReactFC {...chartConfigs} />,
+    document.getElementById('chart-container')
+);
+</code></pre>
+<p>OR </p>
+<pre class="language-markup" ><code class="language-markup" >var MyApp = React.createClass({
+    ..., // Rest of the React Component Code
+    render: function () {
+        return (
+            &lt;ReactFC {...categoryChartConfigs} />
+            &lt;ReactFC {...revenueChartConfigs} />
+        );
+    }
+});
+
+ReactDOM.render(
+    &lt;MyApp />,
+    document.getElementById('chart-container')
+);
+</code></pre>
+<p>We recommend following the previous method of creating an object and passing it, but these configurations can be passed separately as well:</p>
+<pre class="language-markup" >
+<code class="language-markup" >ReactDOM.render(
+    &lt;ReactFC
+        type: ...,
+        renderAt: ...,
+        className: ...,
+        dataFormat: ...,
+        dataSource: ... />,
+    document.getElementById('chart-container')
+);</code>
+</pre>
+<p>And your chart should display when you load the page.</p>
+<br>
+<h3>Licensing</h3>
+<p style="margin-bottom:30px;">React-FusionCharts is open-source and distributed under the terms of the MIT/X11 License. You will still need to download and include FusionCharts in your page. This project provides no direct functionality. You can <a href="http://fusioncharts.com/download/">Download an evaluation</a>. You will still need to purchase a FusionCharts license to use in a commercial environment (FusionCharts is <a href="http://www.fusioncharts.com/download/free/">free for non-commercial and personal use</a>) .</p>
+
+                                      </div>
+
+                                      <div role="tabpanel" class="tab-pane" id="interactive_charts">
+<h3>Step 1: Include react-fusioncharts.js</h3>
+<p>In your HTML, include <code class="language-markup" >react-fusioncharts.js</code> after all other scripts:</p>
+<pre class="language-markup" ><code class="language-markup" >&lt;script type="text/javascript" src="/path/to/fusioncharts.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/path/to/react.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/path/to/react-fusioncharts.js"&gt;&lt;/script&gt;</code></pre>
+<br>
+<h3>Step 2: Add the HTML element where FusionCharts is to be rendered</h3>
+<p>In your HTML, find the section where you wish to add the chart place a <code class="language-markup" >&lt;div></code> for the FusionCharts to be rendered.</p>
+<pre class="language-markup" ><code class="language-markup" >&lt;div id='chart-container'>&lt;/div></code></pre>
+<br>
+<h3>Step 3: Populate required configurations</h3>
+<p>In your JavaScript code, define an object which consists of all the configurations and their values, required to get FusionCharts up.</p>
+<pre class="language-markup" ><code class="language-markup" >var chartConfigs = {
+    type: ...,
+    renderAt: ...,
+    className: ..., // ReactJS attribute-name for DOM classes
+    dataFormat: ...,
+    dataSource: ...
+};</code></pre>
+<br>
+<h3>Step 4: Creating a Parent Component</h3>
+<p>For allowing charts to be interactive, FusionCharts are tied to a common parent ReactJS component. This parent component is responsible for managing the state for all the FusionCharts underneath itself. This state's properties are left open for the user to define. This is helpful when the user needs to store filters or the element which triggered the filter (we will come to this in the later steps).<br/><br/>
+Let's create a interactive dashboard, having a parent component say 'MyApp' and two FusionCharts(pie and column charts) underneath it. On the click of a slice of the pie chart, the data in the column chart should be updated. This is handled by a configuration 'impactedBy' (explained later in further steps). The object containing the configurations is passed to the FusionCharts component as 'props':</p>
+<pre class="language-markup" ><code class="language-markup" >var MyApp = React.createClass({
+    ...,
+    render: funstion () {
+        return (
+            &lt;ReactFC {...categoryChartConfigs} />
+            &lt;ReactFC {...revenueChartConfigs} />
+        );
+    }
+});
+
+ReactDOM.render(
+    &lt;MyApp />,
+    document.getElementById('chart-container')
+);
+</code></pre>
+<p>We recommend following the previous method of creating an object and passing it, but these configurations can be passed separately as well:</p>
+<pre class="language-markup" >
+<code class="language-markup" >ReactDOM.render(
+    &lt;ReactFC
+        type: ...,
+        renderAt: ...,
+        className: ...,
+        dataFormat: ...,
+        dataSource: ... />,
+    document.getElementById('chart-container')
+);</code>
+</pre>
+<br>
+<h3>Step 5: Defining an event's behavior on filter</h3>
+<p>On click of a slice of pie chart, a filter should be applied with the value of the selected slice.</p>
+<pre class="language-markup" ><code class="language-markup" >var categoryChartConfigs = {
+    ...,
+    events: {
+        /***
+        ** Slicing event of Pie Chart
+        ***/
+        slicingStart: function () {
+
+            /***
+            **  Call a function which sets the state of 'MyApp'
+            **  with this filter value and the 'id' of this pie chart.
+            ***/
+
+        }
+    }
+};
+</code></pre>
+<br>
+<h3>Step 6: Storing the filters</h3>
+<p>Now before we propagate these filters to the other charts, we need to store them from where it can be accessible to other charts. This is done in the function that checks the state of the parent component.</p>
+<p>We define a function to be called on the above slicing event, which sets this state with mandatorily two things:</p>
+<ul>
+    <li>filterValue: the value of the selected slice</li>
+    <li>filterSource: the id of the chart which triggered this slicing event</li>
+</ul>
+<p>This function is defined in the parent component.</p>
+<pre class="language-markup" ><code class="language-markup" >var MyApp = React.createClass({
+    ....,
+    storeFilters: function (fv, source) {
+
+        /***
+        ** Sets the state of 'MyApp'
+        ***/
+        this.setState({
+            filterValue: fv,
+            filterSource: source
+        });
+    },
+    render: function () {
+        var that = this;
+
+        var categoryChartConfigs = {
+                ...,
+                events: {
+                    slicingStart: function (a,b) {
+
+                        /***
+                        ** Calling the function to set state of 'MyApp'
+                        ***/
+                        that.storeFilters(a.data.categoryLabel, b.sender.id);
+                    }
+                }
+            };
+
+        var revenueChartConfigs = {...};
+
+        /***
+        **  Code to filter the
+        **  data of column chart
+        ***/
+
+        return (
+            &lt;ReactFC {...categoryChartConfigs} />
+            &lt;ReactFC {...revenueChartConfigs} />
+        );
+    }
+});
+
+ReactDOM.render(
+    &lt;MyApp />,
+    document.getElementById('chart-container')
+);
+</code></pre>
+<br>
+<h3>Step 7: Propagating the filters</h3>
+<p>To use the interactive mode using the React-FusionCharts plugin, we need to define two configurations:</p>
+<ul>
+    <li><code class="language-markup" >eventSource</code>: On an event trigger of a chart or an element, if we want to propagate filter(s) further to other charts, we define a configuration <code class="language-markup" >eventSource</code> on the impacting chart. This configuration accepts a non-empty string of the id of the chart or the element who triggered those events.</li>
+    <li><code class="language-markup" >impactedBy</code>: If we want a chart to react to an event of another chart or element, we define a configuration <code class="language-markup" >impactedBy</code> on the impacted chart. This configuration accepts an array of id(s) of the element(s) who triggers those events.</li>
+</ul>
+
+<p>This is an important step because internally the plugin then compares the value of <code class="language-markup" >eventSource</code> with the value of <code class="language-markup" >impactedBy</code> of a FusionChart. If there is a match, it updates itself.</p>
+
+<p>From the state of the parent component <code class="language-markup" >MyApp</code>, we pass the value of the property <code class="language-markup" >filterSource</code>, to the configuration <code class="language-markup" >eventSource</code>:</p>
+
+<pre class="language-markup" ><code class="language-markup" >var MyApp = React.createClass({
+    ....,
+    storeFilters: function (fv, source) {...},
+    render: function () {
+        var that = this;
+
+        var categoryChartConfigs = {...};
+
+        var revenueChartConfigs = {
+            ...,
+            /***
+            ** id of the FusionCharts that triggered
+            ** event to filter a certain chart
+            ***/
+            eventSource: this.state.filterSource,
+            impactedBy: ['category-chart'],
+        };
+
+        /***
+        **  Code to filter the
+        **  data of column chart
+        ***/
+
+        return (
+            &lt;ReactFC {...categoryChartConfigs} />
+            &lt;ReactFC {...revenueChartConfigs} />
+        );
+    }
+});
+
+ReactDOM.render(
+    &lt;MyApp />,
+    document.getElementById('chart-container')
+);
+</code></pre>
+
+<p><b>Note:</b> <code class="language-markup" >eventSource</code> and <code class="language-markup" >impactedBy</code> are mandatory configurations to be set for an impacting chart. But if a chart is just getting impacted, it needs the <code class="language-markup" >impactedBy</code> configuration only.</p>
+
+<p>And your chart should display when you load the page with interactivity.</p>
+
+<br>
+<h3>Licensing</h3>
+<p>React-FusionCharts is open-source and distributed under the terms of the MIT/X11 License. You will still need to download and include FusionCharts in your page. This project provides no direct functionality. You can <a href="http://fusioncharts.com/download/">Download an evaluation</a>. You will still need to purchase a FusionCharts license to use in a commercial environment (FusionCharts is <a href="http://www.fusioncharts.com/download/free/">free for non-commercial and personal use</a>) .</p>
+
+                                        </div>
+            </div>
+    </div>
+                </div>
+                <div role="tabpanel" class="container tab-pane" id="demos">
+                    <div class="row">
+                        <div class="col-md-3 tablist">
+                            <!-- <h3>Demos</h3><br> -->
+                            <div class="list-group" role="tablist">
+
+                                    <a href="#/demos/ex1" id="ex1" class="list-group-item examples">
+                                        <h4>A Simple Chart</h4>
+                                        <p>A simple chart with all data provided as props</p>
+                                    </a>
+                                    <a href="#/demos/ex2" id="ex2" class="list-group-item examples">
+                                        <h4>A 3D Pie Chart</h4>
+                                        <p>A 3D pie chart passing the datasource attribute as props</p>
+                                    </a>
+
+                                    <a href="#/demos/ex3" id="ex3" class="list-group-item examples">
+                                        <h4>A Column, Line and Area Combi Chart</h4>
+                                        <p>A column, line and area combination chart using the datasource attribute</p>
+                                    </a>
+
+                                    <a href="#/demos/ex4" id="ex4" class="list-group-item examples">
+                                        <h4>Fetch data from a JSON URL</h4>
+                                        <p>Fetch data remotely from a JSON file or URL</p>
+                                    </a>
+
+                                    <a href="#/demos/ex4a" id="ex4a" class="list-group-item examples">
+                                        <h4>Fetch data from a XML URL</h4>
+                                        <p>Fetch data remotely from a XML file or URL</p>
+                                    </a>
+
+                                    <a href="#/demos/ex5" id="ex5" class="list-group-item examples">
+                                        <h4>Update chart data</h4>
+                                        <p>Change the data dynamically and update the chart automatically</p>
+                                    </a>
+
+                                    <a href="#/demos/ex6" id="ex6" class="list-group-item examples">
+                                        <h4>Trigger event from chart</h4>
+                                        <p>Click on a chart to trigger an event, and update the component</p>
+                                    </a>
+
+                                    <a href="#/demos/ex7" id="ex7" class="list-group-item examples">
+                                        <h4>Update chart attribute</h4>
+                                        <p>Change a parameter and see it automatically update the chart</p>
+                                    </a>
+
+                                    <a href="#/demos/ex8" id="ex8" class="list-group-item examples">
+                                        <h4>Update one chart on click of the other</h4>
+                                        <p>Click on the one chart and watch the other chart update automatically</p>
+                                    </a>
+
+                                    <a href="#/demos/ex9" id="ex9" class="list-group-item examples">
+                                        <h4>Using Annotations in Charts</h4>
+                                        <p>Adding graphical elements to make it more informative and visually appealing</p>
+                                    </a>
+
+                                    <a href="#/demos/ex10" id="ex10" class="list-group-item examples">
+                                        <h4>Customizing Hover effects in Map</h4>
+                                        <p>A Map having hover effects for entities, markers and marker connectors</p>
+                                    </a>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div id="charts-example">
+
+                            </div>
+                            <div id="code-listing">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#html_code" data-toggle="tab">HTML</a>
+                                    </li>
+                                    <li>
+                                        <a href="#javascript_code" data-toggle="tab">Javascript</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div id="html_code" class="tab-pane fade in active">
+                                        <pre class="code-tab">
+                                            <code class="language-markup">
+                                            </code>
+                                        </pre>
+                                    </div>
+                                    <div id="javascript_code" class="tab-pane fade">
+                                        <pre class="code-tab">
+                                            <code class="language-javascript">
+
+                                            </code>
+                                        </pre>
+                                    </div>
+                                </div>
+                                <div id="jsfiddle">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="container-fluid tab-pane" id="dashboard">
+                    <h3>Global Terrorism Dashboard</h3>
+                    <div class="container-fluid cst-container">
+                        <div id="dashboard-container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+		<script src="common.js"></script>
+		<script src="bundle.js"></script>
+		<script src="script.js"></script>
+
+    </body>
+</html>
