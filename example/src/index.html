@@ -94,7 +94,7 @@
                                       
                                       <div role="tabpanel" class="tab-pane fade in active" id="npm_installation">
 <h3>Step 1: Install fusioncharts, react, react-dom, and react-fusioncharts npm package</h3>
-<p>Execute the commands below in the terminal to install the fusioncharts, react, react-dom, and react-fusioncharts node modules.
+<p>Execute the commands below in the terminal to install
 <code class="language-javascript" >fusioncharts</code>, <code class="language-javascript" >react</code>, <code class="language-javascript" >react-dom</code> and <code class="language-javascript" >react-fusioncharts</code> node modules. </p>
 <pre class="language-javascript" ><code class="language-javascript" >npm install react --save
 npm install react-dom --save
@@ -106,12 +106,13 @@ npm install react react-dom fusioncharts react-fusioncharts --save
 </code></pre>
 <br>
 <h3>Step 2: Add the HTML container element for rendering the chart</h3>
-<p>Create a chart container in the HTML code of your chart using the <code class="language-markup" >&lt;div></code> element, as shown below, placing it where you want to render the chart.</p>
+<p>In your HTML, find the section where you wish to render the chart place a <code class="language-markup" >&lt;div></code> for the FusionCharts to be rendered.</p>
 <pre class="language-markup" ><code class="language-markup" >&lt;div id='chart-container'>&lt;/div></code></pre>
 <br>
-<h3>Step 3: Require the react-fusioncharts package from npm</h3>
-<p>Require the <code class="language-javascript" >react</code>, <code class="language-javascript" >fusioncharts</code>, and <code class="language-javascript" >react-fusioncharts</code> modules, in this order, in npm. In your JavaScript code, define an object that consists of all the configurations and their values, required to get FusionCharts up.</p>
-<pre class="language-javascript" ><code class="language-javascript" >import React from 'react';
+<h3>Step 3: Require react-fusioncharts package from npm</h3>
+<p>Require <code class="language-javascript" >react</code>, <code class="language-javascript" >react-dom</code>, <code class="language-javascript" >fusioncharts</code>, and <code class="language-javascript" >react-fusioncharts</code> modules, in this order, through npm. In your JavaScript code, define an object that consists of all the configurations and their values, required to render FusionCharts.</p>
+<pre class="language-javascript" >
+<code class="language-javascript" >import React from 'react';
 import ReactDOM from 'react-dom';
 import fusioncharts from 'fusioncharts';
 import fusioncharts from 'fusioncharts/fusioncharts.charts';
@@ -127,12 +128,12 @@ var chartConfigs = {
 <br>
 <h3>Step 4: Pass the configurations required for FusionCharts and render the chart</h3>
 
-<p>FusionCharts plugin for react cab be used in two ways.</p>
-<p><b>1.</b> Use the ReactFC component directly in ReactDOM to render the chart.  The configurations are passed as props of the component.</p>
-<p><b>2.</b> Compose multiple ReactFC component in your custom defined component to render the chart. This way you would be able to hold the state in your custom defined component and will be able to perform various activity using the lifecycle hooks.</p>
+<p>FusionCharts plugin for react can be used in two ways.</p>
+<p><b>1. </b>Use the ReactFC component directly in ReactDOM to render the chart.  The configurations are passed as props of the component.</p>
+<p><b>2. </b>Create multiple ReactFC component inside your custom defined component to render individual charts. This way you would be able to hold the state in your custom defined component and will be able to perform various activities using the component’s lifecycle hooks.</p>
 <p>&nbsp;</p>
 <b>Method 1:</b> Render the chart in the React application
-For a standalone chart, we can choose to make a component class or directly render the chart with the ReactFC component class. The object containing the chart configuration properties is passed to the FusionCharts component as props, as shown below
+for a standalone chart, we can choose to make a component class or directly render the chart with the ReactFC component class. The object containing the chart configuration properties are passed to the FusionCharts component as props, as shown below
 
 <pre class="language-markup" ><code class="language-markup" >ReactDOM.render(
     &lt;ReactFC {...chartConfigs} />,
