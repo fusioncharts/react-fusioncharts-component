@@ -1,4 +1,4 @@
-### [Demos and Documentation](http://fusioncharts.github.io/react-fusioncharts/)
+### [Demos and Documentation](http://fusioncharts.github.io/react-fusioncharts-component/)
 
 ## Introduction
 
