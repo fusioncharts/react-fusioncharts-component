@@ -1,4 +1,4 @@
-### [Demos and Documentation](http://fusioncharts.github.io/react-fusioncharts-component/)
+### [Demos and Documentation](http://fusioncharts.github.io/react-fusioncharts/)
 
 ## Introduction
 
@@ -9,27 +9,27 @@ The **react-fusioncharts** plugin, along with FusionCharts Suite XT, lets you ad
 This article outlines the steps to be executed for rendering charts using the **react-fusioncharts** plugin.
 
 #### Step 1: Install **fusioncharts**, **react**, **react-dom**, and **react-fusioncharts** npm package
-Execute the commands below in the terminal to install the **fusioncharts**, **react**, **react-dom**, and **react-fusioncharts** node modules.
+Execute the commands below in the terminal to install **fusioncharts**, **react**, **react-dom**, and **react-fusioncharts** node modules.
 
-##### Method 1:
 ```sh
 npm install react --save
 npm install react-dom --save
 npm install fusioncharts --save
 npm install react-fusioncharts --save
-```
 
-##### Method 2:
-    `npm install react react-dom fusioncharts react-fusioncharts --save`
+# or single line
+npm install react react-dom fusioncharts react-fusioncharts --save
+```
 
 #### Step 2: Add the HTML container element for rendering the chart
 
-Create a chart container in the HTML code of your chart using the `<div>` element, as shown below, placing it where you want to render the chart.
+In your HTML, find the section where you wish to render the chart place a `<div>` for the FusionCharts to be rendered.
     `<div id='chart-container'></div>`
 
-#### Step 3: Require the react-fusioncharts package from npm
+#### Step 3: Require react-fusioncharts package from npm
 
-Require the **react**, **fusioncharts**, and **react-fusioncharts** modules, in this order, in npm. In your JavaScript code, define an object that consists of all the configurations and their values, required to get FusionCharts up. 
+Require **react**, **react-dom**, **fusioncharts**, and **react-fusioncharts** modules, in this order, through npm. In your JavaScript code, define an object that consists of all the configurations and their values, required to render FusionCharts.
+
 ```
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -47,22 +47,20 @@ var chartConfigs = {
 ```
 
 #### Step 4: Pass the configurations required for FusionCharts and render the chart
-There are two different methods of rendering a chart in React. The simplest is using the `ReactDOM.render()`. The second method involves creating a React component to hold the configuration logic for your charts. We will show you an example of both cases.
-
 ##### FusionCharts plugin for react cab be used in two ways.
 1. Use the ReactFC component directly in ReactDOM to render the chart.  The configurations are passed as props of the component.
-2. Compose multiple ReactFC component in your custom defined component to render the chart. This way you would be able to hold the state in your custom defined component and will be able to perform various activity using the lifecycle hooks. 
+2. Create multiple ReactFC component inside your custom defined component to render individual charts. This way you would be able to hold the state in your custom defined component and will be able to perform various activities using the component’s lifecycle hooks. 
 
-#### Method 1: Render the chart in the React application
-For a standalone chart, we can choose to make a component class or directly render the chart with the ReactFC component class. The object containing the chart configuration properties is passed to the FusionCharts component as **props**, as shown below:
+##### Method 1:
+Render the chart in the React application for a standalone chart, we can choose to make a component class or directly render the chart with the ReactFC component class. The object containing the chart configuration properties are passed to the FusionCharts component as props, as shown below:
 ```
 ReactDOM.render(
     <ReactFC {...chartConfigs} />,
     document.getElementById('chart-container')
 );
 ```
-##### OR
-##### Method 2: Creating a custom MyApp component to render the chart
+##### Method 2:
+Creating a custom MyApp component to render the chart
 
 ```
 var MyApp = React.createClass({
