@@ -20,11 +20,9 @@ var _react = (typeof window !== "undefined" ? window['React'] : typeof global !=
 
 var _react2 = _interopRequireDefault(_react);
 
-var FusionCharts = typeof window !== 'undefined' ? window['FusionCharts'] : typeof global !== 'undefined' ? global['FusionCharts'] : null;
+var _fusioncharts = (typeof window !== "undefined" ? window['FusionCharts'] : typeof global !== "undefined" ? global['FusionCharts'] : null);
 
-if (typeof FusionCharts === 'undefined') {
-    FusionCharts = require('fusioncharts');
-}
+var _fusioncharts2 = _interopRequireDefault(_fusioncharts);
 
 var ReactFC = (function (_React$Component) {
     _inherits(ReactFC, _React$Component);
@@ -43,7 +41,7 @@ var ReactFC = (function (_React$Component) {
         this.fcConfig = props;
         this.renderAt = propsObj.renderAt;
 
-        this.chartObj = new FusionCharts(this.fcConfig);
+        this.chartObj = new _fusioncharts2['default'](this.fcConfig);
 
         this.getRenderAt = function () {
             return _this.renderAt || _this.chartObj.id + '-container';
@@ -106,5 +104,5 @@ exports['default'] = ReactFC;
 module.exports = exports['default'];
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"fusioncharts":undefined}]},{},[1])(1)
+},{}]},{},[1])(1)
 });
