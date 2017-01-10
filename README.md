@@ -1,4 +1,4 @@
-### [Demos and Documentation](http://fusioncharts.github.io/react-fusioncharts-component/)
+### [Demos and Documentation](http://fusioncharts.github.io/react-fusioncharts/)
 
 ## Introduction
 
@@ -26,9 +26,9 @@ npm install react react-dom fusioncharts react-fusioncharts --save
 In your HTML, find the section where you wish to render the chart place a `<div>` for the FusionCharts to be rendered.
     `<div id='chart-container'></div>`
 
-#### Step 3: Require react-fusioncharts package from npm
+#### Step 3: Import react-fusioncharts package from npm
 
-Require **react**, **react-dom**, **fusioncharts**, and **react-fusioncharts** modules, in this order, through npm. In your JavaScript code, define an object that consists of all the configurations and their values, required to render FusionCharts.
+Import **react**, **react-dom**, **fusioncharts**, and **react-fusioncharts** modules, in this order, through npm. In your JavaScript code, define an object that consists of all the configurations and their values, required to render FusionCharts.
 
 ```
 import React from 'react';
@@ -47,20 +47,22 @@ var chartConfigs = {
 ```
 
 #### Step 4: Pass the configurations required for FusionCharts and render the chart
-##### FusionCharts plugin for react cab be used in two ways.
-1. Use the ReactFC component directly in ReactDOM to render the chart.  The configurations are passed as props of the component.
-2. Create multiple ReactFC component inside your custom defined component to render individual charts. This way you would be able to hold the state in your custom defined component and will be able to perform various activities using the component’s lifecycle hooks. 
+##### FusionCharts plugin for **react** can be used in two ways:
+1. Use the **ReactFC** component directly in **ReactDOM** to render the chart. The configurations are passed as props of the component.
+2. Create multiple **ReactFC** component inside your custom defined component to render individual charts. This way you would be able to hold the state in your custom component and will be able to perform various activities using the component’s lifecycle hooks. 
 
 ##### Method 1:
-Render the chart in the React application for a standalone chart, we can choose to make a component class or directly render the chart with the ReactFC component class. The object containing the chart configuration properties are passed to the FusionCharts component as props, as shown below:
+Render the chart in the **React** application for a standalone chart, we can choose to make a component class or directly render the chart with the **ReactFC** component class. The object containing the chart configuration properties are passed to the **FusionCharts** component as props, as shown below:
+
 ```
 ReactDOM.render(
     <ReactFC {...chartConfigs} />,
     document.getElementById('chart-container')
 );
 ```
+
 ##### Method 2:
-Creating a custom MyApp component to render the chart
+Create a custom MyApp component to render the chart as shown below:
 
 ```
 var MyApp = React.createClass({
@@ -78,7 +80,9 @@ ReactDOM.render(
     document.getElementById('chart-container')
 );
 ```
-While the previous method of creating an object, with the configuration properties and values defined, and passing it is recommended, the configuration properties can be passed separately as well, as shown below:
+
+While it is recommended to create an object, with the configuration properties, and passing the values defined, you can also pass the configuration properties separately as shown below:
+
 ```
 ReactDOM.render(
     <ReactFC
@@ -90,6 +94,7 @@ ReactDOM.render(
     document.getElementById('chart-container')
 );
 ```
+
 Your chart should now render when the page is loaded.
 
 ### Licensing
