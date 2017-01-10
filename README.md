@@ -35,8 +35,12 @@ Import **react**, **react-dom**, **fusioncharts**, and **react-fusioncharts** mo
 import React from 'react';
 import ReactDOM from 'react-dom';
 import fusioncharts from 'fusioncharts';
-import fusioncharts from 'fusioncharts/fusioncharts.charts';
+// Load the charts module
+import charts from 'fusioncharts/fusioncharts.charts';
 import react-fusioncharts from 'react-fusioncharts';
+
+// Pass fusioncharts as a dependency of charts
+charts(FusionCharts)
 
 var chartConfigs = {
     type: ...,
