@@ -115,8 +115,12 @@ npm install react react-dom fusioncharts react-fusioncharts --save
 <code class="language-javascript" >import React from 'react';
 import ReactDOM from 'react-dom';
 import fusioncharts from 'fusioncharts';
-import fusioncharts from 'fusioncharts/fusioncharts.charts';
-import ReactFC from 'react-fusioncharts';
+// Load the charts module
+import charts from 'fusioncharts/fusioncharts.charts';
+import react-fusioncharts from 'react-fusioncharts';
+
+// Pass fusioncharts as a dependency of charts
+charts(FusionCharts)
 
 var chartConfigs = {
     type: ...,
