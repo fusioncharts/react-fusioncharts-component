@@ -6,17 +6,18 @@ import expect from 'expect';
 
 import FC from 'fusioncharts';
 import charts from 'fusioncharts/fusioncharts.charts';
-import ReactFusionCharts from '../lib/ReactFusionCharts';
+import ReactFusionCharts from '../lib/ReactFC';
 
 charts(FC);
 
 class FCDashboard extends React.Component {
     constructor(props) {
         super(props);
+        let propsObj = props;
 
         this.state = {
             name: 'React is cool',
-            id: props.id,
+            id: propsObj.id,
             type: 'Column2D',
             dataFormat: 'JSON',
             dataSource: {
