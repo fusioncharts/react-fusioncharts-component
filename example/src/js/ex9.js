@@ -105,7 +105,6 @@ FusionCharts.ready(function () {
 
     var revenueChartConfigs = {
         type: 'column2d',
-        renderAt: 'revenue-chart-container',
         width: '400',
         height: '400',
         dataFormat: 'json',

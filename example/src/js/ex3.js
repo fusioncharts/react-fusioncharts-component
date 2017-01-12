@@ -192,7 +192,6 @@ FusionCharts.ready(function () {
     }
     var props_multi_chart = {
         id: "multi_chart",
-        renderAt: "multi_chart_container",
         type: "mscombi2d",
         width:600,
         height: 400,
@@ -201,6 +200,6 @@ FusionCharts.ready(function () {
     };
     ReactDOM.render(
         <ReactFC {...props_multi_chart} />,
-        document.getElementById('fc_react_app')
+        document.getElementById('chart-container')
     );
 })

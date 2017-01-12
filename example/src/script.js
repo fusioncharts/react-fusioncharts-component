@@ -11,36 +11,49 @@ window.ReactDOM = ReactDOM;
 
 var code = {
     "ex1": {
+        'html': '<div id="chart-container"></div>',
         'jsfiddle': 'http://jsfiddle.net/fusioncharts/f0b2e0ms/'
     },
     "ex2": {
+        'html': '<div id="chart-container"></div>',
         'jsfiddle': 'http://jsfiddle.net/fusioncharts/3r627e9h/'
     },
     "ex3": {
+        'html': '<div id="chart-container"></div>',
         'jsfiddle': 'http://jsfiddle.net/fusioncharts/m18qaekm/'
     },
     "ex4": {
+        'html': '<div id="chart-container"></div>',
         'jsfiddle': ''
     },
     "ex4a": {
+        'html': '<div id="chart-container"></div>',
         'jsfiddle': ''
     },
     "ex5": {
+        'html': '<div id="chart-container"></div>',
         'jsfiddle': 'http://jsfiddle.net/fusioncharts/bj0snLsg/'
     },
     "ex6": {
+        'html': `<div id="chart-container"></div>
+<p>The value that you have selected is: <span id="value">nothing</span></p>`,
         'jsfiddle': 'http://jsfiddle.net/fusioncharts/9ora4yc5/'
     },
     "ex7": {
+        'html': '<div id="chart-container"></div>',
         'jsfiddle': 'http://jsfiddle.net/fusioncharts/mqhk1nud/'
     },
     "ex8": {
+        'html': `<p>Click on the slice of pie</p>
+<div id="chart-container"></div>`,
         'jsfiddle': 'http://jsfiddle.net/fusioncharts/97s74d1q/'
     },
     "ex9": {
+        'html': '<div id="chart-container"></div>',
         'jsfiddle': 'http://jsfiddle.net/fusioncharts/asg7eqb0/'
     },
     "ex10": {
+        'html': '<div id="map-container"></div>',
         'jsfiddle': 'http://jsfiddle.net/fusioncharts/o0uze2Lv/'
     }
 }
@@ -97,18 +110,19 @@ $('.examples').on('click',function() {
         }
     });
 
-    jQuery.get({
-        url: "../src/views/" + exampleId + ".html",
-        // contentType: 'application/json',
-        dataType: 'html',
-        success: function (data) {
-            data = "\n" + data.replace(/\</g, '&lt;');
-            $('#html_code code.language-markup').html(data);
-            Prism.highlightAll();
-        }
-    });
+    // jQuery.get({
+    //     url: "../src/views/" + exampleId + ".html",
+    //     // contentType: 'application/json',
+    //     dataType: 'html',
+    //     success: function (data) {
+    //         data = "\n" + data.replace(/\</g, '&lt;');
+    //         $('#html_code code.language-markup').html(data);
+    //         Prism.highlightAll();
+    //     }
+    // });
 
-    // $('#html_code code.language-markup').html(code[exampleId].html);
+    $('#html_code code.language-markup').html('\n' + code[exampleId].html.replace(/\</g, '&lt;'));
+    // $('#html_code code.language-markup').html('\nHello world');
     // $('#javascript_code code.language-javascript').html(code[exampleId].javascript);
 
     previous = this.id;

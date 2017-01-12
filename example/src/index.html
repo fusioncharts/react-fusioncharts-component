@@ -106,8 +106,8 @@ npm install react react-dom fusioncharts react-fusioncharts --save
 </code></pre>
 <br>
 <h3>Step 2: Add the HTML container element for rendering the chart</h3>
-<p>In your HTML, find the section where you wish to render the chart place a <code class="language-markup" >&lt;div></code> for the FusionCharts to be rendered.</p>
-<pre class="language-markup" ><code class="language-markup" >&lt;div id='chart-container'>&lt;/div></code></pre>
+<p>In your HTML, find the section where you wish to render the chart place a <code  >&lt;div></code> for the FusionCharts to be rendered.</p>
+<pre class="language-markup" ><code  >&lt;div id='chart-container'>&lt;/div></code></pre>
 <br>
 <h3>Step 3: Import react-fusioncharts package from npm</h3>
 <p>Import <code class="language-javascript" >react</code>, <code class="language-javascript" >react-dom</code>, <code class="language-javascript" >fusioncharts</code>, and <code class="language-javascript" >react-fusioncharts</code> modules, in this order, through npm. In your JavaScript code, define an object that consists of all the configurations and their values, required to render FusionCharts.</p>
@@ -123,12 +123,15 @@ import react-fusioncharts from 'react-fusioncharts';
 charts(FusionCharts)
 
 var chartConfigs = {
-    type: ...,
-    renderAt: ...,
-    className: ..., // ReactJS attribute-name for DOM classes
-    dataFormat: ...,
-    dataSource: ...
-};</code></pre>
+    type: "Column2D",
+    className: "fc-column2d", // ReactJS attribute-name for DOM classes
+    dataFormat: "JSON",
+    dataSource: {
+        chart:{},
+        data: [{value: 500}, {value: 600}, {value: 700}]
+    }
+};
+</code></pre>
 <br>
 <h3>Step 4: Pass the configurations required for FusionCharts and render the chart</h3>
 
@@ -139,14 +142,14 @@ var chartConfigs = {
 <b>Method 1: </b> Render the chart in the <code class="language-javascript" >React</code> application
 for a standalone chart, we can choose to make a component class or directly render the chart with the <code class="language-javascript" >ReactFC</code> component class. The object containing the chart configuration properties are passed to the FusionCharts component as props, as shown below
 
-<pre class="language-markup" ><code class="language-markup" >ReactDOM.render(
+<pre class="language-javascript" ><code  >ReactDOM.render(
     &lt;ReactFC {...chartConfigs} />,
     document.getElementById('chart-container')
 );
 </code></pre>
 
 <p><b>Method 2: </b> Create a custom MyApp component to render the chart as shown below:</p> 
-<pre class="language-markup" ><code class="language-markup" >var MyApp = React.createClass({
+<pre class="language-javascript" ><code  >var MyApp = React.createClass({
     ..., // Rest of the React Component Code
     render: function () {
         return (
@@ -163,14 +166,18 @@ ReactDOM.render(
 </code></pre>
 <p>&nbsp;</p>
 <p>While it is recommended to create an object, with the configuration properties, and passing the values defined, you can also pass the configuration properties separately as shown below:</p>
-<pre class="language-markup" >
-<code class="language-markup" >ReactDOM.render(
+<pre class="language-javascript" >
+<code>var chartData = {
+        chart: {},
+        data: [{value: 500}, {value: 600}, {value: 700}]
+    };
+
+ReactDOM.render(
     &lt;ReactFC
-        type: ...,
-        renderAt: ...,
-        className: ...,
-        dataFormat: ...,
-        dataSource: ... />,
+        type = "Column2D"
+        className = "fc-column2d"  // ReactJS attribute-name for DOM classes
+        dataFormat = "JSON"
+        dataSource = {chartData}/>,
     document.getElementById('chart-container')
 );</code>
 </pre>
@@ -185,34 +192,38 @@ ReactDOM.render(
 
                                       <div role="tabpanel" class="tab-pane fade in " id="static_charts">
 <h3>Step 1: Include react-fusioncharts.js</h3>
-<p>In your HTML, include <code class="language-markup" >react-fusioncharts.js</code> after all other scripts:</p>
-<pre class="language-markup" ><code class="language-markup" >&lt;script type="text/javascript" src="/path/to/fusioncharts.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="/path/to/react.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="/path/to/react-fusioncharts.js"&gt;&lt;/script&gt;</code></pre>
+<p>In your HTML, include <code  >react-fusioncharts.js</code> after all other scripts:</p>
+<pre class="language-markup" ><code  >&lt;script type="text/javascript" src="https://unpkg.com/react@0.13.3/dist/JSXTransformer.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="https://unpkg.com/react@15/dist/react.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="https://unpkg.com/fusioncharts/fusioncharts.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="https://unpkg.com/react-fusioncharts/dist/react-fusioncharts.js"&gt;&lt;/script&gt;</code></pre>
 <br>
 <h3>Step 2: Add the HTML element where FusionCharts is to be rendered</h3>
-<p>In your HTML, find the section where you wish to add the chart place a <code class="language-markup" >&lt;div></code> for the FusionCharts to be rendered.</p>
-<pre class="language-markup" ><code class="language-markup" >&lt;div id='chart-container'>&lt;/div></code></pre>
+<p>In your HTML, find the section where you wish to add the chart place a <code  >&lt;div></code> for the FusionCharts to be rendered.</p>
+<pre class="language-markup" ><code  >&lt;div id='chart-container'>&lt;/div></code></pre>
 <br>
 <h3>Step 3: Populate required configurations</h3>
 <p>In your JavaScript code, define an object which consists of all the configurations and their values, required to get FusionCharts up.</p>
-<pre class="language-markup" ><code class="language-markup" >var chartConfigs = {
-    type: ...,
-    renderAt: ...,
-    className: ..., // ReactJS attribute-name for DOM classes
-    dataFormat: ...,
-    dataSource: ...
+<pre class="language-javascript" ><code class="" >var chartConfigs = {
+    type: "Column2D",
+    className: "fc-column2d", // ReactJS attribute-name for DOM classes
+    dataFormat: "JSON",
+    dataSource: {
+        chart:{},
+        data: [{value: 500}, {value: 600}, {value: 700}]
+    }
 };</code></pre>
 <br>
 <h3>Step 4: Pass Configurations and Render chart</h3>
 <p>There are two definitive ways of building a FusionChart in React.js; either it is a part of a component heirarchy or is a lone chart. For a singular FusionChart, we can choose to make a component class or directly render with the React-FusionCharts component class. The object containing the configurations is passed to the FusionCharts component as 'props':</p>
-<pre class="language-markup" ><code class="language-markup" >ReactDOM.render(
+<pre class="language-javascript" ><code  >ReactDOM.render(
     &lt;ReactFC {...chartConfigs} />,
     document.getElementById('chart-container')
 );
 </code></pre>
 <p>OR </p>
-<pre class="language-markup" ><code class="language-markup" >var MyApp = React.createClass({
+<pre class="language-javascript" ><code  >var MyApp = React.createClass({
     ..., // Rest of the React Component Code
     render: function () {
         return (
@@ -228,14 +239,18 @@ ReactDOM.render(
 );
 </code></pre>
 <p>We recommend following the previous method of creating an object and passing it, but these configurations can be passed separately as well:</p>
-<pre class="language-markup" >
-<code class="language-markup" >ReactDOM.render(
+<pre class="language-javascript" >
+<code class="" >var chartData = {
+        chart: {},
+        data: [{value: 500}, {value: 600}, {value: 700}]
+    };
+
+ReactDOM.render(
     &lt;ReactFC
-        type: ...,
-        renderAt: ...,
-        className: ...,
-        dataFormat: ...,
-        dataSource: ... />,
+        type = "Column2D"
+        className = "fc-column2d"  // ReactJS attribute-name for DOM classes
+        dataFormat = "JSON"
+        dataSource = {chartData}/>,
     document.getElementById('chart-container')
 );</code>
 </pre>
@@ -248,29 +263,33 @@ ReactDOM.render(
 
                                       <div role="tabpanel" class="tab-pane" id="interactive_charts">
 <h3>Step 1: Include react-fusioncharts.js</h3>
-<p>In your HTML, include <code class="language-markup" >react-fusioncharts.js</code> after all other scripts:</p>
-<pre class="language-markup" ><code class="language-markup" >&lt;script type="text/javascript" src="/path/to/fusioncharts.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="/path/to/react.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="/path/to/react-fusioncharts.js"&gt;&lt;/script&gt;</code></pre>
+<p>In your HTML, include <code  >react-fusioncharts.js</code> after all other scripts:</p>
+<pre class="language-markup" ><code  >&lt;script type="text/javascript" src="https://unpkg.com/react@0.13.3/dist/JSXTransformer.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="https://unpkg.com/react@15/dist/react.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="https://unpkg.com/fusioncharts/fusioncharts.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="https://unpkg.com/react-fusioncharts/dist/react-fusioncharts.js"&gt;&lt;/script&gt;</code></pre>
 <br>
 <h3>Step 2: Add the HTML element where FusionCharts is to be rendered</h3>
-<p>In your HTML, find the section where you wish to add the chart place a <code class="language-markup" >&lt;div></code> for the FusionCharts to be rendered.</p>
-<pre class="language-markup" ><code class="language-markup" >&lt;div id='chart-container'>&lt;/div></code></pre>
+<p>In your HTML, find the section where you wish to add the chart place a <code  >&lt;div></code> for the FusionCharts to be rendered.</p>
+<pre class="language-markup" ><code  >&lt;div id='chart-container'>&lt;/div></code></pre>
 <br>
 <h3>Step 3: Populate required configurations</h3>
 <p>In your JavaScript code, define an object which consists of all the configurations and their values, required to get FusionCharts up.</p>
-<pre class="language-markup" ><code class="language-markup" >var chartConfigs = {
-    type: ...,
-    renderAt: ...,
-    className: ..., // ReactJS attribute-name for DOM classes
-    dataFormat: ...,
-    dataSource: ...
+<pre class="language-javascript" ><code  >var chartConfigs = {
+    type: "Column2D",
+    className: "fc-column2d", // ReactJS attribute-name for DOM classes
+    dataFormat: "JSON",
+    dataSource: {
+        chart:{},
+        data: [{value: 500}, {value: 600}, {value: 700}]
+    }
 };</code></pre>
 <br>
 <h3>Step 4: Creating a Parent Component</h3>
 <p>For allowing charts to be interactive, FusionCharts are tied to a common parent ReactJS component. This parent component is responsible for managing the state for all the FusionCharts underneath itself. This state's properties are left open for the user to define. This is helpful when the user needs to store filters or the element which triggered the filter (we will come to this in the later steps).<br/><br/>
 Let's create a interactive dashboard, having a parent component say 'MyApp' and two FusionCharts(pie and column charts) underneath it. On the click of a slice of the pie chart, the data in the column chart should be updated. This is handled by a configuration 'impactedBy' (explained later in further steps). The object containing the configurations is passed to the FusionCharts component as 'props':</p>
-<pre class="language-markup" ><code class="language-markup" >var MyApp = React.createClass({
+<pre class="language-javascript" ><code  >var MyApp = React.createClass({
     ...,
     render: funstion () {
         return (
@@ -286,21 +305,24 @@ ReactDOM.render(
 );
 </code></pre>
 <p>We recommend following the previous method of creating an object and passing it, but these configurations can be passed separately as well:</p>
-<pre class="language-markup" >
-<code class="language-markup" >ReactDOM.render(
+<pre class="language-javascript" ><code>var chartData = {
+        chart: {},
+        data: [{value: 500}, {value: 600}, {value: 700}]
+    };
+
+ReactDOM.render(
     &lt;ReactFC
-        type: ...,
-        renderAt: ...,
-        className: ...,
-        dataFormat: ...,
-        dataSource: ... />,
+        type = "Column2D"
+        className = "fc-column2d"  // ReactJS attribute-name for DOM classes
+        dataFormat = "JSON"
+        dataSource = {chartData}/>,
     document.getElementById('chart-container')
 );</code>
 </pre>
 <br>
 <h3>Step 5: Defining an event's behavior on filter</h3>
 <p>On click of a slice of pie chart, a filter should be applied with the value of the selected slice.</p>
-<pre class="language-markup" ><code class="language-markup" >var categoryChartConfigs = {
+<pre class="language-javascript" ><code  >var categoryChartConfigs = {
     ...,
     events: {
         /***
@@ -326,7 +348,7 @@ ReactDOM.render(
     <li>filterSource: the id of the chart which triggered this slicing event</li>
 </ul>
 <p>This function is defined in the parent component.</p>
-<pre class="language-markup" ><code class="language-markup" >var MyApp = React.createClass({
+<pre class="language-javascript" ><code  >var MyApp = React.createClass({
     ....,
     storeFilters: function (fv, source) {
 
@@ -377,15 +399,15 @@ ReactDOM.render(
 <h3>Step 7: Propagating the filters</h3>
 <p>To use the interactive mode using the React-FusionCharts plugin, we need to define two configurations:</p>
 <ul>
-    <li><code class="language-markup" >eventSource</code>: On an event trigger of a chart or an element, if we want to propagate filter(s) further to other charts, we define a configuration <code class="language-markup" >eventSource</code> on the impacting chart. This configuration accepts a non-empty string of the id of the chart or the element who triggered those events.</li>
-    <li><code class="language-markup" >impactedBy</code>: If we want a chart to react to an event of another chart or element, we define a configuration <code class="language-markup" >impactedBy</code> on the impacted chart. This configuration accepts an array of id(s) of the element(s) who triggers those events.</li>
+    <li><code  >eventSource</code>: On an event trigger of a chart or an element, if we want to propagate filter(s) further to other charts, we define a configuration <code  >eventSource</code> on the impacting chart. This configuration accepts a non-empty string of the id of the chart or the element who triggered those events.</li>
+    <li><code  >impactedBy</code>: If we want a chart to react to an event of another chart or element, we define a configuration <code  >impactedBy</code> on the impacted chart. This configuration accepts an array of id(s) of the element(s) who triggers those events.</li>
 </ul>
 
-<p>This is an important step because internally the plugin then compares the value of <code class="language-markup" >eventSource</code> with the value of <code class="language-markup" >impactedBy</code> of a FusionChart. If there is a match, it updates itself.</p>
+<p>This is an important step because internally the plugin then compares the value of <code  >eventSource</code> with the value of <code  >impactedBy</code> of a FusionChart. If there is a match, it updates itself.</p>
 
-<p>From the state of the parent component <code class="language-markup" >MyApp</code>, we pass the value of the property <code class="language-markup" >filterSource</code>, to the configuration <code class="language-markup" >eventSource</code>:</p>
+<p>From the state of the parent component <code  >MyApp</code>, we pass the value of the property <code  >filterSource</code>, to the configuration <code  >eventSource</code>:</p>
 
-<pre class="language-markup" ><code class="language-markup" >var MyApp = React.createClass({
+<pre class="language-javascript" ><code  >var MyApp = React.createClass({
     ....,
     storeFilters: function (fv, source) {...},
     render: function () {
@@ -421,7 +443,7 @@ ReactDOM.render(
 );
 </code></pre>
 
-<p><b>Note:</b> <code class="language-markup" >eventSource</code> and <code class="language-markup" >impactedBy</code> are mandatory configurations to be set for an impacting chart. But if a chart is just getting impacted, it needs the <code class="language-markup" >impactedBy</code> configuration only.</p>
+<p><b>Note:</b> <code  >eventSource</code> and <code  >impactedBy</code> are mandatory configurations to be set for an impacting chart. But if a chart is just getting impacted, it needs the <code  >impactedBy</code> configuration only.</p>
 
 <p>And your chart should display when you load the page with interactivity.</p>
 

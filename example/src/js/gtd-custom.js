@@ -414,7 +414,6 @@ var GTDDashboard = function (options) {
                 /** Configuration options --- Column Chart for "Number of Attacks by Year" **/
                 numberOfAttacksConfigs = {
                     id: "attacks-column-chart",
-                    renderAt: "attacks-column-chart-container",
                     type: "column2d",
                     width: 725,
                     height: 250,
@@ -471,7 +470,6 @@ var GTDDashboard = function (options) {
                 /** Configuration options --- Pie Chart for "Number of Casualties" **/
                 numberOfCasualtiesConfigs = {
                     id: "casulty-pie-chart",
-                    renderAt: "casulty-pie-chart-container",
                     type: "pie2d",
                     width:475,
                     height: 500,
@@ -484,7 +482,6 @@ var GTDDashboard = function (options) {
                 /** Configuration options --- Map for "Number of Attacks by Country" **/
                 numberOfAttacksByCountryConfigs = {
                     id: "attacks-map",
-                    renderAt: "attacks-map-container",
                     type: "Worldwithcountries",
                     width: 725,
                     height: 500,

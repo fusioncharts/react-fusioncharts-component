@@ -41,7 +41,6 @@ var myDataSource = {
 
 	revenueChartConfigs = {
 		id: "revenue-chart",
-	    renderAt: "revenue-chart-container",
 		type: "column2d",
 		width:600,
 	    height: 400,

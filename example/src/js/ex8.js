@@ -97,7 +97,6 @@ FusionCharts.ready(function () {
             // Initialize configurations for FusionCharts
             var props_col_chart = {
                 id: "column_chart",
-                renderAt: "column_chart_container",
                 className: "inline_div",
                 type: "column2d",
                 dataFormat: "json",
@@ -110,7 +109,6 @@ FusionCharts.ready(function () {
             var props_pie_chart = {
                 type: "pie2D",
                 id: "pie_chart",
-                renderAt: "pie_chart_container",
                 className: "inline_div",
                 dataFormat: "json",
                 defaultCenterLabel: "Total revenue: $64.08K",
@@ -153,6 +151,6 @@ FusionCharts.ready(function () {
 
     ReactDOM.render(
         <FCApp />,
-        document.getElementById('fc_react_app')
+        document.getElementById('chart-container')
     );
 });

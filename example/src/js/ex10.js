@@ -602,7 +602,6 @@ FusionCharts.ready(function () {
 
     var fc_configs_object = {
         type: 'usa',
-        renderAt: 'map-container',
         width: '600',
         height: '400',
         dataFormat: 'json',
@@ -610,6 +609,6 @@ FusionCharts.ready(function () {
     };
     ReactDOM.render(
         <ReactFC {...fc_configs_object} />,
-        document.getElementById('fc_react_app')
+        document.getElementById('map-container')
     );
 });

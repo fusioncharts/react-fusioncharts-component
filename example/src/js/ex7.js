@@ -57,7 +57,6 @@ FusionCharts.ready(function () {
         render: function () {
             var props_col_chart = {
                 id: "column_chart",
-                renderAt: "column_chart_container",
                 type: "column2d",
                 width:600,
                 height: 400,
@@ -95,6 +94,6 @@ FusionCharts.ready(function () {
 
     ReactDOM.render(
         <FCDashboard />,
-        document.getElementById('fc_react_app')
+        document.getElementById('chart-container')
     );
 });

@@ -44,7 +44,6 @@ FusionCharts.ready(function () {
     }
     var props_pie_chart = {
         id: "pie_chart",
-        renderAt: "pie_chart_container",
         type: "pie3d",
         width:600,
         height: 400,
@@ -53,6 +52,6 @@ FusionCharts.ready(function () {
     };
     ReactDOM.render(
         <ReactFC {...props_pie_chart} />,
-        document.getElementById('fc_react_app')
+        document.getElementById('chart-container')
     );
 })
