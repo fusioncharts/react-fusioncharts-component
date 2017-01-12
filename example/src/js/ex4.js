@@ -10,16 +10,15 @@ charts(FusionCharts);
 
 FusionCharts.ready(function () {
     var props_column_chart = {
-        id: "column_chart",
-        renderAt: "column_chart_container",
-        type: "column2d",
+        id: 'column_chart',
+        type: 'column2d',
         width:600,
         height: 400,
-        dataFormat: "jsonurl",
-        dataSource: "../data/data.json"
+        dataFormat: 'jsonurl',
+        dataSource: '../data/data.json'
     };
     ReactDOM.render(
         <ReactFC {...props_column_chart} />,
-        document.getElementById('fc_react_app')
+        document.getElementById('chart-container')
     );
-})
+});
