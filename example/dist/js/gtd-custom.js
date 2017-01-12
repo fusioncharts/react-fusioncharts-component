@@ -54,14 +54,14 @@ var GTDDashboard = function GTDDashboard(options) {
     ***/
     var csvToJson = function csvToJson(csvData) {
 
-        var rows = csvData.split("\n"),
+        var rows = csvData.split('\n'),
             jsonData = [],
-            headers = rows[0].split(","),
+            headers = rows[0].split(','),
             rowsLength = rows.length;
 
         for (var i = 1; i < rowsLength; i++) {
             var obj = {},
-                currentline = rows[i].split(","),
+                currentline = rows[i].split(','),
                 headersLength = headers.length;
 
             for (var j = 0; j < headersLength; j++) {
@@ -117,7 +117,7 @@ var GTDDashboard = function GTDDashboard(options) {
     var _where = function _where(list, key_value_pairs_to_be_searched) {
         var list_length = list.length,
             data_result = [];
-        if (typeof list === "object") {
+        if (typeof list === 'object') {
             for (var z in list) {
                 var flag = 0,
                     no_of_keys = 0;
@@ -201,38 +201,38 @@ var GTDDashboard = function GTDDashboard(options) {
     var gangNameList = function gangNameList(data) {
         var gang_priority_data = [],
             gang_data = _countBy(data, function (d) {
-            return d["gname"];
+            return d['gname'];
         });
 
         for (var gang in gang_data) {
             gang_priority_data.push({
-                "name": gang,
-                "count": gang_data[gang]
+                'name': gang,
+                'count': gang_data[gang]
             });
         }
 
-        // Creates the table for "Terrorist Organizations"
+        // Creates the table for 'Terrorist Organizations'
         gang_priority_data.sort(function (a, b) {
             return b.count - a.count;
         });
         var cnt = 1,
             i = 0;
-        var html = '<table><tr class="tr_style"><th class="table_gang_name">Terrorist Organization</th><th class="table_no_of_attacks">No. of attacks</th></tr>';
+        var html = '<table><tr class=\'tr_style\'><th class=\'table_gang_name\'>Terrorist Organization</th><th class=\'table_no_of_attacks\'>No. of attacks</th></tr>';
         if (gang_priority_data.length > 5) {
             while (cnt < 6) {
-                if (gang_priority_data[i].name !== "Unknown") {
-                    html += "<tr><td>" + gang_priority_data[i].name + "</td><td class='table_right'>" + gang_priority_data[i].count + "</td></tr>";
+                if (gang_priority_data[i].name !== 'Unknown') {
+                    html += '<tr><td>\' + gang_priority_data[i].name + \'</td><td class=\'table_right\'>' + gang_priority_data[i].count + '</td></tr>';
                     cnt++;
                 }
                 i++;
             }
         } else {
             while (i < gang_priority_data.length) {
-                html += "<tr><td>" + gang_priority_data[i].name + "</td><td class='table_right'>" + gang_priority_data[i].count + "</td></tr>";
+                html += '<tr><td>' + gang_priority_data[i].name + '</td><td class=\'table_right\'>' + gang_priority_data[i].count + '</td></tr>';
                 i++;
             }
         }
-        (0, _jquery2['default'])('#gangname').html(html + "</table>");
+        (0, _jquery2['default'])('#gangname').html(html + '</table>');
         (0, _jquery2['default'])('.gangnames_header').show();
     };
 
@@ -257,7 +257,7 @@ var GTDDashboard = function GTDDashboard(options) {
     };
 
     /***
-    ** Function to render the GTD Dashboard's elements
+    ** Function to render the GTD Dashboard\'s elements
     ***/
     var render = function render(new_data) {
         var map_data = [],
@@ -272,9 +272,9 @@ var GTDDashboard = function GTDDashboard(options) {
             numberOfCasualtiesDataSource,
             new_data_length = new_data.length,
             numberOfCasualtiesConfigs,
-            chartHoverColor = "#81270C";
+            chartHoverColor = '#81270C';
 
-        /** Data and DataSource --- Pie Chart for "Number of Casualties" **/
+        /** Data and DataSource --- Pie Chart for 'Number of Casualties' **/
         var num_killed = _reduce(new_data, function (memo, num) {
             return memo + parseInt(num.nkill);
         }, 0);
@@ -283,105 +283,105 @@ var GTDDashboard = function GTDDashboard(options) {
         }, 0);
         numberOfCasualtiesDataSource = {
             chart: {
-                caption: "NUMBER OF CASUALTIES",
-                captionFontSize: "12",
-                captionFont: '"AvenirLTStd-Heavy",sans-serif',
-                captionAlignment: "center",
-                theme: "zune",
-                bgColor: "f6f6f6,f6f6f6",
-                bgAlpha: "100,100",
+                caption: 'NUMBER OF CASUALTIES',
+                captionFontSize: '12',
+                captionFont: '\'AvenirLTStd-Heavy\',sans-serif',
+                captionAlignment: 'center',
+                theme: 'zune',
+                bgColor: 'f6f6f6,f6f6f6',
+                bgAlpha: '100,100',
                 enableRotation: '0',
-                enablemultislicing: "0",
+                enablemultislicing: '0',
                 formatNumberScale: '0',
-                paletteColors: "#D73200,#F6BD0F",
+                paletteColors: '#D73200,#F6BD0F',
                 plotFillHoverColor: chartHoverColor,
-                plotFillHoverAlpha: "100"
+                plotFillHoverAlpha: '100'
             },
             data: [{
-                "label": "Killed",
-                "value": num_killed
+                'label': 'Killed',
+                'value': num_killed
             }, {
-                "label": "Wounded",
-                "value": num_wounded
+                'label': 'Wounded',
+                'value': num_wounded
             }]
         };
 
-        /** Data and DataSource --- Map for "Number of Attacks by Country" **/
+        /** Data and DataSource --- Map for 'Number of Attacks by Country' **/
         map = _countBy(new_data, function (d) {
-            return d["country_code"];
+            return d['country_code'];
         });
         for (var d in map) {
             map_data.push({
-                "id": d,
-                "value": map[d]
+                'id': d,
+                'value': map[d]
             });
         }
         numberOfAttacksByCountryDataSource = {
             chart: {
-                caption: "NUMBER OF ATTACKS BY COUNTRY",
-                captionFontSize: "12",
-                captionFontFamily: '"AvenirLTStd-Heavy",sans-serif',
-                captionPosition: "top-left",
-                subCaption: "Click on a region to filter by that country",
+                caption: 'NUMBER OF ATTACKS BY COUNTRY',
+                captionFontSize: '12',
+                captionFontFamily: '\'AvenirLTStd-Heavy\',sans-serif',
+                captionPosition: 'top-left',
+                subCaption: 'Click on a region to filter by that country',
                 subCaptionFontSize: '10',
-                theme: "zune",
-                bgColor: "f6f6f6,f6f6f6",
-                bgAlpha: "100,100",
-                fillColor: "#CED8D7",
+                theme: 'zune',
+                bgColor: 'f6f6f6,f6f6f6',
+                bgAlpha: '100,100',
+                fillColor: '#CED8D7',
                 entityFillHoverColor: chartHoverColor,
-                entityFillHoverAlpha: "100",
-                entityBorderHoverThickness: "2",
+                entityFillHoverAlpha: '100',
+                entityBorderHoverThickness: '2',
                 hoverOnEmpty: '0',
                 showLegend: '0'
             },
             colorrange: {
-                "color": [{
-                    "minvalue": "0",
-                    "maxvalue": "100",
-                    "code": "#F6BD0F"
+                'color': [{
+                    'minvalue': '0',
+                    'maxvalue': '100',
+                    'code': '#F6BD0F'
                 }, {
-                    "minvalue": "100",
-                    "maxvalue": "1000",
-                    "code": "#FB6725"
+                    'minvalue': '100',
+                    'maxvalue': '1000',
+                    'code': '#FB6725'
                 }, {
-                    "minvalue": "1000",
-                    "maxvalue": "10000",
-                    "code": "#D73200"
+                    'minvalue': '1000',
+                    'maxvalue': '10000',
+                    'code': '#D73200'
                 }]
             },
             data: map_data
         };
 
-        /** Data and DataSource --- Column Chart for "Number of Attacks by Year" **/
+        /** Data and DataSource --- Column Chart for 'Number of Attacks by Year' **/
         attack = _countBy(new_data, function (d) {
-            return d["iyear"];
+            return d['iyear'];
         });
         for (var d in attack) {
             attack_data.push({
-                "label": d,
-                "value": attack[d]
+                'label': d,
+                'value': attack[d]
             });
         }
         numberOfAttacksDataSource = {
             chart: {
-                caption: "NUMBER  OF ATTACKS BY YEAR (2008-2013)",
-                captionFontSize: "12",
-                captionFont: '"AvenirLTStd-Heavy",sans-serif',
-                captionAlignment: "left",
-                subCaption: "Click on a column to filter by that year",
-                theme: "zune",
-                bgColor: "f6f6f6,f6f6f6",
-                bgAlpha: "100,100",
-                canvasBgAlpha: "0",
-                paletteColors: "#F6BD0F",
+                caption: 'NUMBER  OF ATTACKS BY YEAR (2008-2013)',
+                captionFontSize: '12',
+                captionFont: '\'AvenirLTStd-Heavy\',sans-serif',
+                captionAlignment: 'left',
+                subCaption: 'Click on a column to filter by that year',
+                theme: 'zune',
+                bgColor: 'f6f6f6,f6f6f6',
+                bgAlpha: '100,100',
+                canvasBgAlpha: '0',
+                paletteColors: '#F6BD0F',
                 plotFillHoverColor: chartHoverColor,
-                plotFillHoverAlpha: "100",
+                plotFillHoverAlpha: '100',
                 placeValuesInside: '0',
-                rotateValues: "0",
-                valueFontColor: "#333333",
+                rotateValues: '0',
+                valueFontColor: '#333333',
                 subCaptionFontSize: '11',
-                xAxisName: "Year",
-                yAxisName: "Aggregated Number of Attacks",
+                xAxisName: 'Year',
+                yAxisName: 'Aggregated Number of Attacks',
                 formatNumberScale: '0'
             },
             data: attack_data
@@ -418,16 +418,15 @@ var GTDDashboard = function GTDDashboard(options) {
                     numberOfAttacksAnnotations,
                     numberOfAttacksByCountryAnnotations;
 
-                /** Configuration options --- Column Chart for "Number of Attacks by Year" **/
+                /** Configuration options --- Column Chart for 'Number of Attacks by Year' **/
                 numberOfAttacksConfigs = {
-                    id: "attacks-column-chart",
-                    renderAt: "attacks-column-chart-container",
-                    type: "column2d",
+                    id: 'attacks-column-chart',
+                    type: 'column2d',
                     width: 725,
                     height: 250,
                     dataSource: numberOfAttacksDataSource,
                     eventSource: this.state.filterSource,
-                    className: "attacks_years block",
+                    className: 'attacks_years block',
                     impactedBy: ['attacks-map'],
                     events: {
                         dataplotclick: function dataplotclick(event, args) {
@@ -438,66 +437,64 @@ var GTDDashboard = function GTDDashboard(options) {
                                 }
                                 numberOfAttacksAnnotations = chartRef.annotations;
 
-                                // Adding a group, "totalFootfall"
+                                // Adding a group, 'totalFootfall'
                                 numberOfAttacksAnnotations.addGroup({
                                     'id': 'yearWiseTotalAttack'
                                 });
 
                                 //Adding rectangle annotation item to the annotation group
                                 numberOfAttacksAnnotations.addItem('yearWiseTotalAttack', {
-                                    "id": "dyn-labelBG",
-                                    "type": "rectangle",
-                                    "radius": "3",
-                                    "x": "$canvasEndX-245",
-                                    "y": "$canvasStartY-40",
-                                    "tox": "$canvasEndX",
-                                    "toy": "$canvasStartY-10",
-                                    "color": "#E46A3A",
-                                    "alpha": "100"
+                                    'id': 'dyn-labelBG',
+                                    'type': 'rectangle',
+                                    'radius': '3',
+                                    'x': '$canvasEndX-245',
+                                    'y': '$canvasStartY-40',
+                                    'tox': '$canvasEndX',
+                                    'toy': '$canvasStartY-10',
+                                    'color': '#E46A3A',
+                                    'alpha': '100'
                                 }, true);
 
                                 // Adding text annotation item to the annotation group
                                 numberOfAttacksAnnotations.addItem('yearWiseTotalAttack', {
-                                    "id": "dyn-label",
-                                    "type": "text",
-                                    "text": args.categoryLabel + ": " + args.value + (parseInt(args.value) == 1 ? " attack" : " attacks"),
-                                    "fillcolor": "#ffffff",
-                                    "x": "$canvasEndX-120",
-                                    "font": '"AvenirLTStd-Light",sans-serif',
-                                    "fontsize": "14",
-                                    "y": "$canvasStartY - 25"
+                                    'id': 'dyn-label',
+                                    'type': 'text',
+                                    'text': args.categoryLabel + ': ' + args.value + (parseInt(args.value) == 1 ? ' attack' : ' attacks'),
+                                    'fillcolor': '#ffffff',
+                                    'x': '$canvasEndX-120',
+                                    'font': '\'AvenirLTStd-Light\',sans-serif',
+                                    'fontsize': '14',
+                                    'y': '$canvasStartY - 25'
                                 }, true);
                             };
                             that.filterYear(args.categoryLabel, event.sender.id);
                             createGroupItems();
-                            // $('#selected-year').show().html(args.categoryLabel + ": " + args.value + " attacks");
+                            // $('#selected-year').show().html(args.categoryLabel + ': ' + args.value + ' attacks');
                         }
                     }
                 };
 
-                /** Configuration options --- Pie Chart for "Number of Casualties" **/
+                /** Configuration options --- Pie Chart for 'Number of Casualties' **/
                 numberOfCasualtiesConfigs = {
-                    id: "casulty-pie-chart",
-                    renderAt: "casulty-pie-chart-container",
-                    type: "pie2d",
+                    id: 'casulty-pie-chart',
+                    type: 'pie2d',
                     width: 475,
                     height: 500,
                     dataSource: numberOfCasualtiesDataSource,
                     eventSource: this.state.filterSource,
                     impactedBy: ['attacks-map', 'attacks-column-chart'],
-                    className: "casulty"
+                    className: 'casulty'
                 };
 
-                /** Configuration options --- Map for "Number of Attacks by Country" **/
+                /** Configuration options --- Map for 'Number of Attacks by Country' **/
                 numberOfAttacksByCountryConfigs = {
-                    id: "attacks-map",
-                    renderAt: "attacks-map-container",
-                    type: "Worldwithcountries",
+                    id: 'attacks-map',
+                    type: 'Worldwithcountries',
                     width: 725,
                     height: 500,
                     dataSource: numberOfAttacksByCountryDataSource,
                     eventSource: this.state.filterSource,
-                    className: "attack_world",
+                    className: 'attack_world',
                     events: {
                         entityClick: function entityClick(event, args) {
                             var chartRef = event.sender,
@@ -510,38 +507,38 @@ var GTDDashboard = function GTDDashboard(options) {
                                 }
                                 numberOfAttacksByCountryAnnotations = chartRef.annotations;
 
-                                // Adding a group, "totalFootfall"
+                                // Adding a group, 'totalFootfall'
                                 numberOfAttacksByCountryAnnotations.addGroup({
                                     'id': 'countryWiseTotalAttack'
                                 });
 
                                 //Adding rectangle annotation item to the annotation group
                                 numberOfAttacksByCountryAnnotations.addItem('countryWiseTotalAttack', {
-                                    "id": "dyn-labelBG",
-                                    "type": "rectangle",
-                                    "radius": "3",
-                                    "x": "$canvasEndX+465",
-                                    "y": "$canvasStartY+10",
-                                    "tox": "$canvasEndX+710",
-                                    "toy": "$canvasStartY + 40",
-                                    "color": "#E46A3A",
-                                    "alpha": "100"
+                                    'id': 'dyn-labelBG',
+                                    'type': 'rectangle',
+                                    'radius': '3',
+                                    'x': '$canvasEndX+465',
+                                    'y': '$canvasStartY+10',
+                                    'tox': '$canvasEndX+710',
+                                    'toy': '$canvasStartY + 40',
+                                    'color': '#E46A3A',
+                                    'alpha': '100'
                                 }, true);
 
                                 // Adding text annotation item to the annotation group
                                 numberOfAttacksByCountryAnnotations.addItem('countryWiseTotalAttack', {
-                                    "id": "dyn-label",
-                                    "type": "text",
-                                    "text": args.label + ": " + args.value + (parseInt(args.value) == 1 ? " attack" : " attacks"),
-                                    "fillcolor": "#ffffff",
-                                    "x": "$canvasEndX+590",
-                                    "font": '"AvenirLTStd-Light",sans-serif',
-                                    "fontsize": "14",
-                                    "y": "$canvasStartY + 25"
+                                    'id': 'dyn-label',
+                                    'type': 'text',
+                                    'text': args.label + ': ' + args.value + (parseInt(args.value) == 1 ? ' attack' : ' attacks'),
+                                    'fillcolor': '#ffffff',
+                                    'x': '$canvasEndX+590',
+                                    'font': '\'AvenirLTStd-Light\',sans-serif',
+                                    'fontsize': '14',
+                                    'y': '$canvasStartY + 25'
                                 }, true);
                             };
                             if (args.value !== undefined) {
-                                that.state.yearSelected = "";
+                                that.state.yearSelected = '';
                                 that.filterCountry(args.id, event.sender.id);
                                 createGroupItems();
                             }
@@ -549,17 +546,17 @@ var GTDDashboard = function GTDDashboard(options) {
                     }
                 };
 
-                /** Filter data --- Column Chart for "Number of Attacks by Year" **/
+                /** Filter data --- Column Chart for 'Number of Attacks by Year' **/
                 if (that.state.countrySelected && that.state.countrySelected.length !== 0 && !that.state.yearSelected) {
-                    updated_data = _where(new_data, { "country_code": that.state.countrySelected });
+                    updated_data = _where(new_data, { 'country_code': that.state.countrySelected });
                     updated_attack = _countBy(updated_data, function (d) {
-                        return d["iyear"];
+                        return d['iyear'];
                     });
 
                     for (d in updated_attack) {
                         updated_attack_data.push({
-                            "label": d,
-                            "value": updated_attack[d]
+                            'label': d,
+                            'value': updated_attack[d]
                         });
                     }
 
@@ -572,11 +569,11 @@ var GTDDashboard = function GTDDashboard(options) {
                         return memo + parseInt(num.nwound);
                     }, 0),
                         casulty_data = [{
-                        "label": "Killed",
-                        "value": new_num_killed
+                        'label': 'Killed',
+                        'value': new_num_killed
                     }, {
-                        "label": "Wounded",
-                        "value": new_num_wounded
+                        'label': 'Wounded',
+                        'value': new_num_wounded
                     }];
                     gangNameList(updated_data);
 
@@ -586,7 +583,7 @@ var GTDDashboard = function GTDDashboard(options) {
                         numberOfCasualtiesConfigs.dataSource.data = [];
                     }
                 } else if (that.state.countrySelected && that.state.countrySelected.length !== 0 && that.state.yearSelected && that.state.yearSelected.length !== 0) {
-                    var updated_data_year = _where(new_data, { "iyear": that.state.yearSelected, "country_code": that.state.countrySelected });
+                    var updated_data_year = _where(new_data, { 'iyear': that.state.yearSelected, 'country_code': that.state.countrySelected });
                     var new_num_killed = _reduce(updated_data_year, function (memo, num) {
                         return memo + parseInt(num.nkill);
                     }, 0);
@@ -594,11 +591,11 @@ var GTDDashboard = function GTDDashboard(options) {
                         return memo + parseInt(num.nwound);
                     }, 0);
                     casulty_data = [{
-                        "label": "Killed",
-                        "value": new_num_killed
+                        'label': 'Killed',
+                        'value': new_num_killed
                     }, {
-                        "label": "Wounded",
-                        "value": new_num_wounded
+                        'label': 'Wounded',
+                        'value': new_num_wounded
                     }];
                     gangNameList(updated_data_year);
                     if (new_num_wounded !== 0 && new_num_killed !== 0) {
@@ -607,7 +604,7 @@ var GTDDashboard = function GTDDashboard(options) {
                         numberOfCasualtiesConfigs.dataSource.data = [];
                     }
                 } else if (that.state.yearSelected && that.state.yearSelected.length !== 0) {
-                    updated_data_year = _where(new_data, { "iyear": that.state.yearSelected });
+                    updated_data_year = _where(new_data, { 'iyear': that.state.yearSelected });
                     var new_num_killed = _reduce(updated_data_year, function (memo, num) {
                         return memo + parseInt(num.nkill);
                     }, 0);
@@ -615,11 +612,11 @@ var GTDDashboard = function GTDDashboard(options) {
                         return memo + parseInt(num.nwound);
                     }, 0);
                     casulty_data = [{
-                        "label": "Killed",
-                        "value": new_num_killed
+                        'label': 'Killed',
+                        'value': new_num_killed
                     }, {
-                        "label": "Wounded",
-                        "value": new_num_wounded
+                        'label': 'Wounded',
+                        'value': new_num_wounded
                     }];
                     gangNameList(updated_data_year);
                     if (new_num_wounded !== 0 && new_num_killed !== 0) {
@@ -642,7 +639,7 @@ var GTDDashboard = function GTDDashboard(options) {
                         { id: 'casulty-data', className: 'block' },
                         _react2['default'].createElement(_reactFusioncharts2['default'], numberOfCasualtiesConfigs)
                     ),
-                    _react2['default'].createElement('div', { style: { clear: "both" } }),
+                    _react2['default'].createElement('div', { style: { clear: 'both' } }),
                     _react2['default'].createElement('hr', { className: 'hr-class' }),
                     _react2['default'].createElement(
                         'div',

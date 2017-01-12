@@ -33,42 +33,41 @@ var _fusionchartsThemesFusionchartsThemeOcean2 = _interopRequireDefault(_fusionc
 _fusioncharts2['default'].ready(function () {
     var myDataSource = {
         chart: {
-            caption: "Age profile of website visitors",
-            subcaption: "Last Year",
-            startingangle: "120",
-            showlabels: "0",
-            showlegend: "1",
-            enablemultislicing: "0",
-            slicingdistance: "15",
-            showpercentvalues: "1",
-            showpercentintooltip: "0",
-            plottooltext: "Age group : $label Total visit : $datavalue",
-            theme: "ocean"
+            caption: 'Age profile of website visitors',
+            subcaption: 'Last Year',
+            startingangle: '120',
+            showlabels: '0',
+            showlegend: '1',
+            enablemultislicing: '0',
+            slicingdistance: '15',
+            showpercentvalues: '1',
+            showpercentintooltip: '0',
+            plottooltext: 'Age group : $label Total visit : $datavalue',
+            theme: 'ocean'
         },
         data: [{
-            label: "Teenage",
-            value: "1250400"
+            label: 'Teenage',
+            value: '1250400'
         }, {
-            label: "Adult",
-            value: "1463300"
+            label: 'Adult',
+            value: '1463300'
         }, {
-            label: "Mid-age",
-            value: "1050700"
+            label: 'Mid-age',
+            value: '1050700'
         }, {
-            label: "Senior",
-            value: "491000"
+            label: 'Senior',
+            value: '491000'
         }]
     };
     var props_pie_chart = {
-        id: "pie_chart",
-        renderAt: "pie_chart_container",
-        type: "pie3d",
+        id: 'pie_chart',
+        type: 'pie3d',
         width: 600,
         height: 400,
-        dataFormat: "json",
+        dataFormat: 'json',
         dataSource: myDataSource
     };
-    _reactDom2['default'].render(_react2['default'].createElement(_reactFusioncharts2['default'], props_pie_chart), document.getElementById('fc_react_app'));
+    _reactDom2['default'].render(_react2['default'].createElement(_reactFusioncharts2['default'], props_pie_chart), document.getElementById('chart-container'));
 });
 
 },{"fusioncharts":undefined,"fusioncharts/fusioncharts.charts":2,"fusioncharts/themes/fusioncharts.theme.ocean":3,"react":undefined,"react-dom":undefined,"react-fusioncharts":undefined}],2:[function(require,module,exports){

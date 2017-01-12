@@ -34,26 +34,26 @@ _fusioncharts2['default'].ready(function () {
 
     var myDataSource = {
         chart: {
-            caption: "Harry's SuperMart",
-            subCaption: "Top 5 stores in last month by revenue",
-            numberPrefix: "$",
-            theme: "ocean"
+            caption: 'Harry\'s SuperMart',
+            subCaption: 'Top 5 stores in last month by revenue',
+            numberPrefix: '$',
+            theme: 'ocean'
         },
         data: [{
-            label: "Bakersfield Central",
-            value: "880000"
+            label: 'Bakersfield Central',
+            value: '880000'
         }, {
-            label: "Garden Groove harbour",
-            value: "730000"
+            label: 'Garden Groove harbour',
+            value: '730000'
         }, {
-            label: "Los Angeles Topanga",
-            value: "590000"
+            label: 'Los Angeles Topanga',
+            value: '590000'
         }, {
-            label: "Compton-Rancho Dom",
-            value: "520000"
+            label: 'Compton-Rancho Dom',
+            value: '520000'
         }, {
-            label: "Daly City Serramonte",
-            value: "330000"
+            label: 'Daly City Serramonte',
+            value: '330000'
         }]
     };
 
@@ -72,23 +72,22 @@ _fusioncharts2['default'].ready(function () {
         },
         render: function render() {
             var props_col_chart = {
-                id: "column_chart",
-                renderAt: "column_chart_container",
-                type: "column2d",
+                id: 'column_chart',
+                type: 'column2d',
                 width: 600,
                 height: 400,
-                dataFormat: "json",
+                dataFormat: 'json',
                 dataSource: myDataSource,
                 eventSource: this.state.filterSource,
                 impactedBy: ['btn_update_data']
             };
 
-            // Filter the column chart's data
+            // Filter the column chart\'s data
             if (this.state.filterSource && this.state.filterSource.length != 0) {
-                props_col_chart.dataSource.data[2].label = "Art Supply Store";
-                props_col_chart.dataSource.data[2].value = "420000";
-                props_col_chart.dataSource.data[3].label = "P.C. Richard & Son";
-                props_col_chart.dataSource.data[3].value = "210000";
+                props_col_chart.dataSource.data[2].label = 'Art Supply Store';
+                props_col_chart.dataSource.data[2].value = '420000';
+                props_col_chart.dataSource.data[3].label = 'P.C. Richard & Son';
+                props_col_chart.dataSource.data[3].value = '210000';
             } else {
                 props_col_chart.dataSource = myDataSource;
             }
@@ -109,7 +108,7 @@ _fusioncharts2['default'].ready(function () {
         }
     });
 
-    _reactDom2['default'].render(_react2['default'].createElement(FCDashboard, null), document.getElementById('fc_react_app'));
+    _reactDom2['default'].render(_react2['default'].createElement(FCDashboard, null), document.getElementById('chart-container'));
 });
 
 },{"fusioncharts":undefined,"fusioncharts/fusioncharts.charts":2,"fusioncharts/themes/fusioncharts.theme.ocean":3,"react":undefined,"react-dom":undefined,"react-fusioncharts":undefined}],2:[function(require,module,exports){

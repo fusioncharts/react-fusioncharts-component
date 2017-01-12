@@ -97,14 +97,44 @@ pre.code-tab {
 .charts-example {
 	min-height: 825px;
 }
+#toc-list {
+  position: relative;
+  border: 1px solid lightgrey;
+}
 .list-group {
 	height: 924px;
 	overflow-y: scroll;
+  margin-bottom: 0;
+/*
 	border-top: 1px solid lightgrey;
   border-bottom: 1px solid lightgrey;
+*/
+}
+#toc-list .list-group li {
+  border-top: 1px solid #E8E8E8;
+  margin-top: 5px;
+  padding-top: 5px;
+}
+#toc-list .list-group li:first-child {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+#toc-list .list-group li .list-group-item {
+  border: none;
+  border-radius: 5px;
+  margin: 0 5px 5px 5px;
+}
+#toc-list .list-group li:first-child .list-group-item {
+  margin: 5px;
+
+}
+#toc-list .list-group li.active a {
+  display: block;
+  background-color: #E8E8E8; 
 }
 .tablist {
-	padding-left: 30px;
+	/*padding-left: 30px;*/
 }
 #charts-example {
 	margin-top: 50px;
@@ -163,4 +193,10 @@ pre.code-tab {
   padding-right: 10px;
 }
 
-
+.message-box {
+  background-color: #f5fbff;
+  color: #006bb8;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  border: 1px solid #b8e1ff;
+}

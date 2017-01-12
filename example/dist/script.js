@@ -27,45 +27,57 @@ window.bootstrap = require('bootstrap');
 window.ReactDOM = _reactDom2['default'];
 
 var code = {
-    "ex1": {
+    'ex1': {
+        'html': '<div id=\'chart-container\'></div>',
         'jsfiddle': 'http://jsfiddle.net/fusioncharts/f0b2e0ms/'
     },
-    "ex2": {
+    'ex2': {
+        'html': '<div id=\'chart-container\'></div>',
         'jsfiddle': 'http://jsfiddle.net/fusioncharts/3r627e9h/'
     },
-    "ex3": {
+    'ex3': {
+        'html': '<div id=\'chart-container\'></div>',
         'jsfiddle': 'http://jsfiddle.net/fusioncharts/m18qaekm/'
     },
-    "ex4": {
+    'ex4': {
+        'html': '<div id=\'chart-container\'></div>',
         'jsfiddle': ''
     },
-    "ex4a": {
+    'ex4a': {
+        'html': '<div id=\'chart-container\'></div>',
         'jsfiddle': ''
     },
-    "ex5": {
+    'ex5': {
+        'html': '<div id=\'chart-container\'></div>',
         'jsfiddle': 'http://jsfiddle.net/fusioncharts/bj0snLsg/'
     },
-    "ex6": {
+    'ex6': {
+        'html': '<div id=\'chart-container\'></div>\n<p>The value that you have selected is: <span id=\'value\'>nothing</span></p>',
         'jsfiddle': 'http://jsfiddle.net/fusioncharts/9ora4yc5/'
     },
-    "ex7": {
+    'ex7': {
+        'html': '<div id=\'chart-container\'></div>',
         'jsfiddle': 'http://jsfiddle.net/fusioncharts/mqhk1nud/'
     },
-    "ex8": {
+    'ex8': {
+        'html': '<p>Click on the slice of pie</p>\n<div id=\'chart-container\'></div>',
         'jsfiddle': 'http://jsfiddle.net/fusioncharts/97s74d1q/'
     },
-    "ex9": {
+    'ex9': {
+        'html': '<div id=\'chart-container\'></div>',
         'jsfiddle': 'http://jsfiddle.net/fusioncharts/asg7eqb0/'
     },
-    "ex10": {
+    'ex10': {
+        'html': '<div id=\'map-container\'></div>',
         'jsfiddle': 'http://jsfiddle.net/fusioncharts/o0uze2Lv/'
     }
 };
-var previous = "";
+
+var previous = '';
 
 var placementOfFiddleLinkey = function placementOfFiddleLinkey(exampleId) {
     if (code[exampleId].jsfiddle.length != 0) {
-        (0, _jquery2['default'])('#jsfiddle').html('Click <a id="jsfiddle_link" href="" target="_blank">here</a> for the JSFiddle');
+        (0, _jquery2['default'])('#jsfiddle').html('Click <a id=\'jsfiddle_link\' href=\'\' target=\'_blank\'>here</a> for the JSFiddle');
         (0, _jquery2['default'])('#jsfiddle #jsfiddle_link').attr('href', code[exampleId].jsfiddle);
     } else {
         (0, _jquery2['default'])('#jsfiddle').html('');
@@ -84,7 +96,7 @@ var placementOfFiddleLinkey = function placementOfFiddleLinkey(exampleId) {
         window.location.href = window.location.href.replace(url, '/#/getting-started');
     } else if (id === 'dashboard-navigate') {
         window.location.href = window.location.href.replace(url, '/#/dashboard');
-        document.getElementById("dashboard-container").innerHTML = '<object type="text/html" data="views/gtd-dashbaord-index.html" ></object>';
+        document.getElementById('dashboard-container').innerHTML = '<object type=\'text/html\' data=\'views/gtd-dashbaord-index.html\' ></object>';
     } else if (id === 'demos-navigate') {
         window.location.href = window.location.href.replace(url, '/#/demos/ex1');
         (0, _jquery2['default'])('.examples#ex1').trigger('click');
@@ -97,34 +109,35 @@ var placementOfFiddleLinkey = function placementOfFiddleLinkey(exampleId) {
         example = url.substr(index + 6, url.length - (index + 6)),
         exampleId = this.id;
     if (exampleId !== previous) {
-        document.getElementById("charts-example").innerHTML = '<object class="chart-space" type="text/html" data="views/' + exampleId + '.html" ></object>';
+        document.getElementById('charts-example').innerHTML = '<object class=\'chart-space\' type=\'text/html\' data=\'views/' + exampleId + '.html\' ></object>';
     }
 
     placementOfFiddleLinkey(exampleId);
 
     jQuery.get({
-        url: "../src/js/" + exampleId + ".js",
+        url: '../src/js/' + exampleId + '.js',
         // contentType: 'application/json',
         dataType: 'html',
         success: function success(data) {
-            data = "\n" + data.replace(/\</g, '&lt;');
+            data = '\n' + data.replace(/\</g, '&lt;');
             (0, _jquery2['default'])('#javascript_code code.language-javascript').html(data);
             _prismjs2['default'].highlightAll();
         }
     });
 
-    jQuery.get({
-        url: "../src/views/" + exampleId + ".html",
-        // contentType: 'application/json',
-        dataType: 'html',
-        success: function success(data) {
-            data = "\n" + data.replace(/\</g, '&lt;');
-            (0, _jquery2['default'])('#html_code code.language-markup').html(data);
-            _prismjs2['default'].highlightAll();
-        }
-    });
+    // jQuery.get({
+    //     url: '../src/views/' + exampleId + '.html',
+    //     // contentType: 'application/json',
+    //     dataType: 'html',
+    //     success: function (data) {
+    //         data = '\n' + data.replace(/\</g, '&lt;');
+    //         $('#html_code code.language-markup').html(data);
+    //         Prism.highlightAll();
+    //     }
+    // });
 
-    // $('#html_code code.language-markup').html(code[exampleId].html);
+    (0, _jquery2['default'])('#html_code code.language-markup').html('\n' + code[exampleId].html.replace(/\</g, '&lt;'));
+    // $('#html_code code.language-markup').html('\nHello world');
     // $('#javascript_code code.language-javascript').html(code[exampleId].javascript);
 
     previous = this.id;
@@ -138,19 +151,38 @@ if (window.location.href.indexOf('#') === -1) {
         index = url.indexOf('demos/'),
         example;
     if (url.indexOf('home/') !== -1) {
-        (0, _jquery2['default'])('.navigation-tab a[href="#home"]').tab('show');
+        (0, _jquery2['default'])('.navigation-tab a[href=\'#home\']').tab('show');
     } else if (url.indexOf('/dashboard') !== -1) {
-        (0, _jquery2['default'])('.navigation-tab a[href="#dashboard"]').tab('show');
-        document.getElementById("dashboard-container").innerHTML = '<object type="text/html" data="views/gtd-dashbaord-index.html" ></object>';
+        (0, _jquery2['default'])('.navigation-tab a[href=\'#dashboard\']').tab('show');
+        document.getElementById('dashboard-container').innerHTML = '<object type=\'text/html\' data=\'views/gtd-dashbaord-index.html\' ></object>';
     } else if (url.indexOf('/getting-started') !== -1) {
-        (0, _jquery2['default'])('.navigation-tab a[href="#getting-started"]').tab('show');
+        (0, _jquery2['default'])('.navigation-tab a[href=\'#getting-started\']').tab('show');
     } else if (index !== -1) {
-        (0, _jquery2['default'])('.navigation-tab a[href="#demos"]').tab('show');
+        (0, _jquery2['default'])('.navigation-tab a[href=\'#demos\']').tab('show');
         example = url.substr(index + 6, url.length - (index + 6));
         (0, _jquery2['default'])('.examples#' + example).trigger('click');
     }
 }
 _prismjs2['default'].highlightAll();
+
+(0, _jquery2['default'])(document).ready(function () {
+
+    (0, _jquery2['default'])('#toc-list ul li').on('click', function () {
+        (0, _jquery2['default'])(this).siblings().removeClass('active');
+        (0, _jquery2['default'])(this).addClass('active');
+    });
+    var url = (0, _jquery2['default'])(location).attr('href');
+    url = '#' + url.split('#').pop();
+    (0, _jquery2['default'])('#toc-list .list-group li.active').removeClass('active');
+
+    (0, _jquery2['default'])('a[href*=\'' + url + '\']').parent('li').addClass('active');
+});
+
+(0, _jquery2['default'])(window).on('load', function () {
+    (0, _jquery2['default'])('.list-group').animate({
+        scrollTop: (0, _jquery2['default'])('.list-group li.active').position().top
+    }, 1000);
+});
 
 },{"bootstrap":2,"jquery":15,"prismjs":16,"react":undefined,"react-dom":undefined}],2:[function(require,module,exports){
 // This file is autogenerated via the `commonjs` Grunt task. You can require() this file in a CommonJS environment.
