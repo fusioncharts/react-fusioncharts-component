@@ -1,5 +1,4 @@
-.publish/*
 dist/*
-example/dist/*
+example/*
 lib/*
 node_modules/*
