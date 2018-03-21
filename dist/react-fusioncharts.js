@@ -7,7 +7,7 @@
 		exports["ReactFC"] = factory(require("react"), require("fusioncharts"));
 	else
 		root["ReactFC"] = factory(root["React"], root["FusionCharts"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -59,26 +59,45 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.ReactFC = undefined;
+
+	var _ReactFC = __webpack_require__(1);
+
+	var _ReactFC2 = _interopRequireDefault(_ReactFC);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.ReactFC = _ReactFC2.default;
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _react = __webpack_require__(1);
+	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _fusioncharts = __webpack_require__(2);
+	var _fusioncharts = __webpack_require__(3);
 
 	var _fusioncharts2 = _interopRequireDefault(_fusioncharts);
 
-	var _v = __webpack_require__(3);
+	var _v = __webpack_require__(4);
 
 	var _v2 = _interopRequireDefault(_v);
 
-	var _utils = __webpack_require__(6);
+	var _utils = __webpack_require__(7);
 
 	var utils = _interopRequireWildcard(_utils);
 
-	var _options = __webpack_require__(7);
+	var _options = __webpack_require__(8);
 
 	var _options2 = _interopRequireDefault(_options);
 
@@ -354,12 +373,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = ReactFC;
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
-
-/***/ }),
 /* 2 */
 /***/ (function(module, exports) {
 
@@ -367,10 +380,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var rng = __webpack_require__(4);
-	var bytesToUuid = __webpack_require__(5);
+	var rng = __webpack_require__(5);
+	var bytesToUuid = __webpack_require__(6);
 
 	function v4(options, buf, offset) {
 	  var i = buf && offset || 0;
@@ -401,7 +420,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 	// Unique ID creation requires a high quality random # generator.  In the
@@ -439,7 +458,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 	/**
@@ -468,7 +487,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -522,7 +541,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 	'use strict';
