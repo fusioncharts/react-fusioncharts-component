@@ -5,6 +5,8 @@ module.exports = {
   output: {
     library: 'ReactFC',
     libraryTarget: 'umd',
+    path: path.join(__dirname, 'dist'),
+    filename: 'react-fusioncharts.js',
   },
   module: {
     loaders: [
@@ -22,6 +24,14 @@ module.exports = {
         commonjs2: 'react',
         commonjs: 'react',
         amd: 'react',
+      },
+    },
+    {
+      fusioncharts: {
+        root: 'FusionCharts',
+        commonjs2: 'fusioncharts',
+        commonjs: 'fusioncharts',
+        amd: 'fusioncharts',
       },
     },
   ],

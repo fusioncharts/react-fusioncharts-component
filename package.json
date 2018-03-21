@@ -28,12 +28,14 @@
     "url": "https://github.com/fusioncharts/react-fusioncharts-component/issues"
   },
   "dependencies": {
-    "fusioncharts": "^3.12.2"
+    "fusioncharts": "^3.12.2",
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.21.0",
     "babel-eslint": "^4.1.3",
+    "babel-jest": "^23.0.0-alpha.0",
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.24.1",
@@ -44,24 +46,31 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "jest": "^22.4.2",
-    "react": "^0.14.0",
+    "react": "^16.2.0",
     "react-addons-test-utils": "15.3.0",
     "react-component-gulp-tasks": "^0.7.6",
-    "react-dom": "^0.14.0",
+    "react-dom": "^16.2.0",
+    "react-native": "^0.54.2",
+    "react-test-renderer": "^16.2.0",
+    "serve": "^6.5.3",
     "webpack": "^1.14.0"
   },
   "peerDependencies": {
-    "react": "^0.14.0"
+    "react": "^0.14.0 || ^16.0.0"
   },
   "scripts": {
-    "build:lib": "babel ./src --stage 0 -d ./lib  --ignore __tests__",
-    "build:umd": "webpack ./src/ReactFC.js ./dist/ReactFC.js",
-    "build:min": "webpack -p ./src/ReactFC.js ./umd/ReactFC.min.js",
-    "test": "jest --coverage"
+    "build:lib": "babel ./src -d ./lib",
+    "build:umd": "webpack && webpack -p --output-path ./dist --output-file react-fusioncharts.min.js",
+    "build:example": "npm run build:lib && webpack --config webpack.config.example.js",
+    "start": "serve example/ -o",
+    "test": "jest --coverage --verbose",
+    "test:report": "npm test && serve coverage/lcov-report -o"
   },
   "keywords": [
     "react",
     "react-component",
+    "component",
+    "fusioncharts",
     "javascript-charts",
     "interactive-charts",
     "charts",

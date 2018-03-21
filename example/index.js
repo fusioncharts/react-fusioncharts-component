@@ -1,34 +1,9 @@
-#### [Demos and Documentation](http://fusioncharts.github.io/react-fusioncharts-component/)
-
-# React-FusionCharts
-
-A simple and lightweight `React` component which provides bindings for `FusionCharts` JavaScript Charting Library. It easily adds rich and interactive charts to any `React` Projects.
-
-## Installation
-
-To install `react-fusioncharts`, run:
-
-```bash
-$ npm install react-fusioncharts --save
-```
-
-Also install `fusionCharts`, if it is not already installed:
-
-```bash
-$ npm install fusioncharts --save
-```
-
-## Getting Started
-
-After installing `react-fusioncharts`, import it in your React app:
-
-```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
 import OceanTheme from 'fusioncharts/themes/fusioncharts.theme.ocean';
-import ReactFC from 'react-fusioncharts';
+import ReactFC from '../lib/ReactFC';
 
 Charts(FusionCharts);
 OceanTheme(FusionCharts);
@@ -78,5 +53,3 @@ ReactDOM.render(
   </div>,
   document.getElementById('root'),
 );
-```
-
