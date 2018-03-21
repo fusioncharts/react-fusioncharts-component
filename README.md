@@ -1,6 +1,6 @@
-#### [Demos and Documentation](http://fusioncharts.github.io/react-fusioncharts-component/)
+#### [Demos and Documentation](https://fusioncharts.github.io/react-fusioncharts-component/)
 
-# React-FusionCharts
+# react-fusionCharts
 
 A simple and lightweight `React` component which provides bindings for `FusionCharts` JavaScript Charting Library. It easily adds rich and interactive charts to any `React` Projects.
 
@@ -20,7 +20,7 @@ $ npm install fusioncharts --save
 
 ## Getting Started
 
-After installing `react-fusioncharts`, import it in your React app:
+After installing `react-fusioncharts`, import it in your `React` app:
 
 ```javascript
 import React from 'react';
@@ -79,4 +79,32 @@ ReactDOM.render(
   document.getElementById('root'),
 );
 ```
+
+## Test
+
+```sh
+$ npm test
+```
+
+## Contributing
+
+* Clone the repository.
+* Install dependencies
+* Run `npm start` to start the dev server.
+* Open `http://localhost:5000/` in your browser.
+
+```sh
+$ git clone https://github.com/fusioncharts/react-fusioncharts-component.git
+$ cd react-fusioncharts-component
+$ npm i
+$ npm start
+```
+
+To build, run:
+
+```sh
+$ npm run build
+```
+
+### [Demos and Documentation](https://fusioncharts.github.io/react-fusioncharts-component/)
 

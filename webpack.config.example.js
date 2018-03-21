@@ -1,8 +1,7 @@
 const path = require('path');
-const webpack = require('webpack');
 
 const config = {
-  entry: './example/index.js',
+  entry: path.join(__dirname, 'example', 'index.js'),
   output: {
     path: path.join(__dirname, 'example', 'dist'),
     filename: 'main.js',

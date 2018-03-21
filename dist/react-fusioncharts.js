@@ -318,6 +318,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      this.chartObj = new this.FusionCharts(currentOptions);
 	      this.chartObj.render();
+	      this.oldOptions = currentOptions;
 	    }
 	  }, {
 	    key: 'resolveChartOptions',
