@@ -84,10 +84,10 @@ Specify library for all charts:
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactFC from 'react-fusioncharts';
 // Here import licensed version of FusionCharts
 import FusionCharts from './library_path/fusioncharts';
 import Charts from './library_path/fusioncharts/fusioncharts.charts';
-import ReactFC from 'react-fusioncharts';
 
 // Provide FusionCharts core and other modules to resolve
 ReactFC.fcRoot(FusionCharts, Charts)
@@ -101,10 +101,10 @@ Specify library for a particular chart:
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactFC from 'react-fusioncharts';
 // Here import licensed version of FusionCharts
 import FusionCharts from './library_path/fusioncharts';
 import Charts from './library_path/fusioncharts/fusioncharts.charts';
-import ReactFC from 'react-fusioncharts';
 
 // Resolve modules
 Charts(FusionCharts)
