@@ -9,7 +9,7 @@ OceanTheme(FusionCharts);
 
 const myDataSource = {
   chart: {
-    caption: 'Harry\'s SuperMart',
+    caption: 'Harry\'s ss',
     subCaption: 'Top 5 stores in last month by revenue',
     numberPrefix: '$',
     theme: 'ocean',

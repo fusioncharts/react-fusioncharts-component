@@ -17,7 +17,7 @@ class ReactFC extends React.Component {
 
     this.containerId = uuid();
     this.oldOptions = null;
-    this.FusionCharts = ReactFC.fusionChartsCore || FusionCharts;
+    this.FusionCharts = props.fcLibrary || ReactFC.fusionChartsCore || FusionCharts;
   }
 
   componentDidMount() {

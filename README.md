@@ -27,18 +27,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
-import OceanTheme from 'fusioncharts/themes/fusioncharts.theme.ocean';
 import ReactFC from 'react-fusioncharts';
 
 Charts(FusionCharts);
-OceanTheme(FusionCharts);
 
 const myDataSource = {
   chart: {
     caption: 'Harry\'s SuperMart',
     subCaption: 'Top 5 stores in last month by revenue',
     numberPrefix: '$',
-    theme: 'ocean',
   },
   data: [
     {
@@ -73,11 +70,58 @@ const chartConfigs = {
 };
 
 ReactDOM.render(
-  <div>
-    <ReactFC {...chartConfigs} />
-  </div>,
+  <ReactFC {...chartConfigs} />,
   document.getElementById('root'),
 );
+```
+
+## Using Licensed Version of FusionCharts
+
+While using licensed version of `FusionCharts`, you need to specify library as follows:
+
+Specify library for all charts:
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+// Here import licensed version of FusionCharts
+import FusionCharts from './library_path/fusioncharts';
+import Charts from './library_path/fusioncharts/fusioncharts.charts';
+import ReactFC from 'react-fusioncharts';
+
+// Provide FusionCharts core and other modules to resolve
+ReactFC.fcRoot(FusionCharts, Charts)
+
+........
+
+```
+
+Specify library for a particular chart:
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+// Here import licensed version of FusionCharts
+import FusionCharts from './library_path/fusioncharts';
+import Charts from './library_path/fusioncharts/fusioncharts.charts';
+import ReactFC from 'react-fusioncharts';
+
+// Resolve modules
+Charts(FusionCharts)
+
+ReactDOM.render(
+  <ReactFC
+    width="600"
+    height="400"
+    type="column2d"
+    dataSource={ /* Chart data source */ }
+    fcLibrary={FusionCharts} // Provide FusionCharts library
+  />,
+  document.getElementById('root'),
+);
+
+.......
+
 ```
 
 ## Test
