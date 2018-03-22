@@ -56,18 +56,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.ReactFC = undefined;
-
 	var _ReactFC = __webpack_require__(1);
 
 	var _ReactFC2 = _interopRequireDefault(_ReactFC);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.ReactFC = _ReactFC2.default;
+	// Use this format to export ReactFC as default module
+	// Ref: https://gist.github.com/iamakulov/966b91c0fc6363a16ff0650b51fb991b
+	module.exports = _ReactFC2.default;
 
 /***/ }),
 /* 1 */
