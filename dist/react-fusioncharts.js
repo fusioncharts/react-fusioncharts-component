@@ -132,7 +132,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    _this.containerId = (0, _v2.default)();
 	    _this.oldOptions = null;
-	    _this.FusionCharts = ReactFC.fusionChartsCore || _fusioncharts2.default;
+	    _this.FusionCharts = props.fcLibrary || ReactFC.fusionChartsCore || _fusioncharts2.default;
 	    return _this;
 	  }
 

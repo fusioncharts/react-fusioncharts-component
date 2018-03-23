@@ -7,6 +7,7 @@
     "name": "FusionCharts",
     "email": "support@fusioncharts.com"
   },
+  "license": "MIT",
   "contributors": [
     {
       "name": "Rousan Ali",
@@ -56,7 +57,7 @@
     "webpack": "^1.14.0"
   },
   "peerDependencies": {
-    "react": "^0.14.0 || ^16.0.0"
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
   },
   "scripts": {
     "build:lib": "babel ./src -d ./lib",
