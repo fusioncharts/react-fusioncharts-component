@@ -1,106 +1,154 @@
-### [Demos and Documentation](http://fusioncharts.github.io/react-fusioncharts-component/)
+#### [Demos and Documentation](https://fusioncharts.github.io/react-fusioncharts-component/)
 
-## Introduction
+# react-fusionCharts
 
-FusionCharts Suite XT is a front-end, JavaScript-based, comprehensive collection of 90+ charts and  1000+ maps. This includes basic and complex charts like the column and bar charts, pie and doughnut charts, treemap, heatmap, logarithmic charts, and so on; gauges like the angular gauge, bulb gauge, thermometer gauge, and so on; and maps for all continents, major countries, and all US states.
+A simple and lightweight `React` component which provides bindings for `FusionCharts` JavaScript Charting Library. It easily adds rich and interactive charts to any `React` Projects.
 
-The **react-fusioncharts** plugin, along with FusionCharts Suite XT, lets you add interactive JavaScript charts and graphs to your web and mobile applications using only a single ReactJS component.
+## Installation
 
-This article outlines the steps to be executed for rendering charts using the **react-fusioncharts** plugin.
+To install `react-fusioncharts`, run:
 
-#### Step 1: Install **fusioncharts**, **react**, **react-dom**, and **react-fusioncharts** npm package
-Execute the commands below in the terminal to install **fusioncharts**, **react**, **react-dom**, and **react-fusioncharts** node modules.
-
-```sh
-npm install react --save
-npm install react-dom --save
-npm install fusioncharts --save
-npm install react-fusioncharts --save
-
-# or single line
-npm install react react-dom fusioncharts react-fusioncharts --save
+```bash
+$ npm install react-fusioncharts --save
 ```
 
-#### Step 2: Add the HTML container element for rendering the chart
+Also install `fusionCharts`, if it is not already installed:
 
-In your HTML, find the section where you wish to render the chart place a `<div>` for the FusionCharts to be rendered.
-
-`<div id='chart-container'></div>`
-
-#### Step 3: Import react-fusioncharts package from npm
-
-Import **react**, **react-dom**, **fusioncharts**, and **react-fusioncharts** modules, in this order, through npm. In your JavaScript code, define an object that consists of all the configurations and their values, required to render FusionCharts.
-
+```bash
+$ npm install fusioncharts --save
 ```
+
+## Getting Started
+
+After installing `react-fusioncharts`, import it in your `React` app:
+
+```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
-import fusioncharts from 'fusioncharts';
-// Load the charts module
-import charts from 'fusioncharts/fusioncharts.charts';
-import react-fusioncharts from 'react-fusioncharts';
+import FusionCharts from 'fusioncharts';
+import Charts from 'fusioncharts/fusioncharts.charts';
+import ReactFC from 'react-fusioncharts';
 
-// Pass fusioncharts as a dependency of charts
-charts(FusionCharts)
+Charts(FusionCharts);
 
-var chartConfigs = {
-    type: ...,
-    renderAt: ...,
-    className: ..., // ReactJS attribute-name for DOM classes
-    dataFormat: ...,
-    dataSource: ...
+const myDataSource = {
+  chart: {
+    caption: 'Harry\'s SuperMart',
+    subCaption: 'Top 5 stores in last month by revenue',
+    numberPrefix: '$',
+  },
+  data: [
+    {
+      label: 'Bakersfield Central',
+      value: '880000',
+    },
+    {
+      label: 'Garden Groove harbour',
+      value: '730000',
+    },
+    {
+      label: 'Los Angeles Topanga',
+      value: '590000',
+    },
+    {
+      label: 'Compton-Rancho Dom',
+      value: '520000',
+    },
+    {
+      label: 'Daly City Serramonte',
+      value: '330000',
+    },
+  ],
 };
-```
 
-#### Step 4: Pass the configurations required for FusionCharts and render the chart
-##### FusionCharts plugin for **react** can be used in two ways:
-1. Use the **ReactFC** component directly in **ReactDOM** to render the chart. The configurations are passed as props of the component.
-2. Create multiple **ReactFC** component inside your custom defined component to render individual charts. This way you would be able to hold the state in your custom component and will be able to perform various activities using the component’s lifecycle hooks. 
+const chartConfigs = {
+  type: 'column2d',
+  width: 600,
+  height: 400,
+  dataFormat: 'json',
+  dataSource: myDataSource,
+};
 
-##### Method 1:
-Render the chart in the **React** application for a standalone chart, we can choose to make a component class or directly render the chart with the **ReactFC** component class. The object containing the chart configuration properties are passed to the **FusionCharts** component as props, as shown below:
-
-```
 ReactDOM.render(
-    <ReactFC {...chartConfigs} />,
-    document.getElementById('chart-container')
+  <ReactFC {...chartConfigs} />,
+  document.getElementById('root'),
 );
 ```
 
-##### Method 2:
-Create a custom MyApp component to render the chart as shown below:
+## Using Licensed Version of FusionCharts
+
+While using licensed version of `FusionCharts`, you need to specify library as follows:
+
+Specify library for all charts:
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ReactFC from 'react-fusioncharts';
+// Here import licensed version of FusionCharts
+import FusionCharts from './library_path/fusioncharts';
+import Charts from './library_path/fusioncharts/fusioncharts.charts';
+
+// Provide FusionCharts core and other modules to resolve
+ReactFC.fcRoot(FusionCharts, Charts)
+
+........
 
 ```
-var MyApp = React.createClass({
-    ..., // Rest of the React Component Code
-    render: function () {
-        return (
-            <ReactFC {...categoryChartConfigs} />
-            <ReactFC {...revenueChartConfigs} />
-        );
-    }
-});
+
+Specify library for a particular chart:
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ReactFC from 'react-fusioncharts';
+// Here import licensed version of FusionCharts
+import FusionCharts from './library_path/fusioncharts';
+import Charts from './library_path/fusioncharts/fusioncharts.charts';
+
+// Resolve modules
+Charts(FusionCharts)
 
 ReactDOM.render(
-    <MyApp />,
-    document.getElementById('chart-container')
+  <ReactFC
+    width="600"
+    height="400"
+    type="column2d"
+    dataSource={ /* Chart data source */ }
+    fcLibrary={FusionCharts} // Provide FusionCharts library
+  />,
+  document.getElementById('root'),
 );
+
+.......
+
 ```
 
-While it is recommended to create an object, with the configuration properties, and passing the values defined, you can also pass the configuration properties separately as shown below:
+## Test
 
-```
-ReactDOM.render(
-    <ReactFC
-        type: ...,
-        renderAt: ...,
-        className: ...,
-        dataFormat: ...,
-        dataSource: ... />,
-    document.getElementById('chart-container')
-);
+```sh
+$ npm test
 ```
 
-Your chart should now render when the page is loaded.
+## Contributing
 
-### Licensing
-React-FusionCharts is open-source and distributed under the terms of the MIT/X11 License. You will still need to download and include FusionCharts in your page. This project provides no direct functionality. You can [Download an evaluation](http://fusioncharts.com/download/). You will still need to purchase a FusionCharts license to use in a commercial environment (FusionCharts is [free for non-commercial and personal use](http://www.fusioncharts.com/download/free/)) .
+* Clone the repository.
+* Install dependencies
+* Run `npm start` to start the dev server.
+* Open `http://localhost:5000/` in your browser.
+
+```sh
+$ git clone https://github.com/fusioncharts/react-fusioncharts-component.git
+$ cd react-fusioncharts-component
+$ npm i
+$ npm start
+```
+
+To build, run:
+
+```sh
+$ npm run build
+```
+
+### [Demos and Documentation](https://fusioncharts.github.io/react-fusioncharts-component/)
+
