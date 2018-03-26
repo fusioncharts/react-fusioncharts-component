@@ -18,7 +18,7 @@ node_modules
 bower_components
 
 # Example build directory
-# example/dist
+example/dist
 .publish
 
 # Editor and other tmp files
@@ -30,3 +30,5 @@ bower_components
 *.sublime-*
 .idea/
 *.DS_Store
+
+package-lock.json
