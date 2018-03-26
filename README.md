@@ -85,14 +85,15 @@ Specify library for all charts:
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactFC from 'react-fusioncharts';
+
 // Here import licensed version of FusionCharts
-import FusionCharts from './library_path/fusioncharts';
-import Charts from './library_path/fusioncharts/fusioncharts.charts';
+import FusionCharts from './path/to/fusioncharts';
+import Charts from './path/to/fusioncharts/fusioncharts.charts';
 
 // Provide FusionCharts core and other modules to resolve
 ReactFC.fcRoot(FusionCharts, Charts)
 
-........
+// Rest of the application code
 
 ```
 
@@ -102,9 +103,10 @@ Specify library for a particular chart:
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactFC from 'react-fusioncharts';
+
 // Here import licensed version of FusionCharts
-import FusionCharts from './library_path/fusioncharts';
-import Charts from './library_path/fusioncharts/fusioncharts.charts';
+import FusionCharts from './path/to/fusioncharts';
+import Charts from './path/to/fusioncharts/fusioncharts.charts';
 
 // Resolve modules
 Charts(FusionCharts)
@@ -120,7 +122,7 @@ ReactDOM.render(
   document.getElementById('root'),
 );
 
-.......
+// Rest of the application code
 
 ```
 
