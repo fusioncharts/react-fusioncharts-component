@@ -1,0 +1,129 @@
+{
+  "sampleRouteMapping": {
+    "1": "simple-column-chart",
+    "2": "3d-pie-chart",
+    "3": "column-area-line-combi-chart",
+    "4": "fetch-data-from-json-url",
+    "5": "fetch-data-from-xml-url",
+    "6": "update-chart-data",
+    "7": "update-chart-attributes",
+    "8": "client-side-exporting",
+    "9": "change-chart-type-runtime",
+    "10": "trigger-events-from-chart",
+    "11": "use-annotations",
+    "12": "render-fusionmaps"
+  },
+  "wrapperSampleMapping": {
+    "react-fc": []
+  },
+  "sampleProps": {
+    "1": {
+      "title": "A Simple Column Chart",
+      "data": "data.json",
+      "logo": "logo.svg",
+      "logoHover": "logo-hover.svg",
+      "interactiveViewURL": {
+        "react-fc": "https://embed.plnkr.co/WowAFPmmvAzx4DP29M3K/"
+      }
+    },
+    "2": {
+      "title": "A 3D Pie Chart",
+      "data": "data.json",
+      "logo": "logo.svg",
+      "logoHover": "logo-hover.svg",
+      "interactiveViewURL": {
+        "react-fc": "https://embed.plnkr.co/PMYojVGxqXJoKsEKbAu9/"
+      }
+    },
+    "3": {
+      "title": "A Column, Area and Line Combi Chart",
+      "data": "data.json",
+      "logo": "logo.svg",
+      "logoHover": "logo-hover.svg",
+      "interactiveViewURL": {
+        "react-fc": "https://embed.plnkr.co/9YVJsfW5ujm8gVXfGY0B/"
+      }
+    },
+    "4": {
+      "title": "Fetch data from JSON URL",
+      "data": "data.json",
+      "logo": "logo.svg",
+      "logoHover": "logo-hover.svg",
+      "interactiveViewURL": {
+        "react-fc": "https://embed.plnkr.co/uFbQ8GUWAVqfLJXpYju6/"
+      }
+    },
+    "5": {
+      "title": "Fetch data from XML URL",
+      "data": "data.xml",
+      "logo": "logo.svg",
+      "logoHover": "logo-hover.svg",
+      "interactiveViewURL": {
+        "react-fc": "https://embed.plnkr.co/SC12epi1Fc3SrJq4GQde/"
+      }
+    },
+    "6": {
+      "title": "Update chart data",
+      "data": "data.json",
+      "logo": "logo.svg",
+      "logoHover": "logo-hover.svg",
+      "interactiveViewURL": {
+        "react-fc": "https://embed.plnkr.co/MGVka8FdLIr4Kl3rZIL5/"
+      }
+    },
+    "7": {
+      "title": "Update chart attributes",
+      "data": "data.json",
+      "logo": "logo.svg",
+      "logoHover": "logo-hover.svg",
+      "interactiveViewURL": {
+        "react-fc": "https://embed.plnkr.co/fY9uLtqAjTiMz17EGIe0/"
+      }
+    },
+    "8": {
+      "title": "Client side exporting",
+      "data": "data.json",
+      "logo": "logo.svg",
+      "logoHover": "logo-hover.svg",
+      "interactiveViewURL": {
+        "react-fc": "https://embed.plnkr.co/TL2qJgny5sGkTlf4umN0/"
+      }
+    },
+    "9": {
+      "title": "Change chart type at runtime",
+      "data": "data.json",
+      "logo": "logo.svg",
+      "logoHover": "logo-hover.svg",
+      "interactiveViewURL": {
+        "react-fc": "https://embed.plnkr.co/u6SQHYgOsVeJVKKdC0ZB/"
+      }
+    },
+    "10": {
+      "title": "Trigger events from chart",
+      "data": "data.json",
+      "logo": "logo.svg",
+      "logoHover": "logo-hover.svg",
+      "interactiveViewURL": {
+        "react-fc": "https://embed.plnkr.co/Amq8ly5uIW9KQ5XepNzU/"
+      }
+    },
+    "11": {
+      "title": "Use annotations",
+      "data": "data.json",
+      "logo": "logo.svg",
+      "logoHover": "logo-hover.svg",
+      "interactiveViewURL": {
+        "react-fc": "https://embed.plnkr.co/qIKY9suwowEvMvunuX9e/"
+      }
+    },
+    "12": {
+      "title": "Render FusionMaps",
+      "data": "data.json",
+      "logo": "logo.svg",
+      "logoHover": "logo-hover.svg",
+      "interactiveViewURL": {
+        "react-fc": "https://embed.plnkr.co/EJwgH7aqH2pFsiGjYnXQ/"
+      }
+    }
+  }
+}

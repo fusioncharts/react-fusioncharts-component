@@ -1,0 +1,3 @@
+.code-viewer .tab-labels-container div:nth-child(2) {
+  display: none;
+}
