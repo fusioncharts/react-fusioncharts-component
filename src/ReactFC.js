@@ -211,6 +211,10 @@ class ReactFC extends React.Component {
     this.chartObj = new this.FusionCharts(currentOptions);
     this.chartObj.render();
     this.oldOptions = currentOptions;
+
+    if (this.props.onRender && typeof this.props.onRender === 'function') {
+      this.props.onRender(this.chartObj);
+    }
   }
 
   resolveChartOptions(props) {
