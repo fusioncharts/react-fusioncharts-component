@@ -7,7 +7,11 @@ import fusionChartsOptions from './utils/options';
 class ReactFC extends React.Component {
   static fcRoot(core, ...modules) {
     modules.forEach((m) => {
-      m(core);
+      if (m.getName || m.name) {
+        core.addDep(m);
+      } else {
+        m(core);
+      }
     });
     ReactFC.fusionChartsCore = core;
   }
