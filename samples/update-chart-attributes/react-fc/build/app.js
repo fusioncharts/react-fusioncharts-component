@@ -2,39 +2,55 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
-import OceanTheme from 'fusioncharts/themes/fusioncharts.theme.ocean';
 import ReactFC from 'react-fusioncharts';
+// import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
-Charts(FusionCharts);
-OceanTheme(FusionCharts);
+import '../../../../../assets/themes/fusioncharts.theme.fusion';
+
+ReactFC.fcRoot(FusionCharts, Charts);
+// ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
 const myDataSource = {
   chart: {
-    caption: "Harry's SuperMart",
-    subCaption: 'Top 5 stores in last month by revenue',
-    numberPrefix: '$',
-    theme: 'ocean',
+    caption: 'Countries With Most Oil Reserves [2017-18]',
+    subCaption: 'In MMbbl = One Million barrels',
+    xAxisName: 'Country',
+    yAxisName: 'Reserves (MMbbl)',
+    numberSuffix: 'K',
+    theme: 'fusion',
   },
   data: [
     {
-      label: 'Bakersfield Central',
-      value: '880000',
+      label: 'Venezuela',
+      value: '290',
     },
     {
-      label: 'Garden Groove harbour',
-      value: '730000',
+      label: 'Saudi',
+      value: '260',
     },
     {
-      label: 'Los Angeles Topanga',
-      value: '590000',
+      label: 'Canada',
+      value: '180',
     },
     {
-      label: 'Compton-Rancho Dom',
-      value: '520000',
+      label: 'Iran',
+      value: '140',
     },
     {
-      label: 'Daly City Serramonte',
-      value: '330000',
+      label: 'Russia',
+      value: '115',
+    },
+    {
+      label: 'UAE',
+      value: '100',
+    },
+    {
+      label: 'US',
+      value: '30',
+    },
+    {
+      label: 'China',
+      value: '30',
     },
   ],
 };

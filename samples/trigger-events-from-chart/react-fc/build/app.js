@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
-import OceanTheme from 'fusioncharts/themes/fusioncharts.theme.ocean';
 import ReactFC from 'react-fusioncharts';
+// import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
-Charts(FusionCharts);
-OceanTheme(FusionCharts);
+import '../../../../../assets/themes/fusioncharts.theme.fusion';
+
+ReactFC.fcRoot(FusionCharts, Charts);
+// ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
 class App extends React.Component {
   constructor(props) {

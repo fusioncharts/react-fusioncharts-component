@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
+import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
-Charts(FusionCharts);
+ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
 class App extends React.Component {
   constructor(props) {
@@ -21,12 +22,15 @@ class App extends React.Component {
     this.updateData = this.updateData.bind(this);
   }
 
+  getRandomNumber() {
+    var max = 290, min = 30;
+    return Math.round(((max - min) * Math.random()) + min);
+  }
+
   updateData() {
     const prevDs = Object.assign({}, this.state.dataSource);
-    prevDs.data[2].label = 'Art Supply Store';
-    prevDs.data[2].value = '420000';
-    prevDs.data[3].label = 'P.C. Richard & Son';
-    prevDs.data[3].value = '210000';
+    prevDs.data[2].value = this.getRandomNumber();
+    prevDs.data[3].value = this.getRandomNumber();
     this.setState({
       dataSource: prevDs,
     });

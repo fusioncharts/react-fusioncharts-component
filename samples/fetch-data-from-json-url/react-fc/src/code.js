@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
+import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
-Charts(FusionCharts);
+ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
 const chartConfigs = {
   type: 'column2d',

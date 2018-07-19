@@ -5,7 +5,7 @@
         "xAxisName": "Day",
         "yAxisName": "No. of Visitors (In 1000s)",
         "showValues": "0",
-        "theme": "ocean"
+        "theme": "fusion"
     },
     "annotations": {
         "groups": [

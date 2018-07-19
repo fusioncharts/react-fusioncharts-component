@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';
 import Maps from 'fusioncharts/fusioncharts.maps';
-import USAMap from 'fusioncharts/maps/fusioncharts.usa';
+import World from 'fusioncharts/maps/fusioncharts.usa';
 import ReactFC from 'react-fusioncharts';
+import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
-Maps(FusionCharts);
-USAMap(FusionCharts);
+ReactFC.fcRoot(FusionCharts, Maps, World, FusionTheme);
 
 const chartConfigs = {
-  type: 'maps/usa',
+  type: 'world',
   width: 600,
   height: 400,
   dataFormat: 'json',

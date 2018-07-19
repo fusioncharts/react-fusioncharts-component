@@ -11,7 +11,10 @@
     "9": "change-chart-type-runtime",
     "10": "trigger-events-from-chart",
     "11": "use-annotations",
-    "12": "render-fusionmaps"
+    "12": "render-fusionmaps",
+    "13": "drill-down",
+    "14": "simple-widget",
+    "15": "using-theme"
   },
   "wrapperSampleMapping": {
     "react-fc": []
@@ -118,6 +121,33 @@
     },
     "12": {
       "title": "Render FusionMaps",
+      "data": "data.json",
+      "logo": "logo.svg",
+      "logoHover": "logo-hover.svg",
+      "interactiveViewURL": {
+        "react-fc": "https://embed.plnkr.co/EJwgH7aqH2pFsiGjYnXQ/"
+      }
+    },
+    "13": {
+      "title": "Drill Down Chart",
+      "data": "data.json",
+      "logo": "logo.svg",
+      "logoHover": "logo-hover.svg",
+      "interactiveViewURL": {
+        "react-fc": "https://embed.plnkr.co/EJwgH7aqH2pFsiGjYnXQ/"
+      }
+    },
+    "14": {
+      "title": "A Simple Widget",
+      "data": "data.json",
+      "logo": "logo.svg",
+      "logoHover": "logo-hover.svg",
+      "interactiveViewURL": {
+        "react-fc": "https://embed.plnkr.co/EJwgH7aqH2pFsiGjYnXQ/"
+      }
+    },
+    "15": {
+      "title": "Using a Theme",
       "data": "data.json",
       "logo": "logo.svg",
       "logoHover": "logo-hover.svg",

@@ -2,39 +2,55 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
-import OceanTheme from 'fusioncharts/themes/fusioncharts.theme.ocean';
 import ReactFC from 'react-fusioncharts';
+// import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
-Charts(FusionCharts);
-OceanTheme(FusionCharts);
+import '../../../../../assets/themes/fusioncharts.theme.fusion';
+
+ReactFC.fcRoot(FusionCharts, Charts);
+// ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
 const myDataSource = {
   chart: {
-    caption: "Harry's SuperMart",
-    subCaption: 'Top 5 stores in last month by revenue',
-    numberPrefix: '$',
-    theme: 'ocean',
+    caption: 'Countries With Most Oil Reserves [2017-18]',
+    subCaption: 'In MMbbl = One Million barrels',
+    xAxisName: 'Country',
+    yAxisName: 'Reserves (MMbbl)',
+    numberSuffix: 'K',
+    theme: 'fusion',
   },
   data: [
     {
-      label: 'Bakersfield Central',
-      value: '880000',
+      label: 'Venezuela',
+      value: '290',
     },
     {
-      label: 'Garden Groove harbour',
-      value: '730000',
+      label: 'Saudi',
+      value: '260',
     },
     {
-      label: 'Los Angeles Topanga',
-      value: '590000',
+      label: 'Canada',
+      value: '180',
     },
     {
-      label: 'Compton-Rancho Dom',
-      value: '520000',
+      label: 'Iran',
+      value: '140',
     },
     {
-      label: 'Daly City Serramonte',
-      value: '330000',
+      label: 'Russia',
+      value: '115',
+    },
+    {
+      label: 'UAE',
+      value: '100',
+    },
+    {
+      label: 'US',
+      value: '30',
+    },
+    {
+      label: 'China',
+      value: '30',
     },
   ],
 };
@@ -54,12 +70,15 @@ class App extends React.Component {
     this.updateData = this.updateData.bind(this);
   }
 
+  getRandomNumber() {
+    var max = 290, min = 30;
+    return Math.round(((max - min) * Math.random()) + min);
+  }
+
   updateData() {
     const prevDs = Object.assign({}, this.state.dataSource);
-    prevDs.data[2].label = 'Art Supply Store';
-    prevDs.data[2].value = '420000';
-    prevDs.data[3].label = 'P.C. Richard & Son';
-    prevDs.data[3].value = '210000';
+    prevDs.data[2].value = this.getRandomNumber();
+    prevDs.data[3].value = this.getRandomNumber();
     this.setState({
       dataSource: prevDs,
     });
