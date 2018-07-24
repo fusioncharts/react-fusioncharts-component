@@ -124,7 +124,7 @@
 	  }
 	};
 	var chart2Configs = {
-	  type: 'stackedbar2d',
+	  type: 'stackedcolumn2d',
 	  width: '500',
 	  height: '500',
 	  dataFormat: 'json',

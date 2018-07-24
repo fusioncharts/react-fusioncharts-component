@@ -33,7 +33,7 @@ class App extends React.Component {
   // Shows the value of the hovered plot on the page.
   showPlotValue(eventObj, dataObj) {
     this.setState({
-      actualValue: `You’re are currently hovering over ${dataObj.categoryLabel} whose value is ${dataObj.dataValue}`
+      actualValue: `You’re are currently hovering over ${dataObj.categoryLabel} whose value is ${dataObj.displayValue}`,
     });
   }
 

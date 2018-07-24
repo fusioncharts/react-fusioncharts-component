@@ -84,7 +84,7 @@
       }
     },
     "8": {
-      "title": "Client side exporting",
+      "title": "Export multiple charts",
       "data": "data.json",
       "logo": "logo.svg",
       "logoHover": "logo-hover.svg",

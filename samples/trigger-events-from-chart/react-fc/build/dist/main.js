@@ -116,7 +116,7 @@
 	    key: 'showPlotValue',
 	    value: function showPlotValue(eventObj, dataObj) {
 	      this.setState({
-	        actualValue: 'You\u2019re are currently hovering over ' + dataObj.categoryLabel + ' whose value is ' + dataObj.dataValue
+	        actualValue: 'You\u2019re are currently hovering over ' + dataObj.categoryLabel + ' whose value is ' + dataObj.displayValue
 	      });
 	    }
 	  }, {
