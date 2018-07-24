@@ -75,9 +75,9 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	_reactFusioncharts2.default.fcRoot(_fusioncharts2.default, _fusioncharts4.default, _fusioncharts6.default);
-	// ReactFC.fcRoot(FusionCharts, Maps, World, FusionTheme);
+	// ReactFC.fcRoot(FusionCharts, Maps, World, FusionTime);
 
-	// import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+	// import FusionTime from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
 	var chartConfigs = {
 	  type: 'world',

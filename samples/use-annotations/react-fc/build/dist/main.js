@@ -71,9 +71,9 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	_reactFusioncharts2.default.fcRoot(_fusioncharts2.default, _fusioncharts4.default);
-	// ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
+	// ReactFC.fcRoot(FusionCharts, Charts, FusionTime);
 
-	// import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+	// import FusionTime from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
 	var chartConfigs = {
 	  type: 'spline',

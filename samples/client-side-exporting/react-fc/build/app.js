@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
-// import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+// import FusionTime from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
 import '../../../../../assets/themes/fusioncharts.theme.fusion';
 
 ReactFC.fcRoot(FusionCharts, Charts);
-// ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
+// ReactFC.fcRoot(FusionCharts, Charts, FusionTime);
 
 const chart1Configs = {
   type: 'column2d',
@@ -61,111 +61,160 @@ const chart1Configs = {
   },
 };
 const chart2Configs = {
-  type: 'bar2d',
+  type: 'stackedbar2d',
   width: '500',
   height: '500',
   dataFormat: 'json',
   dataSource: {
     chart: {
-      caption: 'Lead sources by industry',
-      yAxisName: 'Number of Leads',
-      alignCaptionWithCanvas: '0',
-      plotToolText: '<b>$dataValue</b> leads received',
+      caption: 'Yearly Energy Production Rate',
+      subCaption: ' Top 5 Developed Countries',
+      numbersuffix: ' TWh',
+      showSum: '1',
+      plotToolText:
+        '$label produces <b>$dataValue</b> of energy from $seriesName',
       theme: 'fusion',
     },
-
-    data: [{
-      label: 'Travel & Leisure',
-      value: '41',
-    },
-    {
-      label: 'Advertising/Marketing/PR',
-      value: '39',
-    },
-    {
-      label: 'Other',
-      value: '38',
-    },
-    {
-      label: 'Real Estate',
-      value: '32',
-    },
-    {
-      label: 'Communications/Cable/Phone',
-      value: '26',
-    },
-    {
-      label: 'Construction',
-      value: '25',
-    },
-    {
-      label: 'Entertainment',
-      value: '25',
-    },
-    {
-      label: 'Staffing Firm/Full Time/Temporary',
-      value: '24',
-    },
-    {
-      label: 'Transportation/Logistics',
-      value: '23',
-    },
-    {
-      label: 'Utilities',
-      value: '22',
-    },
-    {
-      label: 'Aerospace/Defense Products',
-      value: '18',
-    },
-    {
-      label: 'Banking/Finance/Securities',
-      value: '16',
-    },
-    {
-      label: 'Consumer Products - Non-Durables',
-      value: '15',
-    },
-    {
-      label: 'Distribution',
-      value: '13',
-    },
-    {
-      label: 'Education',
-      value: '12',
-    },
-    {
-      label: 'Health Products & Services',
-      value: '11',
-    },
-    {
-      label: 'Hospitality & Hotels',
-      value: '10',
-    },
-    {
-      label: 'Non-Business/Residential',
-      value: '6',
-    },
-    {
-      label: 'Pharmaceutical',
-      value: '4',
-    },
-    {
-      label: 'Printing & Publishing',
-      value: '1',
-    },
-    {
-      label: 'Professional Services',
-      value: '1',
-    },
-    {
-      label: 'VAR/ISV',
-      value: '1',
-    },
-    {
-      label: 'Warranty Administrators',
-      value: '1',
-    },
+    categories: [
+      {
+        category: [
+          {
+            label: 'Canada',
+          },
+          {
+            label: 'China',
+          },
+          {
+            label: 'Russia',
+          },
+          {
+            label: 'Australia',
+          },
+          {
+            label: 'United States',
+          },
+          {
+            label: 'France',
+          },
+        ],
+      },
+    ],
+    dataSet: [
+      {
+        seriesName: 'Coal',
+        data: [
+          {
+            value: '400',
+          },
+          {
+            value: '830',
+          },
+          {
+            value: '500',
+          },
+          {
+            value: '420',
+          },
+          {
+            value: '790',
+          },
+          {
+            value: '380',
+          },
+        ],
+      },
+      {
+        seriesName: 'Hydro',
+        data: [
+          {
+            value: '350',
+          },
+          {
+            value: '620',
+          },
+          {
+            value: '410',
+          },
+          {
+            value: '370',
+          },
+          {
+            value: '720',
+          },
+          {
+            value: '310',
+          },
+        ],
+      },
+      {
+        seriesName: 'Nuclear',
+        data: [
+          {
+            value: '210',
+          },
+          {
+            value: '400',
+          },
+          {
+            value: '450',
+          },
+          {
+            value: '180',
+          },
+          {
+            value: '570',
+          },
+          {
+            value: '270',
+          },
+        ],
+      },
+      {
+        seriesName: 'Gas',
+        data: [
+          {
+            value: '180',
+          },
+          {
+            value: '330',
+          },
+          {
+            value: '230',
+          },
+          {
+            value: '160',
+          },
+          {
+            value: '440',
+          },
+          {
+            value: '350',
+          },
+        ],
+      },
+      {
+        seriesName: 'Oil',
+        data: [
+          {
+            value: '60',
+          },
+          {
+            value: '200',
+          },
+          {
+            value: '200',
+          },
+          {
+            value: '50',
+          },
+          {
+            value: '230',
+          },
+          {
+            value: '150',
+          },
+        ],
+      },
     ],
   },
 };
@@ -185,7 +234,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.exportChart}>Export chart as PDF</button>
+        <center><button style={{ padding: '5px 10px', background: '#fbfbfb' }} onClick={this.exportChart}>Export both charts as a single PDF</button></center>
         <ReactFC {...chart1Configs} />
         <ReactFC {...chart2Configs} />
       </div>

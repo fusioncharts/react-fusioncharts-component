@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
-// import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+// import FusionTime from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
 import '../../../../../assets/themes/fusioncharts.theme.fusion';
 
 ReactFC.fcRoot(FusionCharts, Charts);
-// ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
+// ReactFC.fcRoot(FusionCharts, Charts, FusionTime);
 
 const myDataSource = {
   chart: {
@@ -62,7 +62,7 @@ class App extends React.Component {
     this.state = {
       type: 'column2d',
       width: '100%',
-      height: '85%',
+      height: '80%',
       dataFormat: 'json',
       dataSource: myDataSource,
     };
@@ -90,7 +90,7 @@ class App extends React.Component {
         <ReactFC {...this.state} />
         <br />
         <br />
-        <button onClick={this.updateData}>Change Chart Data</button>
+        <center><button style={{ padding: '5px 10px', background: '#fbfbfb' }} onClick={this.updateData}>Change Chart Data</button></center>
       </div>
     );
   }

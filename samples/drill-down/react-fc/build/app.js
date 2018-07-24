@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
-// import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+// import FusionTime from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
 import '../../../../../assets/themes/fusioncharts.theme.fusion';
 
 ReactFC.fcRoot(FusionCharts, Charts);
-// ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
+// ReactFC.fcRoot(FusionCharts, Charts, FusionTime);
 
 const chartConfigs = {
   type: 'column2d',
@@ -22,7 +22,7 @@ const alterChart = (chart) => {
     type: 'pie2d',
     width: '500',
     overlayButton: {
-      message: 'close',
+      message: 'Back',
       fontColor: '880000',
       bgColor: 'FFEEEE',
       borderColor: '660000',

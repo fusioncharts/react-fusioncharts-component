@@ -120,7 +120,7 @@
       }
     },
     "12": {
-      "title": "Render FusionMaps",
+      "title": "World Map",
       "data": "data.json",
       "logo": "logo.svg",
       "logoHover": "logo-hover.svg",
@@ -129,7 +129,7 @@
       }
     },
     "13": {
-      "title": "Drill Down Chart",
+      "title": "Add drill-down to chart",
       "data": "data.json",
       "logo": "logo.svg",
       "logoHover": "logo-hover.svg",
@@ -138,7 +138,7 @@
       }
     },
     "14": {
-      "title": "A Simple Widget",
+      "title": "A simple gauge",
       "data": "data.json",
       "logo": "logo.svg",
       "logoHover": "logo-hover.svg",
@@ -147,7 +147,7 @@
       }
     },
     "15": {
-      "title": "Using a Theme",
+      "title": "Applying a different theme",
       "data": "data.json",
       "logo": "logo.svg",
       "logoHover": "logo-hover.svg",

@@ -1,7 +1,7 @@
 {
     "chart": {
-        "caption": "Top 3 Juice Flavors",
-        "subcaption": "Last year",
+        "caption": "Sales of top 3 juice flavors last year",
+        "subcaption": "Click on a column to see details",
         "xaxisname": "Flavor",
         "yaxisname": "Amount (In USD)",
         "numberprefix": "$",
@@ -20,9 +20,9 @@
             "link": "newchart-xml-cranberry"
         },
         {
-            "label": "Grapes",
+            "label": "Grape",
             "value": "350000",
-            "link": "newchart-xml-grapes"
+            "link": "newchart-xml-grape"
         }
     ],
     "linkeddata": [
@@ -37,24 +37,23 @@
                     "rotateValues": "0",
                     "plottooltext": "$label, $dataValue,  $percentValue"
                 },
-                "data": [
-                    {
-                        "label": "Q1",
-                        "value": "157000"
-                    },
-                    {
-                        "label": "Q2",
-                        "value": "172000"
-                    },
-                    {
-                        "label": "Q3",
-                        "value": "206000"
-                    },
-                    {
-                        "label": "Q4",
-                        "value": "275000"
-                    }
-                ]
+                "data": [{
+                    "label": "Q1",
+                    "value": "157000",
+                    "displayValue": "Q1, $157K"
+                }, {
+                    "label": "Q2",
+                    "value": "172000",
+                    "displayValue": "Q2, $172K"
+                }, {
+                    "label": "Q3",
+                    "value": "206000",
+                    "displayValue": "Q3, $206K"
+                }, {
+                    "label": "Q4",
+                    "value": "275000",
+                    "displayValue": "Q4, $275K"
+                }]
             }
         },
         {
@@ -70,52 +69,55 @@
                 "data": [
                     {
                         "label": "Q1",
-                        "value": "102000"
+                        "value": "102000",
+                        "displayValue": "Q1, $102K"
                     },
                     {
                         "label": "Q2",
-                        "value": "142000"
+                        "value": "142000",
+                        "displayValue": "Q2, $142K"
                     },
                     {
                         "label": "Q3",
-                        "value": "187000"
+                        "value": "187000",
+                        "displayValue": "Q3, $187K"
                     },
                     {
                         "label": "Q4",
-                        "value": "189000"
+                        "value": "189000",
+                        "displayValue": "Q4, $189K"
                     }
                 ]
             }
         },
         {
-            "id": "grapes",
+            "id": "grape",
             "linkedchart": {
                 "chart": {
-                    "caption": "Grapes Juice - Quarterly Sales",
+                    "caption": "Grape Juice - Quarterly Sales",
                     "subcaption": "Last year",
                     "numberprefix": "$",
                     "theme": "fusion",
                     "rotateValues": "0",
                     "plottooltext": "$label, $dataValue,  $percentValue"
                 },
-                "data": [
-                    {
-                        "label": "Q1",
-                        "value": "45000"
-                    },
-                    {
-                        "label": "Q2",
-                        "value": "72000"
-                    },
-                    {
-                        "label": "Q3",
-                        "value": "95000"
-                    },
-                    {
-                        "label": "Q4",
-                        "value": "108000"
-                    }
-                ]
+                "data": [{
+                    "label": "Q1",
+                    "value": "45000",
+                    "displayValue": "Q1, $45K"
+                }, {
+                    "label": "Q2",
+                    "value": "72000",
+                    "displayValue": "Q2, $72K"
+                }, {
+                    "label": "Q3",
+                    "value": "95000",
+                    "displayValue": "Q3, $95K"
+                }, {
+                    "label": "Q4",
+                    "value": "108000",
+                    "displayValue": "Q4, $108K"
+                }]
             }
         }
     ]

@@ -77,10 +77,10 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	// import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+	// import FusionTime from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
 	_reactFusioncharts2.default.fcRoot(_fusioncharts2.default, _fusioncharts4.default);
-	// ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
+	// ReactFC.fcRoot(FusionCharts, Charts, FusionTime);
 
 	var myDataSource = {
 	  chart: {
@@ -129,7 +129,7 @@
 	    _this.state = {
 	      type: 'column2d',
 	      width: '100%',
-	      height: '85%',
+	      height: '80%',
 	      dataFormat: 'json',
 	      dataSource: myDataSource
 	    };
@@ -167,14 +167,18 @@
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
-	          'button',
-	          { onClick: this.changeBackgroundColor },
-	          'Change Background'
-	        ),
-	        _react2.default.createElement(
-	          'button',
-	          { onClick: this.changeCaptionTextAlignment },
-	          'Change Caption Alignment'
+	          'center',
+	          null,
+	          _react2.default.createElement(
+	            'button',
+	            { style: { padding: '5px 10px', margin: '0 2px', background: '#fbfbfb' }, onClick: this.changeBackgroundColor },
+	            'Change Background'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { style: { padding: '5px 10px', margin: '0 2px', background: '#fbfbfb' }, onClick: this.changeCaptionTextAlignment },
+	            'Change Caption Alignment'
+	          )
 	        )
 	      );
 	    }

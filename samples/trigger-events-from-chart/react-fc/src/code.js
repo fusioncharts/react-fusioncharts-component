@@ -3,39 +3,42 @@ import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
-import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import FusionTime from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
-ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
+ReactFC.fcRoot(FusionCharts, Charts, FusionTime);
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      actualValue: undefined,
+      actualValue: 'Hover on the plot to see the value along with the label',
     };
 
     this.chartConfig = {
       type: 'column2d',
-      width: 600,
-      height: 400,
+      width: '600',
+      height: '400',
       dataFormat: 'json',
       dataSource: {/* see data tab */ },
-      events: {
-        dataplotRollOver: (eventObj, dataObj) => {
-          this.setState({
-            actualValue: dataObj.dataValue,
-          });
-        },
-      },
     };
+
+    this.showPlotValue = this.showPlotValue.bind(this);
+  }
+
+  // Event callback handler for 'dataplotRollOver'.
+  // Shows the value of the hovered plot on the page.
+  showPlotValue(eventObj, dataObj) {
+    this.setState({
+      actualValue: `You’re are currently hovering over ${dataObj.categoryLabel} whose value is ${dataObj.dataValue}`
+    });
   }
 
   render() {
     return (
       <div>
-        <ReactFC {...this.chartConfig} />
-        <p>Actual Value: {this.state.actualValue}</p>
+        <ReactFC {...this.chartConfig} fcEvent-dataplotRollOver={this.showPlotValue} />
+        <p style={{ padding: '10px', background: '#f5f2f0' }}>{this.state.actualValue}</p>
       </div>
     );
   }

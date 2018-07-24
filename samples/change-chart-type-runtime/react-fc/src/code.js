@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
-import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import FusionTime from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
-ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
+ReactFC.fcRoot(FusionCharts, Charts, FusionTime);
 
 class App extends React.Component {
   constructor(props) {
@@ -13,8 +13,8 @@ class App extends React.Component {
 
     this.state = {
       type: 'column2d',
-      width: 600,
-      height: 400,
+      width: '600',
+      height: '400',
       dataFormat: 'json',
       dataSource: {/* see data tab */ },
     };
@@ -22,6 +22,7 @@ class App extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
+  // Handler for select list to change chart type.
   onChange(e) {
     this.setState({
       type: e.currentTarget.value,

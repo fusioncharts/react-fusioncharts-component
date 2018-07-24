@@ -46,6 +46,8 @@
 
 	'use strict';
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
@@ -77,10 +79,10 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	// import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+	// import FusionTime from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
 	_reactFusioncharts2.default.fcRoot(_fusioncharts2.default, _fusioncharts4.default);
-	// ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
+	// ReactFC.fcRoot(FusionCharts, Charts, FusionTime);
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -91,7 +93,7 @@
 	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
 	    _this.state = {
-	      actualValue: undefined
+	      actualValue: 'Hover on the plot to see the value along with the label'
 	    };
 
 	    _this.chartConfig = {
@@ -99,29 +101,34 @@
 	      width: '100%',
 	      height: '85%',
 	      dataFormat: 'jsonurl',
-	      dataSource: '../../data.json',
-	      events: {
-	        dataplotRollOver: function dataplotRollOver(eventObj, dataObj) {
-	          _this.setState({
-	            actualValue: dataObj.dataValue
-	          });
-	        }
-	      }
+	      dataSource: '../../data.json'
 	    };
+
+	    _this.showPlotValue = _this.showPlotValue.bind(_this);
 	    return _this;
 	  }
 
+	  // Event callback handler for 'dataplotRollOver'.
+	  // Shows the value of the hovered plot on the page.
+
+
 	  _createClass(App, [{
+	    key: 'showPlotValue',
+	    value: function showPlotValue(eventObj, dataObj) {
+	      this.setState({
+	        actualValue: 'You\u2019re are currently hovering over ' + dataObj.categoryLabel + ' whose value is ' + dataObj.dataValue
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_reactFusioncharts2.default, this.chartConfig),
+	        _react2.default.createElement(_reactFusioncharts2.default, _extends({}, this.chartConfig, { 'fcEvent-dataplotRollOver': this.showPlotValue })),
 	        _react2.default.createElement(
 	          'p',
-	          null,
-	          'Actual Value: ',
+	          { style: { padding: '10px', background: '#f5f2f0' } },
 	          this.state.actualValue
 	        )
 	      );

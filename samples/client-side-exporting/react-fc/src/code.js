@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
-import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import FusionTime from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
-ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
+ReactFC.fcRoot(FusionCharts, Charts, FusionTime);
 
 const chart1Configs = {
   type: 'column2d',
@@ -15,7 +15,7 @@ const chart1Configs = {
   dataSource: {/* see data tab */ },
 };
 const chart2Configs = {
-  type: 'bar2d',
+  type: 'stackedbar2d',
   width: '500',
   height: '500',
   dataFormat: 'json',
@@ -28,6 +28,8 @@ class App extends React.Component {
     this.exportChart = this.exportChart.bind(this);
   }
 
+  // Handler for export button.
+  // Fires an export operation which exports all charts on the page as a PDF.
   exportChart(e) {
     FusionCharts.batchExport({
       exportFormat: 'pdf',
@@ -37,7 +39,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.exportChart}>Export chart as PDF</button>
+        <center><button style={{ padding: '5px 10px', background: '#fbfbfb' }} onClick={this.exportChart}>Export both charts as a single PDF</button></center>
         <ReactFC {...chart1Configs} />
         <ReactFC {...chart2Configs} />
       </div>

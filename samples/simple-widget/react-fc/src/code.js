@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';
 import Widgets from 'fusioncharts/fusioncharts.widgets';
 import ReactFC from 'react-fusioncharts';
-import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import FusionTime from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
-ReactFC.fcRoot(FusionCharts, Widgets, FusionTheme);
+ReactFC.fcRoot(FusionCharts, Widgets, FusionTime);
 
 const chartConfigs = {
   type: 'angulargauge',
-  width: 600,
-  height: 400,
+  width: '600',
+  height: '400',
   dataFormat: 'json',
   dataSource: {/* see data tab */ },
 };
