@@ -47,7 +47,7 @@
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	// import FusionTime from 'fusioncharts/themes/fusioncharts.theme.fusion';
+	// import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
 	var _react = __webpack_require__(1);
 
@@ -74,7 +74,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	_reactFusioncharts2.default.fcRoot(_fusioncharts2.default, _fusioncharts4.default);
-	// ReactFC.fcRoot(FusionCharts, Charts, FusionTime);
+	// ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
 	var chartConfigs = {
 	  type: 'column2d',

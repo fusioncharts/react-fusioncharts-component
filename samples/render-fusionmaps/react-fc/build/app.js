@@ -4,12 +4,12 @@ import FusionCharts from 'fusioncharts';
 import Maps from 'fusioncharts/fusioncharts.maps';
 import World from 'fusioncharts/maps/fusioncharts.world';
 import ReactFC from 'react-fusioncharts';
-// import FusionTime from 'fusioncharts/themes/fusioncharts.theme.fusion';
+// import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
 import '../../../../../assets/themes/fusioncharts.theme.fusion';
 
 ReactFC.fcRoot(FusionCharts, Maps, World);
-// ReactFC.fcRoot(FusionCharts, Maps, World, FusionTime);
+// ReactFC.fcRoot(FusionCharts, Maps, World, FusionTheme);
 
 const chartConfigs = {
   type: 'world',

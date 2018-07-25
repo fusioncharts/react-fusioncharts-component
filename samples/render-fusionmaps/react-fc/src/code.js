@@ -4,9 +4,9 @@ import FusionCharts from 'fusioncharts';
 import Maps from 'fusioncharts/fusioncharts.maps';
 import World from 'fusioncharts/maps/fusioncharts.usa';
 import ReactFC from 'react-fusioncharts';
-import FusionTime from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
-ReactFC.fcRoot(FusionCharts, Maps, World, FusionTime);
+ReactFC.fcRoot(FusionCharts, Maps, World, FusionTheme);
 
 const chartConfigs = {
   type: 'world',

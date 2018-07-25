@@ -73,7 +73,7 @@
 	_reactFusioncharts2.default.fcRoot(_fusioncharts2.default, _fusioncharts4.default);
 	// ReactFC.fcRoot(FusionCharts, Widgets, FusionCharts);
 
-	// import FusionTime from 'fusioncharts/themes/fusioncharts.theme.fusion';
+	// import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
 	var chartConfigs = {
 	  type: 'angulargauge',

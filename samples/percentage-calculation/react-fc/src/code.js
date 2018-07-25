@@ -13,6 +13,7 @@ class App extends React.Component {
 
     this.state = {
       actualValue: 'Hover on the plot to see the value along with the label',
+      total: 0,
     };
 
     this.chartConfig = {
@@ -24,20 +25,35 @@ class App extends React.Component {
     };
 
     this.showPlotValue = this.showPlotValue.bind(this);
+    this.renderComplete = this.renderComplete.bind(this);
   }
 
   // Event callback handler for 'dataplotRollOver'.
-  // Shows the value of the hovered plot on the page.
+  // Shows the percentage of the hovered plot on the page.
   showPlotValue(eventObj, dataObj) {
+    const value = ((dataObj.value / this.state.total) * 100).toFixed(2);
     this.setState({
-      actualValue: `You’re are currently hovering over ${dataObj.categoryLabel} whose value is ${dataObj.displayValue}`,
+      actualValue: `${dataObj.categoryLabel} is ${value}% of the total`,
+    });
+  }
+
+  // Trigerred when chart is rendered.
+  // Configures the linked charts.
+  renderComplete(chart) {
+    const chartData = chart.getJSONData();
+    this.setState({
+      total: chartData.data.reduce((p, c) => p + Number(c.value), 0),
     });
   }
 
   render() {
     return (
       <div>
-        <ReactFC {...this.chartConfig} fcEvent-dataplotRollOver={this.showPlotValue} />
+        <ReactFC
+          {...this.chartConfig}
+          onRender={this.renderComplete}
+          fcEvent-dataplotRollOver={this.showPlotValue}
+        />
         <p style={{ padding: '10px', background: '#f5f2f0' }}>{this.state.actualValue}</p>
       </div>
     );

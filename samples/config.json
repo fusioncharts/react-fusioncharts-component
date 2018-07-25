@@ -14,7 +14,8 @@
     "12": "render-fusionmaps",
     "13": "drill-down",
     "14": "simple-widget",
-    "15": "using-theme"
+    "15": "using-theme",
+    "16": "percentage-calculation"
   },
   "wrapperSampleMapping": {
     "react-fc": []
@@ -148,6 +149,15 @@
     },
     "15": {
       "title": "Applying a different theme",
+      "data": "data.json",
+      "logo": "logo.svg",
+      "logoHover": "logo-hover.svg",
+      "interactiveViewURL": {
+        "react-fc": "https://embed.plnkr.co/EJwgH7aqH2pFsiGjYnXQ/"
+      }
+    },
+    "16": {
+      "title": "Percentage Calculation",
       "data": "data.json",
       "logo": "logo.svg",
       "logoHover": "logo-hover.svg",

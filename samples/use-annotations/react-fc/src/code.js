@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';
 import PowerCharts from 'fusioncharts/fusioncharts.powercharts';
 import ReactFC from 'react-fusioncharts';
-import FusionTime from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
-ReactFC.fcRoot(FusionCharts, PowerCharts, FusionTime);
+ReactFC.fcRoot(FusionCharts, PowerCharts, FusionTheme);
 
 const chartConfigs = {
   type: 'spline',

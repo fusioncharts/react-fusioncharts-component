@@ -46,6 +46,10 @@
 
 	'use strict';
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -70,20 +74,126 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	// import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+
 	_reactFusioncharts2.default.fcRoot(_fusioncharts2.default, _fusioncharts4.default);
 	// ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
-	// import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+	var App = function (_React$Component) {
+	  _inherits(App, _React$Component);
 
-	var chartConfigs = {
-	  type: 'mscombi2d',
-	  width: '100%',
-	  height: '100%',
-	  dataFormat: 'jsonurl',
-	  dataSource: '../../data.json'
-	};
+	  function App(props) {
+	    _classCallCheck(this, App);
 
-	_reactDom2.default.render(_react2.default.createElement(_reactFusioncharts2.default, chartConfigs), document.getElementById('root'));
+	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+	    _this.state = {
+	      actualValue: 'Hover on the plot to see the value along with the label',
+	      total: 0
+	    };
+
+	    _this.chartConfig = {
+	      type: 'column2d',
+	      width: '100%',
+	      height: '85%',
+	      dataFormat: 'json',
+	      dataSource: {
+	        chart: {
+	          caption: 'Countries With Most Oil Reserves [2017-18]',
+	          subCaption: 'In MMbbl = One Million barrels',
+	          xAxisName: 'Country',
+	          yAxisName: 'Reserves (MMbbl)',
+	          numberSuffix: 'K',
+	          theme: 'fusion'
+	        },
+	        data: [{
+	          label: 'Venezuela',
+	          value: '290'
+	        }, {
+	          label: 'Saudi',
+	          value: '260'
+	        }, {
+	          label: 'Canada',
+	          value: '180'
+	        }, {
+	          label: 'Iran',
+	          value: '140'
+	        }, {
+	          label: 'Russia',
+	          value: '115'
+	        }, {
+	          label: 'UAE',
+	          value: '100'
+	        }, {
+	          label: 'US',
+	          value: '30'
+	        }, {
+	          label: 'China',
+	          value: '30'
+	        }]
+	      }
+
+	    };
+
+	    _this.showPlotValue = _this.showPlotValue.bind(_this);
+	    _this.renderComplete = _this.renderComplete.bind(_this);
+	    return _this;
+	  }
+
+	  // Event callback handler for 'dataplotRollOver'.
+	  // Shows the value of the hovered plot on the page.
+
+
+	  _createClass(App, [{
+	    key: 'showPlotValue',
+	    value: function showPlotValue(eventObj, dataObj) {
+	      var value = (dataObj.value / this.state.total * 100).toFixed(2);
+	      this.setState({
+	        actualValue: dataObj.categoryLabel + ' is ' + value + '% of the total'
+	      });
+	    }
+
+	    // Trigerred when chart is rendered.
+	    // Configures the linked charts.
+
+	  }, {
+	    key: 'renderComplete',
+	    value: function renderComplete(chart) {
+	      var chartData = chart.getJSONData();
+	      this.setState({
+	        total: chartData.data.reduce(function (p, c) {
+	          return p + Number(c.value);
+	        }, 0)
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_reactFusioncharts2.default, _extends({}, this.chartConfig, {
+	          onRender: this.renderComplete,
+	          'fcEvent-dataplotRollOver': this.showPlotValue
+	        })),
+	        _react2.default.createElement(
+	          'p',
+	          { style: { padding: '10px', background: '#f5f2f0' } },
+	          this.state.actualValue
+	        )
+	      );
+	    }
+	  }]);
+
+	  return App;
+	}(_react2.default.Component);
+
+	_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('root'));
 
 /***/ }),
 /* 1 */
