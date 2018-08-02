@@ -1,6 +1,6 @@
 {
   "name": "react-fusioncharts",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "description": "Simple and Lightweight React component for FusionCharts JavaScript Charting Library",
   "main": "lib/ReactFC.js",
   "author": {
@@ -29,7 +29,6 @@
     "url": "https://github.com/fusioncharts/react-fusioncharts-component/issues"
   },
   "dependencies": {
-    "fusioncharts": "^3.12.2",
     "uuid": "^3.2.1"
   },
   "devDependencies": {

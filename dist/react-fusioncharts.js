@@ -108,6 +108,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var staticEvents = ['ready', 'beforeinitialize', 'initialized'];
+
 	var ReactFC = function (_React$Component) {
 	  _inherits(ReactFC, _React$Component);
 
@@ -119,7 +121,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 
 	      modules.forEach(function (m) {
-	        m(core);
+	        if (m.getName || m.name) {
+	          core.addDep(m);
+	        } else {
+	          m(core);
+	        }
 	      });
 	      ReactFC.fusionChartsCore = core;
 	    }
@@ -329,12 +335,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'renderChart',
 	    value: function renderChart() {
+	      var _this4 = this;
+
 	      var currentOptions = this.resolveChartOptions(this.props);
 	      currentOptions.renderAt = this.containerId;
 
 	      this.chartObj = new this.FusionCharts(currentOptions);
+	      Object.keys(this.props).forEach(function (value) {
+	        var event = value.match(/^fcEvent-.*/i);
+
+	        if (event && typeof _this4.props[value] === 'function') {
+	          var eventName = value.replace(/^fcEvent-/i, '');
+
+	          if (staticEvents.indexOf(eventName.toLowerCase()) > -1) {
+	            _this4.FusionCharts.addEventListener(eventName, _this4.props[value]);
+	          } else {
+	            _this4.chartObj.addEventListener(eventName, _this4.props[value]);
+	          }
+	        }
+	      });
 	      this.chartObj.render();
 	      this.oldOptions = currentOptions;
+
+	      if (this.props.onRender && typeof this.props.onRender === 'function') {
+	        this.props.onRender(this.chartObj);
+	      }
 	    }
 	  }, {
 	    key: 'resolveChartOptions',
@@ -425,9 +450,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	// and inconsistent support for the `crypto` API.  We do the best we can via
 	// feature-detection
 
-	// getRandomValues needs to be invoked in a context where "this" is a Crypto implementation.
-	var getRandomValues = (typeof(crypto) != 'undefined' && crypto.getRandomValues.bind(crypto)) ||
-	                      (typeof(msCrypto) != 'undefined' && msCrypto.getRandomValues.bind(msCrypto));
+	// getRandomValues needs to be invoked in a context where "this" is a Crypto
+	// implementation. Also, find the complete implementation of crypto on IE11.
+	var getRandomValues = (typeof(crypto) != 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto)) ||
+	                      (typeof(msCrypto) != 'undefined' && typeof window.msCrypto.getRandomValues == 'function' && msCrypto.getRandomValues.bind(msCrypto));
+
 	if (getRandomValues) {
 	  // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto
 	  var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef
@@ -470,14 +497,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	function bytesToUuid(buf, offset) {
 	  var i = offset || 0;
 	  var bth = byteToHex;
-	  return bth[buf[i++]] + bth[buf[i++]] +
-	          bth[buf[i++]] + bth[buf[i++]] + '-' +
-	          bth[buf[i++]] + bth[buf[i++]] + '-' +
-	          bth[buf[i++]] + bth[buf[i++]] + '-' +
-	          bth[buf[i++]] + bth[buf[i++]] + '-' +
-	          bth[buf[i++]] + bth[buf[i++]] +
-	          bth[buf[i++]] + bth[buf[i++]] +
-	          bth[buf[i++]] + bth[buf[i++]];
+	  // join used to fix memory issue caused by concatenation: https://bugs.chromium.org/p/v8/issues/detail?id=3175#c4
+	  return ([bth[buf[i++]], bth[buf[i++]], 
+		bth[buf[i++]], bth[buf[i++]], '-',
+		bth[buf[i++]], bth[buf[i++]], '-',
+		bth[buf[i++]], bth[buf[i++]], '-',
+		bth[buf[i++]], bth[buf[i++]], '-',
+		bth[buf[i++]], bth[buf[i++]],
+		bth[buf[i++]], bth[buf[i++]],
+		bth[buf[i++]], bth[buf[i++]]]).join('');
 	}
 
 	module.exports = bytesToUuid;
