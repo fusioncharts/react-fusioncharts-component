@@ -29,7 +29,6 @@
     "url": "https://github.com/fusioncharts/react-fusioncharts-component/issues"
   },
   "dependencies": {
-    "fusioncharts": "^3.12.2",
     "uuid": "^3.2.1"
   },
   "devDependencies": {
