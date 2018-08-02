@@ -21,7 +21,7 @@ $ npm install fusioncharts --save
 After installing `react-fusioncharts`, import it in your `React` app:
 
 ```javascript
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts/core';
 import Column2D from 'fusioncharts/viz/column2d';
@@ -94,7 +94,7 @@ ReactDOM.render(
 To render a map, import the FusionMaps module along with the map definition.
 
 ```javascript
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts/core';
 import Maps from 'fusioncharts/maps';
