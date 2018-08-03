@@ -1,4 +1,4 @@
-# react-fusionCharts
+# react-fusioncharts
 
 A simple and lightweight `React` component which provides bindings for `FusionCharts` JavaScript Charting Library. It easily adds rich and interactive charts to any `React` Projects.
 
@@ -10,7 +10,7 @@ To install `react-fusioncharts`, run:
 $ npm install react-fusioncharts --save
 ```
 
-Also install `fusionCharts`, if it is not already installed:
+Also install `fusioncharts`, if it is not already installed:
 
 ```bash
 $ npm install fusioncharts --save
