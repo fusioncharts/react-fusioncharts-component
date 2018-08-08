@@ -31,61 +31,61 @@ import FusionTheme from 'fusioncharts/themes/es/fusioncharts.theme.fusion';
 ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
 
 const myDataSource = {
-	"chart": {
-		"caption": "Countries With Most Oil Reserves [2017-18]",
-		"subCaption": "In MMbbl = One Million barrels",
-		"xAxisName": "Country",
-		"yAxisName": "Reserves (MMbbl)",
-		"numberSuffix": "K",
-		"theme": "fusion"
-	},
-	"data": [
-		{
-			"label": "Venezuela",
-			"value": "290"
-		},
-		{
-			"label": "Saudi",
-			"value": "260"
-		},
-		{
-			"label": "Canada",
-			"value": "180"
-		},
-		{
-			"label": "Iran",
-			"value": "140"
-		},
-		{
-			"label": "Russia",
-			"value": "115"
-		},
-		{
-			"label": "UAE",
-			"value": "100"
-		},
-		{
-			"label": "US",
-			"value": "30"
-		},
-		{
-			"label": "China",
-			"value": "30"
-		}
-	]
+  "chart": {
+    "caption": "Countries With Most Oil Reserves [2017-18]",
+    "subCaption": "In MMbbl = One Million barrels",
+    "xAxisName": "Country",
+    "yAxisName": "Reserves (MMbbl)",
+    "numberSuffix": "K",
+    "theme": "fusion"
+  },
+  "data": [
+    {
+      "label": "Venezuela",
+      "value": "290"
+    },
+    {
+      "label": "Saudi",
+      "value": "260"
+    },
+    {
+      "label": "Canada",
+      "value": "180"
+    },
+    {
+      "label": "Iran",
+      "value": "140"
+    },
+    {
+      "label": "Russia",
+      "value": "115"
+    },
+    {
+      "label": "UAE",
+      "value": "100"
+    },
+    {
+      "label": "US",
+      "value": "30"
+    },
+    {
+      "label": "China",
+      "value": "30"
+    }
+  ]
 };
 
 const chartConfigs = {
-  	type: 'column2d',
-  	width: 600,
-  	height: 400,
-  	dataFormat: 'json',
-  	dataSource: myDataSource,
+    type: 'column2d',
+    width: 600,
+    height: 400,
+    dataFormat: 'json',
+    dataSource: myDataSource,
 };
 
 ReactDOM.render(
-  	<ReactFC {...chartConfigs} />,
-  	document.getElementById('root'),
+    <ReactFC {...chartConfigs} />,
+    document.getElementById('root'),
 );
 ```
 
@@ -105,82 +105,82 @@ import FusionTheme from 'fusioncharts/themes/es/fusioncharts.theme.fusion';
 ReactFC.fcRoot(FusionCharts, Maps, World, FusionTheme);
 
 const myDataSource = {
-	"chart": {
-		"caption": "Average Annual Population Growth",
-		"subcaption": " 1955-2015",
-		"numbersuffix": "%",
-		"includevalueinlabels": "1",
-		"labelsepchar": ": ",
-		"entityFillHoverColor": "#FFF9C4",
-		"theme": "fusion"
-	},
-	"colorrange": {
-		"minvalue": "0",
-		"code": "#FFE0B2",
-		"gradient": "1",
-		"color": [
-			{
-				"minvalue": "0.5",
-				"maxvalue": "1.0",
-				"color": "#FFD74D"
-			},
-			{
-				"minvalue": "1.0",
-				"maxvalue": "2.0",
-				"color": "#FB8C00"
-			},
-			{
-				"minvalue": "2.0",
-				"maxvalue": "3.0",
-				"color": "#E65100"
-			}
-		]
-	},
-	"data": [
-		{
-			"id": "NA",
-			"value": ".82",
-			"showLabel": "1"
-		},
-		{
-			"id": "SA",
-			"value": "2.04",
-			"showLabel": "1"
-		},
-		{
-			"id": "AS",
-			"value": "1.78",
-			"showLabel": "1"
-		},
-		{
-			"id": "EU",
-			"value": ".40",
-			"showLabel": "1"
-		},
-		{
-			"id": "AF",
-			"value": "2.58",
-			"showLabel": "1"
-		},
-		{
-			"id": "AU",
-			"value": "1.30",
-			"showLabel": "1"
-		}
-	]
+  "chart": {
+    "caption": "Average Annual Population Growth",
+    "subcaption": " 1955-2015",
+    "numbersuffix": "%",
+    "includevalueinlabels": "1",
+    "labelsepchar": ": ",
+    "entityFillHoverColor": "#FFF9C4",
+    "theme": "fusion"
+  },
+  "colorrange": {
+    "minvalue": "0",
+    "code": "#FFE0B2",
+    "gradient": "1",
+    "color": [
+      {
+        "minvalue": "0.5",
+        "maxvalue": "1.0",
+        "color": "#FFD74D"
+      },
+      {
+        "minvalue": "1.0",
+        "maxvalue": "2.0",
+        "color": "#FB8C00"
+      },
+      {
+        "minvalue": "2.0",
+        "maxvalue": "3.0",
+        "color": "#E65100"
+      }
+    ]
+  },
+  "data": [
+    {
+      "id": "NA",
+      "value": ".82",
+      "showLabel": "1"
+    },
+    {
+      "id": "SA",
+      "value": "2.04",
+      "showLabel": "1"
+    },
+    {
+      "id": "AS",
+      "value": "1.78",
+      "showLabel": "1"
+    },
+    {
+      "id": "EU",
+      "value": ".40",
+      "showLabel": "1"
+    },
+    {
+      "id": "AF",
+      "value": "2.58",
+      "showLabel": "1"
+    },
+    {
+      "id": "AU",
+      "value": "1.30",
+      "showLabel": "1"
+    }
+  ]
 };
 
 const chartConfigs = {
-  	type: 'world',
-  	width: 600,
-  	height: 400,
-  	dataFormat: 'json',
-  	dataSource: myDataSource,
+    type: 'world',
+    width: 600,
+    height: 400,
+    dataFormat: 'json',
+    dataSource: myDataSource,
 };
 
 ReactDOM.render(
-  	<ReactFC {...chartConfigs} />,
-  	document.getElementById('root'),
+    <ReactFC {...chartConfigs} />,
+    document.getElementById('root'),
 );
 ```
 
@@ -194,14 +194,15 @@ As a separate function:
 
 ```javascript
 var chartEventCallback  = function (eventObj, dataObj) {
-	[Code goes here]
+  [Code goes here]
 }
 ```
 
 Or, as a component class method:
+
 ```javascript
 chartEventCallback (eventObj, dataObj) {
-	[Code goes here]
+  [Code goes here]
 }
 ```
 
@@ -300,6 +301,123 @@ class Chart extends Component {
       <div>
         <ReactFC {...chartConfigs} fcEvent-dataplotRollOver={this.showPlotValue} />
         <p style={{ padding: '10px', background: '#f5f2f0' }}>{this.state.actualValue}</p>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Chart />,
+  document.getElementById('root'),
+);
+```
+
+## Working with APIs
+
+To call APIs we will need the chart object. To get the chart object for an React-FC component, pass a callback through the attribute ```onRender```.
+
+Write the callback:
+
+As a separate function:
+
+```javascript
+var chartRenderCallback  = function (chart) {
+  [Code goes here]
+}
+```
+
+Or, as a component class method:
+
+```javascript
+chartRenderCallback (chart) {
+  [Code goes here]
+}
+```
+
+Pass the callback as a prop, to which the chart object will be returned on rendering
+
+```
+<ReactFC {...chartConfigs} onRender={chartRenderCallback} />
+```
+
+##### Consider the example below that conerts a Column 2D chart to a Pie 2D chart after 5 seconds.
+
+```javascript
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import FusionCharts from 'fusioncharts/core';
+import Column2D from 'fusioncharts/viz/column2d';
+import Pie2D from 'fusioncharts/viz/pie2d';
+import ReactFC from 'react-fusioncharts';
+import FusionTheme from 'fusioncharts/themes/es/fusioncharts.theme.fusion';
+
+ReactFC.fcRoot(FusionCharts, Column2D, Pie2D, FusionTheme);
+
+const myDataSource = {
+    "chart": {
+        "caption": "Countries With Most Oil Reserves [2017-18]",
+        "subCaption": "In MMbbl = One Million barrels",
+        "xAxisName": "Country",
+        "yAxisName": "Reserves (MMbbl)",
+        "numberSuffix": "K",
+        "theme": "fusion"
+    },
+    "data": [
+        {
+            "label": "Venezuela",
+            "value": "290"
+        },
+        {
+            "label": "Saudi",
+            "value": "260"
+        },
+        {
+            "label": "Canada",
+            "value": "180"
+        },
+        {
+            "label": "Iran",
+            "value": "140"
+        },
+        {
+            "label": "Russia",
+            "value": "115"
+        },
+        {
+            "label": "UAE",
+            "value": "100"
+        },
+        {
+            "label": "US",
+            "value": "30"
+        },
+        {
+            "label": "China",
+            "value": "30"
+        }
+    ]
+};
+
+const chartConfigs = {
+  type: 'column2d',
+  width: 600,
+  height: 400,
+  dataFormat: 'json',
+  dataSource: myDataSource,
+};
+
+class Chart extends Component {
+  // Convert the chart to a 2D Pie chart after 5 secs.
+  alterChart(chart) {
+    setTimeout(() => {
+      chart.chartType('pie2d');
+    }, 5000);
+  }
+
+  render() {
+    return (
+      <div>
+        <ReactFC {...chartConfigs} onRender={alterChart} />
       </div>
     );
   }
