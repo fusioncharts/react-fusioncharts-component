@@ -108,8 +108,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var staticEvents = ['ready', 'beforeinitialize', 'initialized'];
-
 	var ReactFC = function (_React$Component) {
 	  _inherits(ReactFC, _React$Component);
 
@@ -338,22 +336,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _this4 = this;
 
 	      var currentOptions = this.resolveChartOptions(this.props);
+	      var events = {};
+
 	      currentOptions.renderAt = this.containerId;
 
-	      this.chartObj = new this.FusionCharts(currentOptions);
 	      Object.keys(this.props).forEach(function (value) {
 	        var event = value.match(/^fcEvent-.*/i);
-
 	        if (event && typeof _this4.props[value] === 'function') {
 	          var eventName = value.replace(/^fcEvent-/i, '');
-
-	          if (staticEvents.indexOf(eventName.toLowerCase()) > -1) {
-	            _this4.FusionCharts.addEventListener(eventName, _this4.props[value]);
-	          } else {
-	            _this4.chartObj.addEventListener(eventName, _this4.props[value]);
-	          }
+	          events[eventName] = _this4.props[value];
 	        }
 	      });
+
+	      if (Object.keys(events).length > 0) {
+	        if (currentOptions.events === undefined) {
+	          currentOptions.events = events;
+	        } else {
+	          currentOptions.events = Object.assign(currentOptions.events, events);
+	        }
+	      }
+
+	      this.chartObj = new this.FusionCharts(currentOptions);
 	      this.chartObj.render();
 	      this.oldOptions = currentOptions;
 
