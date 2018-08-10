@@ -1,0 +1,397 @@
+/* Sub-title Opacity */
+
+.sub-title {
+  opacity: 0.8;
+}
+
+.container-1440 {
+  max-width: 1400px;
+  margin: 0 auto
+}
+
+.container-1200 {
+  max-width: 1170px;
+  margin: 0 auto
+}
+
+.feature-list {
+  padding: 0;
+  list-style: none;
+}
+
+/* tick icon customization */
+
+.feature-list li span {
+  position: absolute;
+  left: 0;
+}
+
+.icn-success {
+  color: #59D99D;
+}
+
+.feature-list li {
+  position: relative;
+  padding-left: 23px;
+  margin-bottom: 8px;
+  color: #434456;
+}
+
+.icn-inline {
+  font-size: 18px;
+  position: relative;
+  top: 3px;
+  margin-right: 5px;
+}
+
+.bg-light-purple {
+  background-color: #f8f9fd;
+}
+
+.demo {
+  height: 100%;
+  display: flex;
+}
+
+.nav-heading {
+  text-transform: uppercase;
+  font-size: 12px;
+  padding: 10px 0;
+  color: rgba(0, 0, 0, .6);
+  border-bottom: 1px solid rgba(0, 0, 0, .15);
+}
+
+.nav-list {
+  padding: 20px 0;
+}
+
+.nav-item {
+  display: block;
+  margin: 5px 0;
+  padding: 10px 20px;
+  color: rgba(0, 0, 0, .6);
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+.nav-item.selected {
+  color: #FFFFFF;
+  background: #6957DA;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 9px 0 rgba(23, 28, 33, .06);
+  cursor: auto;
+}
+
+.item-desc {
+  opacity: 0.8;
+  line-height: 120%;
+}
+
+.header-link {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.side-nav .nav-list .nav-item:hover {
+  color: #FFFFFF;
+  background: #6957DA;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 9px 0 rgba(23, 28, 33, .06);
+}
+
+.side-nav .nav-list {
+  height: 800px;
+  overflow-y: scroll;
+}
+
+.card {
+  min-height: 450px;
+}
+
+.chart-view .card-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 350px;
+}
+
+.chart-wrapper-inner {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.chart-wrapper-inner p {
+  margin: 0;
+}
+
+.code-view .card,
+.code-view {
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.code-view {
+  width: 100%;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px 0 rgba(104, 105, 128, .3);
+}
+
+.code-view .code-panel {
+  background: #22263b;
+  margin: 0 !important;
+}
+
+#chartCode {
+  width: 100%;
+}
+
+.codeMirrorDiv .CodeMirror {
+  height: auto !important;
+  padding: 8px;
+}
+
+.code-view .code-panel-header {
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.code-view .code-panel-view {
+  padding: 0;
+  background: #22263b;
+  max-height: 300px;
+  height: 100%;
+  overflow: scroll;
+}
+
+.ref-link {
+  font-weight: 600;
+}
+
+.btn-code {
+  border-radius: 0;
+  background: #03040B;
+  color: #73748C;
+}
+
+.btn-code.selected {
+  border-radius: 0;
+  background: #22263B;
+  color: #FFFFFF;
+}
+
+#chart-code {
+  width: 100%;
+}
+
+.chart-selector {
+  max-width: 320px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.base-dropdown .selector {
+  width: 100%;
+  display: block;
+  padding: 12px 35px 12px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.base-dropdown {
+  display: inline-block;
+  border: 1px solid rgba(62, 57, 107, .13);
+  border-radius: 4px;
+  position: relative;
+}
+
+.base-dropdown .placeholder {
+  position: absolute;
+  top: -10px;
+  left: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 0 3px;
+  color: #9f9fb9;
+  background: #f9f9fc;
+  pointer-events: none;
+}
+
+.base-dropdown .caret {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  pointer-events: none;
+}
+
+.foot-item {
+  color: #9FA0B7;
+  font-weight: 300 !important;
+}
+
+/* Navbar Customization */
+
+#navbar {
+  height: 64px;
+}
+
+#footbar {
+  height: 100px;
+  background-color: #1B192F;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* The Modal (background) */
+
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 10;
+  padding: 20px 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal.hidden {
+  display: none;
+}
+
+
+/* Modal Content */
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0 20px;
+  border: 1px solid #888;
+  width: 80%;
+  height: 100%;
+  overflow: scroll;
+}
+
+/* The Close Button */
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.info-wrapper {
+  z-index: auto;
+}
+
+/* Banner */
+.info-wrapper img {
+  margin: 0 4px;
+}
+
+
+@media (min-width:768px) {
+  .navbar {
+      padding: .5rem
+  }
+}
+
+@media (min-width:992px) {
+  .navbar .navbar-nav .nav-item {
+      margin-right: 1rem
+  }
+}
+
+@media (min-width:1200px) {
+  .navbar {
+      padding: .6rem 4%
+  }
+  .navbar .navbar-nav .nav-item {
+      margin-right: 1.4rem
+  }
+}
+
+/* Demo */
+.btn { font-family: 'Source Sans Pro'; }
+.btn.btn-custom { background: #4a4d8c;  transition: all 300ms; color: white; margin: 0 2px; }
+.btn.btn-custom:hover{ background: #5c62b5; }
+.btn.btn-custom:active{ background:#4a4d8c }
+
+.btn.btn-red { background: #e65050;  transition: all 300ms; color: white; margin: 0 2px; }
+.btn.btn-red:hover{ background: #ec7171; }
+.btn.btn-red:active{ background:#e65050 }
+
+.change-type {
+  display: inline-block;
+  margin: 0 10px;
+}
+.change-type > div {
+  display: inline-flex;
+  position: relative;
+  margin: 0 10px;
+}
+.change-type label {
+  position: relative;
+  padding: 5px 10px 5px 30px;
+  border-radius: 4px;
+}
+.change-type input {
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  position: absolute;
+}
+.change-type label:before,
+.change-type label:after {
+  content: "";
+  position: absolute;
+}
+.change-type label:before {
+  display: block;
+  background: #fff;
+  border: 2px solid #949697;
+  box-shadow: none;
+  border-radius: 50%;
+  top: 11px;
+  left: 8px;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.change-type label:after {
+  width: 0.9rem;
+  height: 0.9rem;
+  top: 14px;
+  left: 11px;
+  border-radius: 50%;
+}
+.change-type input:checked ~ label {
+  color: #48b884;
+  font-weight: 600;
+  box-shadow: 0 4px 9px 0 rgba(104,105,128,.22);
+}
+.change-type input:checked ~ label:before {
+  color: #fff;
+  box-shadow: none;
+  border: 2px solid #48b884;
+}
+.change-type input:checked ~ label:after {
+  background: #55bd8d;
+}

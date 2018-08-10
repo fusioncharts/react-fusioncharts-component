@@ -1,0 +1,103 @@
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+
+.codepreview pre {
+  height: 592px;
+}
+
+/* From the passportjs.org website */
+.masthead {
+margin-bottom: 20px;
+padding-bottom: 5px;
+border-bottom: 1px solid #eeeeee;
+}
+
+.masthead .logo {
+height: 38px;
+width: 210px;
+}
+
+.masthead h3 a {
+color: #333333;;
+text-decoration: none;
+}
+
+.masthead h3 a:hover {
+color: #333333;
+text-decoration: none;
+}
+
+.jumbotron .logo {
+height: 60px;
+width: 119px;
+float: left;
+margin-right: 15px;
+margin-top: 26px;
+}
+
+.jumbotron p {
+  margin-left: 133px;
+}
+
+.jumbotron p {
+  margin-left: 133px;
+}
+
+tabset {
+display: none;
+}
+
+.tabset {
+display: none;
+}
+.tabset .nav-tabs {
+overflow: hidden;
+list-style: none;
+margin: 0;
+padding: 0;
+border-bottom: 1px solid #ccc;
+}
+
+.tabset .nav-tabs li {
+float: left;	
+}
+
+.tabset .nav-tabs li.active {
+border: 1px solid #ccc;
+border-bottom-color: #fff;
+}
+
+.ng2-tabs {
+margin-top: 20px;
+}
+
+.list-group {
+border: 1px solid #ddd;
+border-radius: 5px;
+padding: 2px 0;
+}
+
+.list-group nav {
+height: 1071px;
+overflow: auto;
+}
+
+.list-group nav .list-group-item {
+border: none;
+border-top: 1px solid #ddd;
+}
+
+.list-group nav .list-group-item:first-child {
+border-top: none;
+}
+
+.list-group nav .list-group-item.active {
+color: #333333;
+background-color: #f1f1f1;
+}
+
