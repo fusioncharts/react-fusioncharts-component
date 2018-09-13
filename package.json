@@ -52,7 +52,7 @@
     "react-dom": "^16.2.0",
     "react-native": "^0.54.2",
     "react-test-renderer": "^16.2.0",
-    "serve": "^6.5.3",
+    "serve": "^10.0.1",
     "webpack": "^1.14.0"
   },
   "peerDependencies": {
