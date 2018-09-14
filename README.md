@@ -23,12 +23,12 @@ After installing `react-fusioncharts`, import it in your `React` app:
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FusionCharts from 'fusioncharts/core';
-import Column2D from 'fusioncharts/viz/column2d';
+import FusionCharts from 'fusioncharts';
+import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
-import FusionTheme from 'fusioncharts/themes/es/fusioncharts.theme.fusion';
+import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
-ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
+ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
 const myDataSource = {
   "chart": {
@@ -96,11 +96,11 @@ To render a map, import the FusionMaps module along with the map definition.
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FusionCharts from 'fusioncharts/core';
-import Maps from 'fusioncharts/maps';
-import World from 'fusioncharts/maps/es/fusioncharts.world';
+import FusionCharts from 'fusioncharts';
+import Maps from 'fusioncharts/fusioncharts.maps';
+import World from 'fusioncharts/maps/fusioncharts.world';
 import ReactFC from 'react-fusioncharts';
-import FusionTheme from 'fusioncharts/themes/es/fusioncharts.theme.fusion';
+import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
 ReactFC.fcRoot(FusionCharts, Maps, World, FusionTheme);
 
@@ -217,12 +217,12 @@ Where, EVENTNAME is to be replaced by the event you want to track.
 ```javascript
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import FusionCharts from 'fusioncharts/core';
-import Column2D from 'fusioncharts/viz/column2d';
+import FusionCharts from 'fusioncharts';
+import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
-import FusionTheme from 'fusioncharts/themes/es/fusioncharts.theme.fusion';
+import FusionTheme from 'fusioncharts/Charts/fusioncharts.theme.fusion';
 
-ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
+ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
 const myDataSource = {
     "chart": {
@@ -345,13 +345,12 @@ Pass the callback as a prop, to which the chart object will be returned on rende
 ```javascript
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import FusionCharts from 'fusioncharts/core';
-import Column2D from 'fusioncharts/viz/column2d';
-import Pie2D from 'fusioncharts/viz/pie2d';
+import FusionCharts from 'fusioncharts';
+import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
-import FusionTheme from 'fusioncharts/themes/es/fusioncharts.theme.fusion';
+import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
-ReactFC.fcRoot(FusionCharts, Column2D, Pie2D, FusionTheme);
+ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
 const myDataSource = {
     "chart": {
