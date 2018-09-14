@@ -222,7 +222,7 @@ import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/Charts/fusioncharts.theme.fusion';
 
-ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
+ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
 const myDataSource = {
     "chart": {
