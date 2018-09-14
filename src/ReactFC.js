@@ -4,8 +4,6 @@ import uuid from 'uuid/v4';
 import * as utils from './utils/utils';
 import fusionChartsOptions from './utils/options';
 
-const staticEvents = ['ready', 'beforeinitialize', 'initialized'];
-
 class ReactFC extends React.Component {
   static fcRoot(core, ...modules) {
     modules.forEach((m) => {
@@ -208,22 +206,27 @@ class ReactFC extends React.Component {
 
   renderChart() {
     const currentOptions = this.resolveChartOptions(this.props);
+    const events = {};
+
     currentOptions.renderAt = this.containerId;
 
-    this.chartObj = new this.FusionCharts(currentOptions);
     Object.keys(this.props).forEach((value) => {
       const event = value.match(/^fcEvent-.*/i);
-
       if (event && typeof this.props[value] === 'function') {
         const eventName = value.replace(/^fcEvent-/i, '');
-
-        if (staticEvents.indexOf(eventName.toLowerCase()) > -1) {
-          this.FusionCharts.addEventListener(eventName, this.props[value]);
-        } else {
-          this.chartObj.addEventListener(eventName, this.props[value]);
-        }
+        events[eventName] = this.props[value];
       }
     });
+
+    if (Object.keys(events).length > 0) {
+      if (currentOptions.events === undefined) {
+        currentOptions.events = events;
+      } else {
+        currentOptions.events = Object.assign(currentOptions.events, events);
+      }
+    }
+
+    this.chartObj = new this.FusionCharts(currentOptions);
     this.chartObj.render();
     this.oldOptions = currentOptions;
 
