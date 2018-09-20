@@ -178,7 +178,7 @@ class Example extends React.Component {
             height='400'
             dataFormat="JSON"
             dataSource={zerothDataScource}
-            mappedIds={[0, 1, 2]}>
+            mappedIds={[0, 2, 1]}> {/* Maps the position of each nested chart with the data plot of parent chart.*/}
               <ReactFC
                 type="bar2d"
                 width='600'
