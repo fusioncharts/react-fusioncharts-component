@@ -46,9 +46,9 @@ class DrillDown extends React.Component {
     this.state = {
       selectedChild: 0,
       showDrillDown: false,
-      dataSource: this.props.dataSource,
-      mappedIds: this.props.mappedIds,
-      chartConfig: {
+      dataSource: this.props.dataSource, // Parent Chat's Data Source
+      mappedIds: this.props.mappedIds, // An array of indices which maps each data plot of parent with its nested Chart Component.
+      chartConfig: { // Parent Chart Config.
         type: 'column2d',
         width: 600,
         height: 400,
@@ -63,13 +63,16 @@ class DrillDown extends React.Component {
     console.log(this.props.children);
   }
 
+  // Listens to clicks on individual data plot clicks and replaces the original chart with that corresponding data plot's drilled down chart.
   plotClicked(e, d) {
     if(!this.state.showDrillDown) {
+      //Index of the data plot that is clicked.
       let index = e.data.index;
+      //Index of Drilled Down Chart.
       let plotPosition = this.state.mappedIds[index];
 
       console.log(index, plotPosition);
-      console.log(e)
+      console.log(e);
 
       this.setState({
         showDrillDown: true,
@@ -84,7 +87,7 @@ class DrillDown extends React.Component {
         {this.state.showDrillDown ?
           <div>
             <button onClick={() => this.setState({showDrillDown: false})}>back</button>
-            <div>{this.props.children[this.state.selectedChild]}</div>
+            <div>{this.props.children[this.state.selectedChild]}</div> {/* Displaying Correct Drilled Down Chart. */}
           </div> :
           <ReactFC
             type={this.props.type}

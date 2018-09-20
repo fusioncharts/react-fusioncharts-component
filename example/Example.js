@@ -2,6 +2,24 @@ import React from 'react';
 import DrillDown from './DrillDown';
 import ReactFC from '../lib/ReactFC';
 
+const zerothDataScource = {
+  chart: {
+    caption: 'ZEROTH DRILL DOWN',
+    theme: 'fusion',
+  },
+  data: [
+    {
+      value: 190
+    },
+    {
+      value: 50
+    },
+    {
+      value: 280
+    },
+  ]
+};
+
 const firstDataSource = {
   chart: {
     caption: 'FIRST CHILD',
@@ -153,6 +171,33 @@ class Example extends React.Component {
           dataFormat="JSON"
           dataSource={this.state.dataSource}
           mappedIds={this.state.mappedIds}>
+          {/* Further Drilled Down */}
+          <DrillDown 
+            type="column2d"
+            width='600'
+            height='400'
+            dataFormat="JSON"
+            dataSource={zerothDataScource}
+            mappedIds={[0, 1, 2]}>
+              <ReactFC
+                type="bar2d"
+                width='600'
+                height='400'
+                dataFormat="JSON"
+                dataSource={firstDataSource} />
+              <ReactFC
+                type="pie2d"
+                width='600'
+                height='400'
+                dataFormat="JSON"
+                dataSource={secondDataSource} />
+              <ReactFC
+                type="column2d"
+                width='600'
+                height='400'
+                dataFormat="JSON"
+                dataSource={thirdDataSource} />
+          </DrillDown>
           <ReactFC
             type="pie2d"
             width='600'
@@ -166,7 +211,7 @@ class Example extends React.Component {
             dataFormat="JSON"
             dataSource={secondDataSource} />
           <ReactFC
-            type="column2d"
+            type="bar2d"
             width='600'
             height='400'
             dataFormat="JSON"
