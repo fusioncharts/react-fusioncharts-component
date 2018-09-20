@@ -29,6 +29,7 @@
     "url": "https://github.com/fusioncharts/react-fusioncharts-component/issues"
   },
   "dependencies": {
+    "fusioncharts": "^3.13.1-sr.1",
     "uuid": "^3.2.1"
   },
   "devDependencies": {
@@ -63,7 +64,7 @@
     "build:umd": "webpack && webpack -p --output-path ./dist --output-file react-fusioncharts.min.js",
     "build": "npm run build:lib && npm run build:umd",
     "build:example": "npm run build:lib && webpack --config webpack.config.example.js",
-    "start": "npm run build:example && serve example/ -o",
+    "start": "npm run build:example && serve example/",
     "test": "jest --coverage --verbose",
     "test:report": "npm test && serve coverage/lcov-report -o"
   },
