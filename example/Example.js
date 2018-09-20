@@ -7,17 +7,15 @@ const zerothDataScource = {
     caption: 'ZEROTH DRILL DOWN',
     theme: 'fusion',
   },
-  data: [
-    {
-      value: 190
-    },
-    {
-      value: 50
-    },
-    {
-      value: 280
-    },
-  ]
+  data: [{
+    value: 190
+  },
+  {
+    value: 50
+  },
+  {
+    value: 280
+  }]
 };
 
 const firstDataSource = {
@@ -46,8 +44,7 @@ const firstDataSource = {
   {
     label: 'Daly City Serramonte',
     value: '330000',
-  },
-  ],
+  }]
 };
 
 const secondDataSource = {
@@ -75,8 +72,7 @@ const secondDataSource = {
   }, {
     "label": "Insurance",
     "value": "20000"
-  }
-  ]
+  }]
 };
 
 const thirdDataSource = {
@@ -119,8 +115,7 @@ const thirdDataSource = {
   {
     "label": "China",
     "value": "30"
-  }
-  ]
+  }]
 };
 
 class Example extends React.Component {
@@ -155,8 +150,7 @@ class Example extends React.Component {
         {
           label: 'Daly City Serramonte',
           value: '330000',
-        },
-        ],
+        }]
       }
     }
   }
@@ -178,7 +172,11 @@ class Example extends React.Component {
             height='400'
             dataFormat="JSON"
             dataSource={zerothDataScource}
-            mappedIds={[0, 2, 1]}> {/* Maps the position of each nested chart with the data plot of parent chart.*/}
+            mappedIds={[0, 2, 1]}> 
+            {/* 
+              Maps the position of each 
+              nested chart with the data plot of parent chart.*/
+            }
               <ReactFC
                 type="bar2d"
                 width='600'

@@ -15,7 +15,8 @@ class DrillDown extends React.Component {
       selectedChild: 0,
       showDrillDown: false,
       dataSource: this.props.dataSource, // Parent Chat's Data Source
-      mappedIds: this.props.mappedIds, // An array of indices which maps each data plot of parent with its nested Chart Component.
+      mappedIds: this.props.mappedIds, // An array of indices which maps each 
+      // data plot of parent with its nested Chart Component.
       chartConfig: { // Parent Chart Config.
         type: 'column2d',
         width: 600,
@@ -26,7 +27,9 @@ class DrillDown extends React.Component {
     };
   }
 
-  // Listens to clicks on individual data plot clicks and replaces the original chart with that corresponding data plot's drilled down chart.
+  // Listens to clicks on individual data plot clicks and 
+  // replaces the original chart with that corresponding 
+  // data plot's drilled down chart.
   plotClicked(e) {
     //Index of the data plot that is clicked.
     let index = e.data.index;
