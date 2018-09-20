@@ -64,8 +64,8 @@ class DrillDown extends React.Component {
   }
 
   // Listens to clicks on individual data plot clicks and replaces the original chart with that corresponding data plot's drilled down chart.
-  plotClicked(e, d) {
-    if(!this.state.showDrillDown) {
+  plotClicked(e) {
+    if (!this.state.showDrillDown) {
       //Index of the data plot that is clicked.
       let index = e.data.index;
       //Index of Drilled Down Chart.
@@ -86,7 +86,10 @@ class DrillDown extends React.Component {
       <div>
         {this.state.showDrillDown ?
           <div>
-            <button onClick={() => this.setState({showDrillDown: false})}>back</button>
+            <button
+              onClick={() => this.setState({ showDrillDown: false })}>
+                back
+            </button>
             <div>{this.props.children[this.state.selectedChild]}</div> {/* Displaying Correct Drilled Down Chart. */}
           </div> :
           <ReactFC
