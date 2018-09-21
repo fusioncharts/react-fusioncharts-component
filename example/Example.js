@@ -163,20 +163,22 @@ class Example extends React.Component {
           width='600'
           height='400'
           dataFormat="JSON"
+          overlayBtn={{ //This object holds the style of the overlay back button.
+            message: 'Back',
+            fontColor: '#880000',
+            bgColor: '#FFEEEE',
+            borderColor: '#660000',
+          }}
           dataSource={this.state.dataSource}
           mappedIds={this.state.mappedIds}>
           {/* Further Drilled Down */}
-          <DrillDown 
+          {/* <DrillDown 
             type="column2d"
             width='600'
             height='400'
             dataFormat="JSON"
             dataSource={zerothDataScource}
             mappedIds={[0, 2, 1]}> 
-            {/* 
-              Maps the position of each 
-              nested chart with the data plot of parent chart.*/
-            }
               <ReactFC
                 type="bar2d"
                 width='600'
@@ -195,7 +197,7 @@ class Example extends React.Component {
                 height='400'
                 dataFormat="JSON"
                 dataSource={thirdDataSource} />
-          </DrillDown>
+          </DrillDown> */}
           <ReactFC
             type="pie2d"
             width='600'

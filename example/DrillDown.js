@@ -45,15 +45,34 @@ class DrillDown extends React.Component {
   }
 
   render() {
+    // In-line style for button
+    const btnStyle = {
+      border: `1px solid ${this.props.overlayBtn.borderColor}`,
+      backgroundColor: `${this.props.overlayBtn.bgColor}`,
+      color: `${this.props.overlayBtn.fontColor}`,
+      fontFamily: 'Verdana, sans',
+      fontSize: `${this.props.overlayBtn.fontSize}`,
+      padding: '3px',
+      fontWeight: 'bold',
+      position: 'absolute',
+      top: '0px',
+      left: `${this.props.width}px`,
+      cursor: 'pointer',
+    };
+
+    console.log(btnStyle);
+
     return (
-      <div>
+      <div style={{
+        position: 'relative',
+      }}>
         {this.state.showDrillDown ?
-          <div>
-            <button
+          <div style={{position: 'relative'}}>
+            <span style={btnStyle}
               onClick={() => this.setState({ showDrillDown: false })}>
-                back
-            </button>
-            <div>{this.props.children[this.state.selectedChild]}</div> {/* Displaying Correct Drilled Down Chart. */}
+                {this.props.overlayBtn.message}
+            </span>
+            {this.props.children[this.state.selectedChild]} {/* Displaying Correct Drilled Down Chart. */}
           </div> :
           <ReactFC
             type={this.props.type}
