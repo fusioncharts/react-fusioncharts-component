@@ -4,7 +4,7 @@ import Charts from 'fusioncharts/fusioncharts.charts';
 import OceanTheme from 'fusioncharts/themes/fusioncharts.theme.ocean';
 import ReactFC from '../lib/ReactFC';
 
-Charts(FusionCharts);
+// Charts(FusionCharts);
 OceanTheme(FusionCharts);
 
 const myDataSource = {

@@ -123,7 +123,7 @@ class Example extends React.Component {
     super(props)
 
     this.state = {
-      mappedIds: [0, 1, 2],
+      mappedIds: [1],
       dataSource: {
         chart: {
           caption: 'PARENT',
@@ -164,10 +164,11 @@ class Example extends React.Component {
           height='400'
           dataFormat="JSON"
           overlayBtn={{ //This object holds the style of the overlay back button.
-            message: 'Back',
+            message: 'BACK',
             fontColor: '#880000',
             bgColor: '#FFEEEE',
             borderColor: '#660000',
+            fontSize: '12px'
           }}
           dataSource={this.state.dataSource}
           mappedIds={this.state.mappedIds}>
@@ -216,6 +217,7 @@ class Example extends React.Component {
             height='400'
             dataFormat="JSON"
             dataSource={thirdDataSource} />
+            <a href="https://www.google.com">Google</a>
         </DrillDown>
       </div>
     )

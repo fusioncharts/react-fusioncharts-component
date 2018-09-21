@@ -14,16 +14,11 @@ class DrillDown extends React.Component {
     this.state = {
       selectedChild: 0,
       showDrillDown: false,
-      dataSource: this.props.dataSource, // Parent Chat's Data Source
-      mappedIds: this.props.mappedIds, // An array of indices which maps each 
-      // data plot of parent with its nested Chart Component.
-      chartConfig: { // Parent Chart Config.
-        type: 'column2d',
-        width: 600,
-        height: 400,
-        dataFormat: 'json',
-        dataSource: this.props.dataSource,
-      },
+      // Parent Chat's Data Source
+      dataSource: this.props.dataSource,
+      // An array of indices which maps each 
+      // data plot of parent with its nested Chart Component. 
+      mappedIds: this.props.mappedIds, 
       borderColor: (this.props.overlayBtn && this.props.overlayBtn.borderColor) ? this.props.overlayBtn.borderColor : '#000',
       backgroundColor: (this.props.overlayBtn && this.props.overlayBtn.backgroundColor) ? this.props.overlayBtn.backgroundColor : '#F6F6F6',
       color: (this.props.overlayBtn && this.props.overlayBtn.color) ? this.props.overlayBtn.color : '#000',
@@ -37,6 +32,10 @@ class DrillDown extends React.Component {
   plotClicked(e) {
     //Index of the data plot that is clicked.
     let index = e.data.index;
+    if(index <= this.state.mappedIds.length) {
+      console.log('OUT OF BOUND');
+      return;
+    }
     //Index of Drilled Down Chart.
     let plotPosition = this.state.mappedIds[index];
 
@@ -44,7 +43,7 @@ class DrillDown extends React.Component {
       this.setState({
         showDrillDown: true,
         selectedChild: plotPosition
-      })
+      });
     }
   }
 
@@ -64,17 +63,23 @@ class DrillDown extends React.Component {
       cursor: 'pointer',
     };
 
+    console.log(btnStyle);
+
     return (
       <div style={{
         position: 'relative',
       }}>
-        {this.state.showDrillDown ?
-          <div style={{position: 'relative'}}>
-            <span style={btnStyle}
+        { this.state.showDrillDown ?
+          <div style={{ position: 'relative' }}>
+            <span style={ btnStyle }
               onClick={() => this.setState({ showDrillDown: false })}>
-                {this.props.overlayBtn && this.props.overlayBtn.message ? this.props.overlayBtn.message : 'Revert'}
+              { 
+                this.props.overlayBtn && this.props.overlayBtn.message ? 
+                this.props.overlayBtn.message : 'Revert'
+              }
             </span>
-            {this.props.children[this.state.selectedChild]} {/* Displaying Correct Drilled Down Chart. */}
+            {/* Displaying Correct Drilled Down Chart. */}
+            { this.props.children[this.state.selectedChild] } 
           </div> :
           <ReactFC
             type={this.props.type}
