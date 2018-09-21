@@ -123,7 +123,7 @@ class Example extends React.Component {
     super(props)
 
     this.state = {
-      mappedIds: [1],
+      mappedIds: [0],
       dataSource: {
         chart: {
           caption: 'PARENT',

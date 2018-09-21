@@ -32,10 +32,6 @@ class DrillDown extends React.Component {
   plotClicked(e) {
     //Index of the data plot that is clicked.
     let index = e.data.index;
-    if(index <= this.state.mappedIds.length) {
-      console.log('OUT OF BOUND');
-      return;
-    }
     //Index of Drilled Down Chart.
     let plotPosition = this.state.mappedIds[index];
 
