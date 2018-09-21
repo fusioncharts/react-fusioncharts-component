@@ -23,7 +23,11 @@ class DrillDown extends React.Component {
         height: 400,
         dataFormat: 'json',
         dataSource: this.props.dataSource,
-      }
+      },
+      borderColor: (this.props.overlayBtn && this.props.overlayBtn.borderColor) ? this.props.overlayBtn.borderColor : '#000',
+      backgroundColor: (this.props.overlayBtn && this.props.overlayBtn.backgroundColor) ? this.props.overlayBtn.backgroundColor : '#F6F6F6',
+      color: (this.props.overlayBtn && this.props.overlayBtn.color) ? this.props.overlayBtn.color : '#000',
+      fontSize: (this.props.overlayBtn && this.props.overlayBtn.fontSize) ? this.props.overlayBtn.fontSize : '14px'
     };
   }
 
@@ -45,13 +49,13 @@ class DrillDown extends React.Component {
   }
 
   render() {
-    // In-line style for button
+    // In-line style for overlay button
     const btnStyle = {
-      border: `1px solid ${this.props.overlayBtn.borderColor}`,
-      backgroundColor: `${this.props.overlayBtn.bgColor}`,
-      color: `${this.props.overlayBtn.fontColor}`,
+      border: `1px solid ${this.state.borderColor}`,
+      backgroundColor: `${this.state.backgroundColor}`,
+      color: `${this.state.color}`,
       fontFamily: 'Verdana, sans',
-      fontSize: `${this.props.overlayBtn.fontSize}`,
+      fontSize: `${this.state.fontSize}`,
       padding: '3px',
       fontWeight: 'bold',
       position: 'absolute',
@@ -59,8 +63,6 @@ class DrillDown extends React.Component {
       left: `${this.props.width}px`,
       cursor: 'pointer',
     };
-
-    console.log(btnStyle);
 
     return (
       <div style={{
@@ -70,7 +72,7 @@ class DrillDown extends React.Component {
           <div style={{position: 'relative'}}>
             <span style={btnStyle}
               onClick={() => this.setState({ showDrillDown: false })}>
-                {this.props.overlayBtn.message}
+                {this.props.overlayBtn && this.props.overlayBtn.message ? this.props.overlayBtn.message : 'Revert'}
             </span>
             {this.props.children[this.state.selectedChild]} {/* Displaying Correct Drilled Down Chart. */}
           </div> :
