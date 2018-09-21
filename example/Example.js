@@ -123,7 +123,7 @@ class Example extends React.Component {
     super(props)
 
     this.state = {
-      mappedIds: [0],
+      mappedIds: [2, 1, 0],
       dataSource: {
         chart: {
           caption: 'PARENT',
@@ -217,7 +217,6 @@ class Example extends React.Component {
             height='400'
             dataFormat="JSON"
             dataSource={thirdDataSource} />
-            <a href="https://www.google.com">Google</a>
         </DrillDown>
       </div>
     )

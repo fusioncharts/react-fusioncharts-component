@@ -59,8 +59,6 @@ class DrillDown extends React.Component {
       cursor: 'pointer',
     };
 
-    console.log(btnStyle);
-
     return (
       <div style={{
         position: 'relative',
