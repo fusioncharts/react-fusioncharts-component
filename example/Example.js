@@ -118,12 +118,29 @@ const thirdDataSource = {
   }]
 };
 
+const mappedIdsIntegers = [1, null, 2, null, 0];
+
+const mappedIdsObjects = [
+  {
+    'plotPosition': 0,
+    'childPosition': 1
+  },
+  {
+    'plotPosition': 2,
+    'childPosition': 0
+  },
+  {
+    'plotPosition': 4,
+    'childPosition': 1
+  }
+]
+
 class Example extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      mappedIds: [2, 1, 0],
+      mappedIds: mappedIdsObjects,
       dataSource: {
         chart: {
           caption: 'PARENT',
@@ -157,23 +174,26 @@ class Example extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{display: 'flex', flexDirection: 'row'}}>
         <DrillDown
           type="column2d"
           width='600'
           height='400'
           dataFormat="JSON"
           overlayBtn={{ //This object holds the style of the overlay back button.
-            message: 'BACK',
+            message: 'ESCAPE',
             fontColor: '#880000',
             bgColor: '#FFEEEE',
             borderColor: '#660000',
-            fontSize: '12px'
+            fontSize: '8px',
+            placement: 'top-right',
+            margin: '10px'
+            // position
           }}
           dataSource={this.state.dataSource}
           mappedIds={this.state.mappedIds}>
           {/* Further Drilled Down */}
-          {/* <DrillDown 
+          <DrillDown 
             type="column2d"
             width='600'
             height='400'
@@ -182,23 +202,23 @@ class Example extends React.Component {
             mappedIds={[0, 2, 1]}> 
               <ReactFC
                 type="bar2d"
-                width='600'
-                height='400'
+                width='800'
+                height='300'
                 dataFormat="JSON"
                 dataSource={firstDataSource} />
               <ReactFC
                 type="pie2d"
-                width='600'
+                width='200'
                 height='400'
                 dataFormat="JSON"
                 dataSource={secondDataSource} />
               <ReactFC
                 type="column2d"
-                width='600'
-                height='400'
+                width='100'
+                height='100'
                 dataFormat="JSON"
                 dataSource={thirdDataSource} />
-          </DrillDown> */}
+          </DrillDown>
           <ReactFC
             type="pie2d"
             width='600'
@@ -218,6 +238,7 @@ class Example extends React.Component {
             dataFormat="JSON"
             dataSource={thirdDataSource} />
         </DrillDown>
+        <div style={{height: 300, backgroundColor:'red', width: 400}}></div>
       </div>
     )
   }

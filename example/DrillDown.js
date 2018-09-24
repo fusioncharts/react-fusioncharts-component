@@ -3,6 +3,7 @@ import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import ReactFC from '../lib/ReactFC';
+import PropTypes from 'prop-types';
 
 Charts(FusionCharts);
 FusionTheme(FusionCharts);
@@ -12,9 +13,12 @@ class DrillDown extends React.Component {
     super(props);
 
     this.state = {
+      // Absolute position of Overlay Button
+      positionH: (this.props.overlayBtn && this.props.overlayBtn.placement && this.props.overlayBtn.placement.includes('-')) ? this.props.overlayBtn.placement.split('-')[1] : 'right',
+      positionV: (this.props.overlayBtn && this.props.overlayBtn.placement && this.props.overlayBtn.placement.includes('-')) ? this.props.overlayBtn.placement.split('-')[0] : 'top',
       selectedChild: 0,
       showDrillDown: false,
-      // Parent Chat's Data Source
+      // Parent Chart's Data Source
       dataSource: this.props.dataSource,
       // An array of indices which maps each 
       // data plot of parent with its nested Chart Component. 
@@ -22,7 +26,10 @@ class DrillDown extends React.Component {
       borderColor: (this.props.overlayBtn && this.props.overlayBtn.borderColor) ? this.props.overlayBtn.borderColor : '#000',
       backgroundColor: (this.props.overlayBtn && this.props.overlayBtn.backgroundColor) ? this.props.overlayBtn.backgroundColor : '#F6F6F6',
       color: (this.props.overlayBtn && this.props.overlayBtn.color) ? this.props.overlayBtn.color : '#000',
-      fontSize: (this.props.overlayBtn && this.props.overlayBtn.fontSize) ? this.props.overlayBtn.fontSize : '14px'
+      fontSize: (this.props.overlayBtn && this.props.overlayBtn.fontSize) ? this.props.overlayBtn.fontSize : '14px',
+      padding: (this.props.overlayBtn && this.props.overlayBtn.padding) ? this.props.overlayBtn.padding : '3px',
+      fontWeight: (this.props.fontWeight && this.props.overlayBtn.fontWeight) ? this.props.overlayBtn.fontWeight : 'bold',
+      margin: (this.props.overlayBtn && this.props.overlayBtn.margin) ? this.props.overlayBtn.margin : '10px'
     };
   }
 
@@ -30,16 +37,34 @@ class DrillDown extends React.Component {
   // replaces the original chart with that corresponding 
   // data plot's drilled down chart.
   plotClicked(e) {
-    //Index of the data plot that is clicked.
+    // Index of the data plot that is clicked.
     let index = e.data.index;
-    //Index of Drilled Down Chart.
-    let plotPosition = this.state.mappedIds[index];
+    // Number of children passed in parent chart
+    let idArrLength = this.props.children.length;
 
-    if (!this.state.showDrillDown && plotPosition >= 0) {
-      this.setState({
-        showDrillDown: true,
-        selectedChild: plotPosition
-      });
+    // This code will execute if array of integers is passed
+    if(typeof this.state.mappedIds[0] == 'number') {
+      for (let i = 0; i < this.state.mappedIds.length; i++) {
+        let plotPosition = this.state.mappedIds[i];
+        if(!this.state.showDrillDown && index == i && plotPosition && plotPosition < idArrLength) {
+          this.setState({
+            showDrillDown: true,
+            selectedChild: plotPosition
+          });
+        }
+      }
+    // This code will execute if array of objects is passed
+    } else if(typeof this.state.mappedIds[0] == 'object') {
+      for (let i = 0; i < this.state.mappedIds.length; i++) {
+        let plotPosition = this.state.mappedIds[i].plotPosition;
+        let childPosition = this.state.mappedIds[i].childPosition;
+        if(index == plotPosition && !this.state.showDrillDown && childPosition < idArrLength) {
+          this.setState({
+            showDrillDown: true,
+            selectedChild: childPosition
+          });
+        }
+      }
     }
   }
 
@@ -51,42 +76,68 @@ class DrillDown extends React.Component {
       color: `${this.state.color}`,
       fontFamily: 'Verdana, sans',
       fontSize: `${this.state.fontSize}`,
-      padding: '3px',
-      fontWeight: 'bold',
+      padding: `${this.state.padding}`,
+      fontWeight: `${this.state.fontWeight}`,
       position: 'absolute',
-      top: '0px',
-      left: `${this.props.width}px`,
+      [this.state.positionH]: `${this.state.margin}`,
+      // left: `${this.props.width - 50}px`,
+      [this.state.positionV]: `${this.state.margin}`,
       cursor: 'pointer',
     };
 
-    return (
-      <div style={{
-        position: 'relative',
-      }}>
-        { this.state.showDrillDown ?
-          <div style={{ position: 'relative' }}>
-            <span style={ btnStyle }
-              onClick={() => this.setState({ showDrillDown: false })}>
+    console.log(btnStyle);
+
+    // In-line style for root element of DrillDown component
+    const rootStyle = {
+      position: 'relative',
+      display: 'inline-block'
+    }
+
+    const props = this.props;
+
+    if(this.state.showDrillDown) {
+      return (
+        <div style={ rootStyle }>
+          {/* Displaying Correct Drilled Down Chart. */}
+          { React.cloneElement(
+            this.props.children[this.state.selectedChild], 
+            { width: this.props.width, height: this.props.height }
+          )}
+          <span style={ btnStyle }
+            onClick={() => this.setState({ showDrillDown: false })}>
               { 
                 this.props.overlayBtn && this.props.overlayBtn.message ? 
-                this.props.overlayBtn.message : 'Revert'
+                this.props.overlayBtn.message : 'Back'
               }
-            </span>
-            {/* Displaying Correct Drilled Down Chart. */}
-            { this.props.children[this.state.selectedChild] } 
-          </div> :
-          <ReactFC
-            type={this.props.type}
-            width={this.props.width}
-            height={this.props.height}
-            dataFormat={this.props.dataFormat}
-            dataSource={this.props.dataSource}
+          </span>
+        </div>
+      );
+    } else {
+      return (
+        <ReactFC
+            {...props}
             fcEvent-dataplotClick={this.plotClicked.bind(this)}
           />
-        }
-      </div>
-    );
+      );
+    }
   }
+}
+
+DrillDown.propTypes = {
+  overlayBtn: PropTypes.objectOf(PropTypes.string),
+  mappedIds: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.shape({
+      plotPosition: PropTypes.number,
+      childPosition: PropTypes.number
+    })),
+    PropTypes.arrayOf(PropTypes.number)
+  ]),
+  dataSource: PropTypes.object,
+  dataFormat: PropTypes.string,
+  type: PropTypes.string,
+  height: PropTypes.string,
+  width: PropTypes.string,
+  props: PropTypes.object
 }
 
 export default DrillDown;
