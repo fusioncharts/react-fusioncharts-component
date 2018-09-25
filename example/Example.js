@@ -119,7 +119,7 @@ const thirdDataSource = {
   }]
 };
 
-const mappedIdsIntegers = [0, 1, 2, 3, null];
+const mappedIdsIntegers = [0, 1, 2, 3, null]; // Index = plotPosition, array[Index] = childPosition
 
 const mappedIdsObjects = [
   {
@@ -181,7 +181,7 @@ class Example extends React.Component {
           width='600'
           height='400'
           dataFormat="JSON"
-          defaultOverlayBtnSettings={{ // This object holds the style of the overlay back button.
+          defaultOverlayBtnSettings={{ // This object holds the configuration of the default overlay button.
             message: 'ESCAPE',
             color: '#FFFFFF',
             backgroundColor: '#512A44',
@@ -198,13 +198,12 @@ class Example extends React.Component {
             width='600'
             height='400'
             dataFormat="JSON"
-            // defaultOverlayBtnSettings={{ // This object holds the style of the overlay back button.
-            //   message: 'REVERT',
-            //   fontSize: '14px',
-            //   placement: 'top-right',
-            //   margin: '10px'
-            // }}
-            customOverlayBtnStyle={{backgroundColor: 'red', color: 'white', padding: 8, fontSize: 16}}
+            customOverlayBtnStyle={{ // This object holds the css for custom overlay button
+              backgroundColor: 'red', 
+              color: 'white', 
+              padding: 8, 
+              fontSize: 16
+            }}
             dataSource={zerothDataScource}
             mappedIds={[0, 1, 2]}>
             <DrillDown
@@ -283,7 +282,7 @@ class Example extends React.Component {
             dataFormat="JSON"
             dataSource={thirdDataSource} />
         </DrillDown>
-        <div style={{ height: 300, backgroundColor: 'red', width: 400 }}></div>
+        <div style={{ height: 300, width: 400 }}></div>
       </div>
     )
   }

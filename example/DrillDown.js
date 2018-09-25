@@ -149,11 +149,8 @@ class DrillDown extends React.Component {
           )}
           { this.state.showOverlaybtn ?
             <button style={ 
-              this.state.showDefaultOverlayBtn ?
-              btnStyle : (
-                this.props.customOverlayBtnStyle ? 
-                {cursor: 'pointer', ...this.props.customOverlayBtnStyle} : btnStyle
-              ) 
+              this.props.customOverlayBtnStyle === undefined ? 
+              btnStyle : {cursor: 'pointer', ...this.props.customOverlayBtnStyle}
             }
               onClick={this.onClickOverlayBtn.bind(this)}>
                 { 
