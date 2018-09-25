@@ -13,6 +13,8 @@ class DrillDown extends React.Component {
     super(props);
 
     this.state = {
+      showOverlaybtn: true,
+      overlayZindex: 1,
       // Absolute position of Overlay Button
       positionH: (this.props.overlayBtn && this.props.overlayBtn.placement && this.props.overlayBtn.placement.includes('-')) ? this.props.overlayBtn.placement.split('-')[1] : 'right',
       positionV: (this.props.overlayBtn && this.props.overlayBtn.placement && this.props.overlayBtn.placement.includes('-')) ? this.props.overlayBtn.placement.split('-')[0] : 'top',
@@ -46,7 +48,7 @@ class DrillDown extends React.Component {
     if(typeof this.state.mappedIds[0] == 'number') {
       for (let i = 0; i < this.state.mappedIds.length; i++) {
         let plotPosition = this.state.mappedIds[i];
-        if(!this.state.showDrillDown && index == i && plotPosition && plotPosition < idArrLength) {
+        if(!this.state.showDrillDown && index == i && plotPosition != null && plotPosition < idArrLength) {
           this.setState({
             showDrillDown: true,
             selectedChild: plotPosition
@@ -68,6 +70,23 @@ class DrillDown extends React.Component {
     }
   }
 
+  renderComplete() {
+    if(this.props && this.props.toggleParentOverlayBtnVisibility) {
+      this.props.toggleParentOverlayBtnVisibility(false);
+    }
+  }
+
+  toggleParentOverlayBtnVisibility(visibility) {
+    this.setState({showOverlaybtn: visibility});
+  }
+
+  onClickOverlayBtn() {
+    this.setState({ showDrillDown: false });
+    if(this.props && this.props.toggleParentOverlayBtnVisibility && this.state.showDrillDown) {
+      this.props.toggleParentOverlayBtnVisibility(true);
+    }
+  }
+
   render() {
     // In-line style for overlay button
     const btnStyle = {
@@ -80,12 +99,10 @@ class DrillDown extends React.Component {
       fontWeight: `${this.state.fontWeight}`,
       position: 'absolute',
       [this.state.positionH]: `${this.state.margin}`,
-      // left: `${this.props.width - 50}px`,
       [this.state.positionV]: `${this.state.margin}`,
       cursor: 'pointer',
+      // zIndex: this.state.overlayZindex
     };
-
-    console.log(btnStyle);
 
     // In-line style for root element of DrillDown component
     const rootStyle = {
@@ -101,15 +118,23 @@ class DrillDown extends React.Component {
           {/* Displaying Correct Drilled Down Chart. */}
           { React.cloneElement(
             this.props.children[this.state.selectedChild], 
-            { width: this.props.width, height: this.props.height }
+            { 
+              width: this.props.width, 
+              height: this.props.height, 
+              onRender: this.renderComplete.bind(this),
+              // overlayBtn: this.props.overlayBtn,
+              toggleParentOverlayBtnVisibility: this.toggleParentOverlayBtnVisibility.bind(this)
+            }
           )}
-          <span style={ btnStyle }
-            onClick={() => this.setState({ showDrillDown: false })}>
-              { 
-                this.props.overlayBtn && this.props.overlayBtn.message ? 
-                this.props.overlayBtn.message : 'Back'
-              }
-          </span>
+          { this.state.showOverlaybtn ?
+            <span style={ btnStyle }
+              onClick={this.onClickOverlayBtn.bind(this)}>
+                { 
+                  this.props.overlayBtn && this.props.overlayBtn.message ? 
+                  this.props.overlayBtn.message : 'Back'
+                }
+            </span> : null
+          }
         </div>
       );
     } else {
