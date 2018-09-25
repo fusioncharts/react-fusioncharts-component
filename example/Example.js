@@ -44,6 +44,7 @@ const firstDataSource = {
   {
     label: 'Daly City Serramonte',
     value: '330000',
+    link: "https://www.google.com"
   }]
 };
 
@@ -174,21 +175,20 @@ class Example extends React.Component {
 
   render() {
     return (
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
+      <div>
         <DrillDown
           type="column2d"
           width='600'
           height='400'
           dataFormat="JSON"
-          overlayBtn={{ //This object holds the style of the overlay back button.
+          defaultOverlayBtnSettings={{ // This object holds the style of the overlay back button.
             message: 'ESCAPE',
-            fontColor: '#880000',
-            bgColor: '#FFEEEE',
+            color: '#FFFFFF',
+            backgroundColor: '#512A44',
             borderColor: '#660000',
             fontSize: '8px',
-            placement: 'top-right',
+            placement: 'top-right', // Absolute position of the overlay button. Can take values: 'top-right', 'top-left', 'bottom-right' & 'bottom-left'
             margin: '10px'
-            // position
           }}
           dataSource={this.state.dataSource}
           mappedIds={this.state.mappedIds}>
@@ -198,13 +198,13 @@ class Example extends React.Component {
             width='600'
             height='400'
             dataFormat="JSON"
-            overlayBtn={{ //This object holds the style of the overlay back button.
-              message: 'REVERT',
-              fontSize: '14px',
-              placement: 'top-right',
-              margin: '10px'
-              // position
-            }}
+            // defaultOverlayBtnSettings={{ // This object holds the style of the overlay back button.
+            //   message: 'REVERT',
+            //   fontSize: '14px',
+            //   placement: 'top-right',
+            //   margin: '10px'
+            // }}
+            customOverlayBtnStyle={{backgroundColor: 'red', color: 'white', padding: 8, fontSize: 16}}
             dataSource={zerothDataScource}
             mappedIds={[0, 1, 2]}>
             <DrillDown
@@ -257,6 +257,18 @@ class Example extends React.Component {
             width='600'
             height='400'
             dataFormat="JSON"
+            fcEvent-beforeDataUpdate={() => {
+              console.log('This chart is updating its data.')
+            }}
+            fcEvent-dataUpdated={() => {
+              console.log('This chart has successfully updated its data.')
+            }}
+            fcEvent-drawComplete={() => {
+              console.log('This chart has been successfully drawn.')
+            }}
+            fcEvent-renderComplete={() => {
+              console.log('This chart has successfully rendered.')
+            }}
             dataSource={firstDataSource} />
           <ReactFC
             type="column2d"

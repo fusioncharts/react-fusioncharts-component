@@ -13,11 +13,12 @@ class DrillDown extends React.Component {
     super(props);
 
     this.state = {
+      showDefaultOverlayBtn: (this.props.showDefaultOverlayBtn === null) ? true : this.props.showDefaultOverlayBtn,
       showOverlaybtn: true,
       overlayZindex: 1,
       // Absolute position of Overlay Button
-      positionH: (this.props.overlayBtn && this.props.overlayBtn.placement && this.props.overlayBtn.placement.includes('-')) ? this.props.overlayBtn.placement.split('-')[1] : 'right',
-      positionV: (this.props.overlayBtn && this.props.overlayBtn.placement && this.props.overlayBtn.placement.includes('-')) ? this.props.overlayBtn.placement.split('-')[0] : 'top',
+      positionH: (this.props.defaultOverlayBtnSettings && this.props.defaultOverlayBtnSettings.placement && this.props.defaultOverlayBtnSettings.placement.includes('-')) ? this.props.defaultOverlayBtnSettings.placement.split('-')[1] : 'right',
+      positionV: (this.props.defaultOverlayBtnSettings && this.props.defaultOverlayBtnSettings.placement && this.props.defaultOverlayBtnSettings.placement.includes('-')) ? this.props.defaultOverlayBtnSettings.placement.split('-')[0] : 'top',
       selectedChild: 0,
       showDrillDown: false,
       // Parent Chart's Data Source
@@ -25,13 +26,14 @@ class DrillDown extends React.Component {
       // An array of indices which maps each 
       // data plot of parent with its nested Chart Component. 
       mappedIds: this.props.mappedIds, 
-      borderColor: (this.props.overlayBtn && this.props.overlayBtn.borderColor) ? this.props.overlayBtn.borderColor : '#000',
-      backgroundColor: (this.props.overlayBtn && this.props.overlayBtn.backgroundColor) ? this.props.overlayBtn.backgroundColor : '#F6F6F6',
-      color: (this.props.overlayBtn && this.props.overlayBtn.color) ? this.props.overlayBtn.color : '#000',
-      fontSize: (this.props.overlayBtn && this.props.overlayBtn.fontSize) ? this.props.overlayBtn.fontSize : '14px',
-      padding: (this.props.overlayBtn && this.props.overlayBtn.padding) ? this.props.overlayBtn.padding : '3px',
-      fontWeight: (this.props.fontWeight && this.props.overlayBtn.fontWeight) ? this.props.overlayBtn.fontWeight : 'bold',
-      margin: (this.props.overlayBtn && this.props.overlayBtn.margin) ? this.props.overlayBtn.margin : '10px'
+      borderColor: (this.props.defaultOverlayBtnSettings && this.props.defaultOverlayBtnSettings.borderColor) ? this.props.defaultOverlayBtnSettings.borderColor : '#000',
+      backgroundColor: (this.props.defaultOverlayBtnSettings && this.props.defaultOverlayBtnSettings.backgroundColor) ? this.props.defaultOverlayBtnSettings.backgroundColor : '#F6F6F6',
+      color: (this.props.defaultOverlayBtnSettings && this.props.defaultOverlayBtnSettings.color) ? this.props.defaultOverlayBtnSettings.color : '#000',
+      fontSize: (this.props.defaultOverlayBtnSettings && this.props.defaultOverlayBtnSettings.fontSize) ? this.props.defaultOverlayBtnSettings.fontSize : '14px',
+      padding: (this.props.defaultOverlayBtnSettings && this.props.defaultOverlayBtnSettings.padding) ? this.props.defaultOverlayBtnSettings.padding : '3px',
+      fontWeight: (this.props.fontWeight && this.props.defaultOverlayBtnSettings.fontWeight) ? this.props.defaultOverlayBtnSettings.fontWeight : 'bold',
+      margin: (this.props.defaultOverlayBtnSettings && this.props.defaultOverlayBtnSettings.margin) ? this.props.defaultOverlayBtnSettings.margin : '10px',
+      fontFamily: (this.props.defaultOverlayBtnSettings && this.props.defaultOverlayBtnSettings.fontFamily) ? this.props.defaultOverlayBtnSettings.fontFamily : 'Verdana, sans',
     };
   }
 
@@ -70,16 +72,19 @@ class DrillDown extends React.Component {
     }
   }
 
+  // Checks whether our current Chart has a parent whose Overlay Button an be hidden.
   renderComplete() {
     if(this.props && this.props.toggleParentOverlayBtnVisibility) {
       this.props.toggleParentOverlayBtnVisibility(false);
     }
   }
 
+  // Toggles the visibilty of the Overlay Button
   toggleParentOverlayBtnVisibility(visibility) {
-    this.setState({showOverlaybtn: visibility});
+    this.setState({ showOverlaybtn: visibility });
   }
 
+  // Handles click of the Overlay Button
   onClickOverlayBtn() {
     this.setState({ showDrillDown: false });
     if(this.props && this.props.toggleParentOverlayBtnVisibility && this.state.showDrillDown) {
@@ -87,13 +92,30 @@ class DrillDown extends React.Component {
     }
   }
 
+  // Configurable events for linked charts
+  beforeLinkedItemOpen() {
+
+  }
+
+  linkedItemOpened() {
+
+  }
+
+  beforeLinkedItemClosed() {
+
+  }
+
+  linkedItemClosed() {
+
+  }
+
   render() {
-    // In-line style for overlay button
+    // In-line style for default overlay button
     const btnStyle = {
       border: `1px solid ${this.state.borderColor}`,
       backgroundColor: `${this.state.backgroundColor}`,
       color: `${this.state.color}`,
-      fontFamily: 'Verdana, sans',
+      fontFamily: `${this.state.fontFamily}`,
       fontSize: `${this.state.fontSize}`,
       padding: `${this.state.padding}`,
       fontWeight: `${this.state.fontWeight}`,
@@ -122,18 +144,23 @@ class DrillDown extends React.Component {
               width: this.props.width, 
               height: this.props.height, 
               onRender: this.renderComplete.bind(this),
-              // overlayBtn: this.props.overlayBtn,
               toggleParentOverlayBtnVisibility: this.toggleParentOverlayBtnVisibility.bind(this)
             }
           )}
           { this.state.showOverlaybtn ?
-            <span style={ btnStyle }
+            <button style={ 
+              this.state.showDefaultOverlayBtn ?
+              btnStyle : (
+                this.props.customOverlayBtnStyle ? 
+                {cursor: 'pointer', ...this.props.customOverlayBtnStyle} : btnStyle
+              ) 
+            }
               onClick={this.onClickOverlayBtn.bind(this)}>
                 { 
-                  this.props.overlayBtn && this.props.overlayBtn.message ? 
-                  this.props.overlayBtn.message : 'Back'
+                  this.props.defaultOverlayBtnSettings && this.props.defaultOverlayBtnSettings.message ? 
+                  this.props.defaultOverlayBtnSettings.message : 'Back'
                 }
-            </span> : null
+            </button> : null
           }
         </div>
       );
