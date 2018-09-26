@@ -15,3 +15,7 @@ rules:
   no-sequences: 0
   global-require: 0
   import/prefer-default-export: 0
+  react/forbid-prop-types: 0
+  no-unused-expressions: 0
+  no-useless-return: 0
+  no-continue: 0

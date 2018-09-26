@@ -29,8 +29,6 @@
     "url": "https://github.com/fusioncharts/react-fusioncharts-component/issues"
   },
   "dependencies": {
-    "fusioncharts": "^3.13.1-sr.1",
-    "prop-types": "^15.6.2",
     "uuid": "^3.2.1"
   },
   "devDependencies": {
@@ -47,7 +45,9 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
+    "fusioncharts": "^3.13.1-sr.2",
     "jest": "^22.4.2",
+    "prop-types": "^15.6.2",
     "react": "^16.2.0",
     "react-addons-test-utils": "15.3.0",
     "react-component-gulp-tasks": "^0.7.6",

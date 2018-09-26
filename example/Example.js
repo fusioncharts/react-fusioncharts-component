@@ -1,6 +1,13 @@
 import React from 'react';
-import DrillDown from './DrillDown';
+import FusionCharts from 'fusioncharts';
+import Charts from 'fusioncharts/fusioncharts.charts';
+
+
+import DrillDown from '../lib/DrillDown';
 import ReactFC from '../lib/ReactFC';
+
+
+DrillDown.fcRoot(FusionCharts, Charts);
 
 const zerothDataScource = {
   chart: {
@@ -173,114 +180,28 @@ class Example extends React.Component {
     }
   }
 
+  
+
   render() {
     return (
       <div>
         <DrillDown
           type="column2d"
-          width='600'
-          height='400'
+          width="600"
+          height="400"
           dataFormat="JSON"
-          defaultOverlayBtnSettings={{ // This object holds the configuration of the default overlay button.
-            message: 'ESCAPE',
-            color: '#FFFFFF',
-            backgroundColor: '#512A44',
-            borderColor: '#660000',
-            fontSize: '8px',
-            placement: 'top-right', // Absolute position of the overlay button. Can take values: 'top-right', 'top-left', 'bottom-right' & 'bottom-left'
-            margin: '10px'
-          }}
           dataSource={this.state.dataSource}
-          mappedIds={this.state.mappedIds}>
-          {/* Further Drilled Down */}
-          <DrillDown
-            type="column2d"
-            width='600'
-            height='400'
-            dataFormat="JSON"
-            customOverlayBtnStyle={{ // This object holds the css for custom overlay button
-              backgroundColor: 'red', 
-              color: 'white', 
-              padding: 8, 
-              fontSize: 16
-            }}
-            dataSource={zerothDataScource}
-            mappedIds={[0, 1, 2]}>
-            <DrillDown
-              type="column2d"
-              width='600'
-              height='400'
-              dataFormat="JSON"
-              dataSource={zerothDataScource}
-              mappedIds={[0, 1, 2]}>
-              <ReactFC
-                type="bar2d"
-                width='800'
-                height='300'
-                dataFormat="JSON"
-                dataSource={firstDataSource} />
-              <ReactFC
-                type="pie2d"
-                width='200'
-                height='400'
-                dataFormat="JSON"
-                dataSource={secondDataSource} />
-              <ReactFC
-                type="column2d"
-                width='100'
-                height='100'
-                dataFormat="JSON"
-                dataSource={thirdDataSource} />
-            </DrillDown>
-            <ReactFC
-              type="bar2d"
-              width='800'
-              height='300'
-              dataFormat="JSON"
-              dataSource={firstDataSource} />
-            <ReactFC
-              type="pie2d"
-              width='200'
-              height='400'
-              dataFormat="JSON"
-              dataSource={secondDataSource} />
-            <ReactFC
-              type="column2d"
-              width='100'
-              height='100'
-              dataFormat="JSON"
-              dataSource={thirdDataSource} />
-          </DrillDown>
+          plotChildMap={this.state.mappedIds}
+          btnConfig={
+            { placement : 'top-left' }
+          }
+         >
           <ReactFC
             type="pie2d"
             width='600'
             height='400'
             dataFormat="JSON"
-            fcEvent-beforeDataUpdate={() => {
-              console.log('This chart is updating its data.')
-            }}
-            fcEvent-dataUpdated={() => {
-              console.log('This chart has successfully updated its data.')
-            }}
-            fcEvent-drawComplete={() => {
-              console.log('This chart has been successfully drawn.')
-            }}
-            fcEvent-renderComplete={() => {
-              console.log('This chart has successfully rendered.')
-            }}
             dataSource={firstDataSource} />
-          <ReactFC
-            type="column2d"
-            width='600'
-            height='400'
-            dataFormat="JSON"
-            dataSource={secondDataSource} />
-          <ReactFC
-            type="bar2d"
-            width='600'
-            height='400'
-            dataFormat="JSON"
-            dataSource={thirdDataSource} />
         </DrillDown>
         <div style={{ height: 300, width: 400 }}></div>
       </div>
