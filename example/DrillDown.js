@@ -13,9 +13,7 @@ class DrillDown extends React.Component {
     super(props);
 
     this.state = {
-      showDefaultOverlayBtn: (this.props.showDefaultOverlayBtn === null) ? true : this.props.showDefaultOverlayBtn,
       showOverlaybtn: true,
-      overlayZindex: 1,
       // Absolute position of Overlay Button
       positionH: (this.props.defaultOverlayBtnSettings && this.props.defaultOverlayBtnSettings.placement && this.props.defaultOverlayBtnSettings.placement.includes('-')) ? this.props.defaultOverlayBtnSettings.placement.split('-')[1] : 'right',
       positionV: (this.props.defaultOverlayBtnSettings && this.props.defaultOverlayBtnSettings.placement && this.props.defaultOverlayBtnSettings.placement.includes('-')) ? this.props.defaultOverlayBtnSettings.placement.split('-')[0] : 'top',
@@ -122,8 +120,7 @@ class DrillDown extends React.Component {
       position: 'absolute',
       [this.state.positionH]: `${this.state.margin}`,
       [this.state.positionV]: `${this.state.margin}`,
-      cursor: 'pointer',
-      // zIndex: this.state.overlayZindex
+      cursor: 'pointer'
     };
 
     // In-line style for root element of DrillDown component
@@ -131,8 +128,6 @@ class DrillDown extends React.Component {
       position: 'relative',
       display: 'inline-block'
     }
-
-    const props = this.props;
 
     if(this.state.showDrillDown) {
       return (
@@ -164,9 +159,9 @@ class DrillDown extends React.Component {
     } else {
       return (
         <ReactFC
-            {...props}
-            fcEvent-dataplotClick={this.plotClicked.bind(this)}
-          />
+          {...this.props}
+          fcEvent-dataplotClick={this.plotClicked.bind(this)}
+        />
       );
     }
   }
