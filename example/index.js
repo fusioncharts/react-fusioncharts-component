@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ChartViewer from './ChartViewer';
+import Example from './Example';
 
-ReactDOM.render(<ChartViewer />, document.getElementById('root'));
+ReactDOM.render(<Example />, document.getElementById('root'));
