@@ -66,18 +66,23 @@ class DrillDown extends React.Component {
     return 'noop';
   }
 
-  plotClicked(e) {    
+  plotClicked(e) {
     const { index } = e.data;
-    const propChildren = Array.isArray(this.props.children) ? this.props.children : [this.props.children];
+    const propChildren = Array.isArray(this.props.children) ?
+      this.props.children : [this.props.children];
     const childrenLen = propChildren.length;
     const { plotChildMap } = this.props;
     if (childrenLen === 0) return;
+
+    // Further Optimization needed.
     const mapType = this.determinePlotMapType(plotChildMap);
+
     // Case : Array of numbers
     if (mapType === 'number') {
       const childPosition = plotChildMap[index];
-      if (childPosition === null || typeof childPosition === 'undefined' || childPosition >= childrenLen) return;
-      
+      if (childPosition === null || typeof childPosition === 'undefined' ||
+        childPosition >= childrenLen || childPosition < 0) return;
+
       this.setState({
         selectedChild: childPosition,
         isDrilledDown: true,
@@ -89,7 +94,9 @@ class DrillDown extends React.Component {
       for (let i = 0; i < childrenLen; i++) {
         if (typeof plotChildMap[i] === 'undefined' || plotChildMap[i] === null) continue;
         const { plotPosition, childPosition } = plotChildMap[i];
-        if (plotPosition === index && childPosition && childPosition > -1) {
+        if (plotPosition === index &&
+          (childPosition !== null && typeof childPosition !== 'undefined') &&
+          childPosition < childrenLen && childPosition > -1) {
           this.setState({
             selectedChild: childPosition,
             isDrilledDown: true,
@@ -106,11 +113,10 @@ class DrillDown extends React.Component {
   }
 
   cloneReactFCChild(reactFCElem, customProps) {
-    const rFCElem = React.cloneElement(
+    return React.cloneElement(
       reactFCElem,
       customProps,
     );
-    return rFCElem;
   }
 
   onChildRendered() {
@@ -161,9 +167,12 @@ class DrillDown extends React.Component {
           {/* Back Button */}
           {
             isBtnVisible ?
-              <button style={this.finBtnStyle} onClick={this.onBtnClick}>{this.finalBtnConfig.text}</button> 
-              :
-              null
+              <button
+                style={this.finBtnStyle}
+                onClick={this.onBtnClick}
+              >
+                {this.finalBtnConfig.text}
+              </button> : null
           }
         </div>
       );

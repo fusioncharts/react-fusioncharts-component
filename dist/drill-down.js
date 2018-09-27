@@ -199,11 +199,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var plotChildMap = this.props.plotChildMap;
 
 	      if (childrenLen === 0) return;
+
+	      // Further Optimization needed.
 	      var mapType = this.determinePlotMapType(plotChildMap);
+
 	      // Case : Array of numbers
 	      if (mapType === 'number') {
 	        var childPosition = plotChildMap[index];
-	        if (childPosition === null || typeof childPosition === 'undefined' || childPosition >= childrenLen) return;
+	        if (childPosition === null || typeof childPosition === 'undefined' || childPosition >= childrenLen || childPosition < 0) return;
 
 	        this.setState({
 	          selectedChild: childPosition,
@@ -219,7 +222,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	              plotPosition = _plotChildMap$i.plotPosition,
 	              _childPosition = _plotChildMap$i.childPosition;
 
-	          if (plotPosition === index && _childPosition && _childPosition > -1) {
+	          if (plotPosition === index && _childPosition !== null && typeof _childPosition !== 'undefined' && _childPosition < childrenLen && _childPosition > -1) {
 	            this.setState({
 	              selectedChild: _childPosition,
 	              isDrilledDown: true
@@ -237,8 +240,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'cloneReactFCChild',
 	    value: function cloneReactFCChild(reactFCElem, customProps) {
-	      var rFCElem = _react2.default.cloneElement(reactFCElem, customProps);
-	      return rFCElem;
+	      return _react2.default.cloneElement(reactFCElem, customProps);
 	    }
 	  }, {
 	    key: 'onChildRendered',
@@ -293,7 +295,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.cloneReactFCChild(propChildren[selectedChild], clonedElemConfig),
 	          isBtnVisible ? _react2.default.createElement(
 	            'button',
-	            { style: this.finBtnStyle, onClick: this.onBtnClick },
+	            {
+	              style: this.finBtnStyle,
+	              onClick: this.onBtnClick
+	            },
 	            this.finalBtnConfig.text
 	          ) : null
 	        );

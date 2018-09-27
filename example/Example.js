@@ -15,14 +15,14 @@ const zerothDataScource = {
     theme: 'fusion',
   },
   data: [{
-    value: 190
+    value: 190,
   },
   {
-    value: 50
+    value: 50,
   },
   {
-    value: 280
-  }]
+    value: 280,
+  }],
 };
 
 const firstDataSource = {
@@ -51,7 +51,7 @@ const firstDataSource = {
   {
     label: 'Daly City Serramonte',
     value: '330000',
-    link: "https://www.google.com"
+    link: "https://www.google.com",
   }]
 };
 
@@ -84,7 +84,7 @@ const secondDataSource = {
 };
 
 const thirdDataSource = {
-  "chart": {
+  'chart': {
     "caption": "THIRD CHILD",
     "subCaption": "In MMbbl = One Million barrels",
     "xAxisName": "Country",
@@ -126,29 +126,29 @@ const thirdDataSource = {
   }]
 };
 
-const mappedIdsIntegers = [0, 1, 2, 3, null]; // Index = plotPosition, array[Index] = childPosition
+const mappedIdsIntegers = [undefined, 1, 2, 3, null]; // Index = plotPosition, array[Index] = childPosition
 
 const mappedIdsObjects = [
   {
-    'plotPosition': 0,
-    'childPosition': 1
+    plotPosition: undefined,
+    childPosition: 2,
   },
   {
-    'plotPosition': 2,
-    'childPosition': 0
+    plotPosition: 1,
+    childPosition: -Infinity,
   },
   {
-    'plotPosition': 4,
-    'childPosition': 1
-  }
-]
+    plotPosition: 2,
+    childPosition: 1,
+  },
+];
 
 class Example extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      mappedIds: mappedIdsIntegers,
+      mappedIds: mappedIdsObjects,
       dataSource: {
         chart: {
           caption: 'PARENT',
@@ -175,12 +175,10 @@ class Example extends React.Component {
         {
           label: 'Daly City Serramonte',
           value: '330000',
-        }]
-      }
-    }
+        }],
+      },
+    };
   }
-
-  
 
   render() {
     return (
@@ -193,19 +191,35 @@ class Example extends React.Component {
           dataSource={this.state.dataSource}
           plotChildMap={this.state.mappedIds}
           btnConfig={
-            { placement : 'top-left' }
+            {
+              placement: 'top-left',
+            }
           }
-         >
+        >
           <ReactFC
             type="pie2d"
-            width='600'
-            height='400'
+            width="600"
+            height="400"
             dataFormat="JSON"
-            dataSource={firstDataSource} />
+            dataSource={firstDataSource}
+          />
+          <ReactFC
+            type="pie2d"
+            width="600"
+            height="400"
+            dataFormat="JSON"
+            dataSource={secondDataSource}
+          />
+          <ReactFC
+            type="pie2d"
+            width="600"
+            height="400"
+            dataFormat="JSON"
+            dataSource={thirdDataSource}
+          />
         </DrillDown>
-        <div style={{ height: 300, width: 400 }}></div>
       </div>
-    )
+    );
   }
 }
 
