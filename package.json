@@ -1,6 +1,6 @@
 {
   "name": "react-fusioncharts",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Simple and Lightweight React component for FusionCharts JavaScript Charting Library",
   "main": "lib/ReactFC.js",
   "author": {
