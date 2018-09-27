@@ -9,33 +9,33 @@ OceanTheme(FusionCharts);
 
 const myDataSource = {
   chart: {
-    caption: 'Harry\'s ss',
+    caption: "Harry's ss",
     subCaption: 'Top 5 stores in last month by revenue',
     numberPrefix: '$',
-    theme: 'ocean',
+    theme: 'ocean'
   },
   data: [
     {
       label: 'Bakersfield Central',
-      value: '880000',
+      value: '880000'
     },
     {
       label: 'Garden Groove harbour',
-      value: '730000',
+      value: '730000'
     },
     {
       label: 'Los Angeles Topanga',
-      value: '590000',
+      value: '590000'
     },
     {
       label: 'Compton-Rancho Dom',
-      value: '520000',
+      value: '520000'
     },
     {
       label: 'Daly City Serramonte',
-      value: '330000',
-    },
-  ],
+      value: '330000'
+    }
+  ]
 };
 
 class ChartViewer extends React.Component {
@@ -47,7 +47,7 @@ class ChartViewer extends React.Component {
       width: 600,
       height: 400,
       dataFormat: 'json',
-      dataSource: myDataSource,
+      dataSource: myDataSource
     };
 
     this.onClick = this.onClick.bind(this);
@@ -67,7 +67,7 @@ class ChartViewer extends React.Component {
       <set label="Golf" value="400000000" tooltext="Popular in: {br}US{br}Canada{br}Europe" />
       <set label="Basketball" value="400000000" tooltext="Popular in: {br}US{br}Canada" />
       <set label="American football" value="390000000" tooltext="Popular in:{br}US" />
-  </chart>`,
+  </chart>`
     });
   }
 
