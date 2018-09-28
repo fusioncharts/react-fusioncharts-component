@@ -6,18 +6,19 @@ const config = {
     path: path.join(__dirname, 'example', 'dist'),
     filename: 'main.js',
   },
-
+  mode: 'none',
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015', 'react'],
-          compact: false,
-        },
-      },
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-react']
+          }
+        }
+      }
     ],
   },
 };

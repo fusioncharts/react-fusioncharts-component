@@ -1,6 +1,6 @@
 {
   "name": "react-fusioncharts",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Simple and Lightweight React component for FusionCharts JavaScript Charting Library",
   "main": "lib/ReactFC.js",
   "author": {
@@ -32,14 +32,13 @@
     "uuid": "^3.2.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.21.0",
-    "babel-eslint": "^4.1.3",
-    "babel-jest": "^23.0.0-alpha.0",
-    "babel-loader": "^6.2.10",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-es2015": "^7.0.0-beta.53",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-stage-0": "^7.0.0",
+    "babel-loader": "^8.0.4",
     "eslint": "^4.19.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "^3.1.0",
@@ -48,6 +47,7 @@
     "eslint-plugin-react": "^7.7.0",
     "fusioncharts": "^3.13.1-sr.2",
     "jest": "^22.4.2",
+    "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
     "react": "^16.2.0",
     "react-addons-test-utils": "15.3.0",
@@ -56,14 +56,15 @@
     "react-native": "^0.54.2",
     "react-test-renderer": "^16.2.0",
     "serve": "^10.0.1",
-    "webpack": "^1.14.0"
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.1"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
   },
   "scripts": {
-    "build:lib": "babel ./src -d ./lib",
-    "build:umd": "webpack && webpack -p --output-path ./dist --output-file react-fusioncharts.min.js",
+    "build:lib": "babel ./src -d ./lib && mv ./lib/DrillDown.js ./components/DrillDown.js",
+    "build:umd": "webpack",
     "build": "npm run build:lib && npm run build:umd",
     "build:example": "npm run build:lib && webpack --config webpack.config.example.js",
     "start": "npm run build:example && serve example/",
