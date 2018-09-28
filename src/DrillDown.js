@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactFC from './ReactFC';
+import ReactFC from '../lib/ReactFC';
 
 
 class DrillDown extends React.Component {
@@ -11,7 +11,7 @@ class DrillDown extends React.Component {
 
   constructor(props) {
     super(props);
-    
+
     const { btnConfig, btnStyle } = props;
     this.finalBtnConfig = Object.assign({}, DrillDown.defaultProps.btnConfig, btnConfig);
     [this.positionV, this.positionH] = this.finalBtnConfig.placement.split('-');
