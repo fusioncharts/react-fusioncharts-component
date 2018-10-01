@@ -222,7 +222,7 @@ import DrillDown from 'react-fusioncharts/components/DrillDown';
 DrillDown.fcRoot(FusionCharts, Charts);
 ```
 
-```html
+```xml
   <DrillDown
     dataSource={dataSource} /* Same as ReactFC's dataSource */
     plotChildMap={plotChildMap}
