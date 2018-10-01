@@ -222,23 +222,38 @@ import DrillDown from 'react-fusioncharts/components/DrillDown';
 DrillDown.fcRoot(FusionCharts, Charts);
 ```
 
-```xml
-  <DrillDown
-    dataSource={dataSource} /* Same as ReactFC's dataSource */
-    plotChildMap={plotChildMap}
-    btnConfig={btnConfig}
-    btnStyle={btnStyle}
-    dataFormat={dataFormat}  /* Same as ReactFC's dataFormat */
-    type={type}              /* Same as ReactFC's type       */
-    height={height}          /* Same as ReactFC's height     */
-    width={width}            /* Same as ReactFC's width      */
-    ...other                 /* Other ReactFC attributes like events for parent chart*/
-    >
-    <ReactFC />              /* ReactFC as a child */
-    <ReactFC />
-    ...
-    <DrillDown></DrillDown> /* DrillDown as a child for next level drill down*/
-  </DrillDown>
+```jsx
+class MyComponent extends React.Component{
+  constructor(props){
+    super(props);
+    this.plotChildMap = [ 0, 2, 1 ];
+    this.dataSource = /*Data Source A : Given above */   ;
+    this.btnConfig = {text : 'Back'};
+    this.type= 'column2d';
+    this.height = 400;
+    this.width = 400;
+  }
+  render(){
+    return (
+       <DrillDown
+        dataSource={dataSource}
+        plotChildMap={plotChildMap}
+        btnConfig={btnConfig}
+        btnStyle={btnStyle}
+        dataFormat={dataFormat}
+        type={type}
+        height={height}
+        width={width}
+        ...other
+        >
+        <ReactFC />              /* ReactFC as a child */
+        <ReactFC />
+        ...
+        <DrillDown></DrillDown> /* DrillDown as a child for next level drill down*/
+      </DrillDown>
+    )
+  }
+}
 ```
 
 #### Attribute Description
