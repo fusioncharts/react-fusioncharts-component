@@ -266,12 +266,13 @@ class MyComponent extends React.Component{
      `0(location) -> 0 (value)` means clicking the first (zero indexed) data plot , render the 0th child ,  
      `1(location) -> 2(value)` means clicking the second data plot, render the 1st Child (Note: It is 0-indexed )  
      **Null case** : You can pass `null` for a data plot for which you dont want a drill down.
-  - Array ( Object ) - Representation of child mapped with plot in form of an object of shape
-    `{ "plotPosition": Number, "childPosition": Number }`
+  - Array ( Object ) - Representation of child mapped with plot in form of an object of shape  
+    `{ "plotPosition": Number, "childPosition": Number }`  
     This object holds information about which child render on a data plot is clicked.  
     `Eg. [{ plotPosition: 1 , childPosition: 0}, { plotPosition: 0, childPosition: 1}]`  
     Note: plotChildMap does not honour heterogeneous data , eg. Number and Object
-    both. `[ 0 , { plotPosition:0, childPosition: 1 } ]`
+    both.  
+    `[ 0 , { plotPosition:0, childPosition: 1 } ]`
 
 - btnConfig [Object]- Basic configuration without overriding the default button styles
   - `text`: PropTypes.string - Button Text
