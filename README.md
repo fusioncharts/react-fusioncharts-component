@@ -269,9 +269,9 @@ class MyComponent extends React.Component{
   - Array ( Object ) - Representation of child mapped with plot in form of an object of shape
     `{ "plotPosition": Number, "childPosition": Number }`
     This object holds information about which child render on a data plot is clicked.  
-     Note: plotChildMap does not honour heterogeneous data , eg. Number and Object
-    both.
-    `Eg. [{ plotPosition: 1 , childPosition: 0}, { plotPosition: 0, childPosition: 1}]`
+    `Eg. [{ plotPosition: 1 , childPosition: 0}, { plotPosition: 0, childPosition: 1}]`  
+    Note: plotChildMap does not honour heterogeneous data , eg. Number and Object
+    both. `[ 0 , { plotPosition:0, childPosition: 1 } ]`
 
 - btnConfig [Object]- Basic configuration without overriding the default button styles
   - `text`: PropTypes.string - Button Text
