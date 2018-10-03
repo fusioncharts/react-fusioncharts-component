@@ -161,7 +161,7 @@ import FusionTheme from 'fusioncharts/Charts/fusioncharts.theme.fusion';
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
-const dataSource = /* Data Source A , given above */;
+const dataSource = /* Data Source A, given above */;
 
 const chartConfigs = {
   type: 'column2d',
@@ -227,7 +227,7 @@ class MyComponent extends React.Component{
   constructor(props){
     super(props);
     this.plotChildMap = [ 0, 2, 1 ];
-    this.dataSource = /*Data Source A : Given above */   ;
+    this.dataSource = /* Data Source A : Given above */;
     this.btnConfig = {text : 'Back'};
     this.type= 'column2d';
     this.height = 400;
@@ -235,7 +235,7 @@ class MyComponent extends React.Component{
   }
   render(){
     return (
-       <DrillDown
+      <DrillDown
         dataSource={dataSource}
         plotChildMap={plotChildMap}
         btnConfig={btnConfig}
@@ -244,12 +244,18 @@ class MyComponent extends React.Component{
         type={type}
         height={height}
         width={width}
-        ...other
+        {...other}
+      > /* ReactFC as a child */
+        <ReactFC 
+          {...chartOneConfig}
+        />       
+        <ReactFC 
+          {...chartTwoConfig}
+        /> /* DrillDown as a child for next level drill down */
+        <DrillDown
+          {...drillDownConfig}
         >
-        <ReactFC />              /* ReactFC as a child */
-        <ReactFC />
-        ...
-        <DrillDown></DrillDown> /* DrillDown as a child for next level drill down*/
+        </DrillDown> 
       </DrillDown>
     )
   }
@@ -258,19 +264,19 @@ class MyComponent extends React.Component{
 
 #### Attribute Description
 
-- plotChildMap[Array(Number)| Array[Object]]
+- plotChildMap[Array(Number) | Array[Object]]
 
-  - Array ( Number ) - Representation of child mapped to the plot of the parent data source passed to the `DrillDown`
+  - Array( Number ) - Representation of child mapped to the plot of the parent data source passed to the `DrillDown`
     component . Array location are considered plot index of parent, the value corresponding to it are considered which child chart to render.
-    `Eg. [0,2,1]`  
-     `0(location) -> 0 (value)` means clicking the first (zero indexed) data plot , render the 0th child ,  
-     `1(location) -> 2(value)` means clicking the second data plot, render the 1st Child (Note: It is 0-indexed )  
-     **Null case** : You can pass `null` for a data plot for which you dont want a drill down.
-  - Array ( Object ) - Representation of child mapped with plot in form of an object of shape  
+    `Eg. [0, 2, 1]`  
+    `0(location) -> 0 (value)` means clicking the first (zero indexed) data plot , render the 0th child ,  
+    `1(location) -> 2(value)` means clicking the second data plot, render the 1st Child (Note: It is 0-indexed )  
+    **Null case** : You can pass `null` for a data plot for which you dont want a drill down.
+  - Array( Object ) - Representation of child mapped with plot in form of an object of shape  
     `{ "plotPosition": Number, "childPosition": Number }`  
-    This object holds information about which child render on a data plot is clicked.  
+    This object holds information about which child gets rendered when a data plot is clicked.  
     `Eg. [{ plotPosition: 1 , childPosition: 0}, { plotPosition: 0, childPosition: 1}]`  
-    Note: plotChildMap does not honour heterogeneous data , eg. Number and Object
+    Note: plotChildMap does not honour heterogeneous data, eg. Number and Object
     both.  
     `[ 0 , { plotPosition:0, childPosition: 1 } ]`
 
@@ -283,6 +289,14 @@ class MyComponent extends React.Component{
   - `fontWeight`: PropTypes.string
   - `padding`: PropTypes.string
   - `fontFamily`: PropTypes.string
+  - `margin`: PropTypes.string<br /> /* Margin from the button's absolute position */
+  - `placement`: PropTypes.oneOf([<br />
+      &nbsp; &nbsp; &nbsp;'top-left',<br />
+      &nbsp; &nbsp; &nbsp;'top-right',<br />
+      &nbsp; &nbsp; &nbsp;'bottom-left',<br />
+      &nbsp; &nbsp; &nbsp;'bottom-right',<br />
+    ]) <br />
+    /* Use any one of the above position to mention the absolute position of the button. */
 - btnStyle [Object] - CSS styles which override the styles in default btnConfig except `text`.
 
 ## Working with APIs
