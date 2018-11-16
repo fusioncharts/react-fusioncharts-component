@@ -6,8 +6,8 @@ import fusionChartsOptions from './utils/options';
 
 class ReactFC extends React.Component {
   static fcRoot(core, ...modules) {
-    modules.forEach((m) => {
-      if (m.getName || m.name) {
+    modules.forEach(m => {
+      if ((m.getName && m.getType) || (m.name && m.type)) {
         core.addDep(m);
       } else {
         m(core);
@@ -21,7 +21,8 @@ class ReactFC extends React.Component {
 
     this.containerId = uuid();
     this.oldOptions = null;
-    this.FusionCharts = props.fcLibrary || ReactFC.fusionChartsCore || FusionCharts;
+    this.FusionCharts =
+      props.fcLibrary || ReactFC.fusionChartsCore || FusionCharts;
   }
 
   componentDidMount() {
@@ -29,7 +30,9 @@ class ReactFC extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!this.oldOptions) { return; }
+    if (!this.oldOptions) {
+      return;
+    }
     this.detectChanges(nextProps);
   }
 
@@ -46,7 +49,7 @@ class ReactFC extends React.Component {
       'type',
       'dataFormat',
       'dataSource',
-      'events',
+      'events'
     ];
 
     this.checkAndUpdateChartDimensions(currentOptions, oldOptions);
@@ -54,9 +57,11 @@ class ReactFC extends React.Component {
     this.checkAndUpdateChartData(currentOptions, oldOptions);
     this.checkAndUpdateEvents(currentOptions, oldOptions);
     this.checkAndUpdateRestOptions(
-      fusionChartsOptions.filter(option => optionsUpdatedNatively.indexOf(option) === -1),
+      fusionChartsOptions.filter(
+        option => optionsUpdatedNatively.indexOf(option) === -1
+      ),
       currentOptions,
-      oldOptions,
+      oldOptions
     );
 
     this.oldOptions = currentOptions;
@@ -68,18 +73,21 @@ class ReactFC extends React.Component {
     const oldWidth = oldOptions.width;
     const oldHeight = oldOptions.height;
 
-    if (String(currWidth) !== String(oldWidth) || String(currHeight) !== String(oldHeight)) {
+    if (
+      String(currWidth) !== String(oldWidth) ||
+      String(currHeight) !== String(oldHeight)
+    ) {
       if (!utils.isUndefined(currWidth) && !utils.isUndefined(currHeight)) {
         this.chartObj.resizeTo(currWidth, currHeight);
       } else {
         if (!utils.isUndefined(currWidth)) {
           this.chartObj.resizeTo({
-            w: currWidth,
+            w: currWidth
           });
         }
         if (!utils.isUndefined(currHeight)) {
           this.chartObj.resizeTo({
-            h: currHeight,
+            h: currHeight
           });
         }
       }
@@ -103,9 +111,15 @@ class ReactFC extends React.Component {
     const oldDataFormat = oldOptions.dataFormat;
     const oldData = oldOptions.dataSource;
 
-    if (String(currDataFormat).toLowerCase() !== String(oldDataFormat).toLowerCase()) {
+    if (
+      String(currDataFormat).toLowerCase() !==
+      String(oldDataFormat).toLowerCase()
+    ) {
       if (!utils.isUndefined(currDataFormat) && !utils.isUndefined(currData)) {
-        this.chartObj.setChartData(currData, String(currDataFormat).toLowerCase());
+        this.chartObj.setChartData(
+          currData,
+          String(currDataFormat).toLowerCase()
+        );
         // If the chart dataFormat is changed then
         // animate the chart to show the changes
         this.chartObj.render();
@@ -116,7 +130,7 @@ class ReactFC extends React.Component {
           currData,
           // When dataFormat is not given, but data is changed,
           // then use 'json' as default dataFormat
-          currDataFormat ? String(currDataFormat).toLowerCase() : 'json',
+          currDataFormat ? String(currDataFormat).toLowerCase() : 'json'
         );
       }
     }
@@ -138,15 +152,17 @@ class ReactFC extends React.Component {
     if (this.detectChartEventsChange(currEvents, oldEvents)) {
       if (!utils.isUndefined(currEvents)) {
         temp1 = Object.assign({}, currEvents);
-        temp2 = utils.isUndefined(oldEvents) ? {} : Object.assign({}, oldEvents);
-        Object.keys(temp2).forEach((eventName) => {
+        temp2 = utils.isUndefined(oldEvents)
+          ? {}
+          : Object.assign({}, oldEvents);
+        Object.keys(temp2).forEach(eventName => {
           if (temp2[eventName] === temp1[eventName]) {
             temp1[eventName] = undefined;
           } else {
             this.chartObj.removeEventListener(eventName, temp2[eventName]);
           }
         });
-        Object.keys(temp1).forEach((eventName) => {
+        Object.keys(temp1).forEach(eventName => {
           if (temp1[eventName]) {
             this.chartObj.addEventListener(eventName, temp1[eventName]);
           }
@@ -157,13 +173,15 @@ class ReactFC extends React.Component {
 
   detectChartEventsChange(currEvents, oldEvents) {
     if (utils.isObject(currEvents) && utils.isObject(oldEvents)) {
-      return !(this.isSameChartEvents(currEvents, oldEvents));
+      return !this.isSameChartEvents(currEvents, oldEvents);
     }
     return !(currEvents === oldEvents);
   }
 
   isSameChartEvents(currEvents, oldEvents) {
-    if (Object.keys(currEvents).length !== Object.keys(oldEvents).length) { return false; }
+    if (Object.keys(currEvents).length !== Object.keys(oldEvents).length) {
+      return false;
+    }
     const currEventNames = Object.keys(currEvents);
     for (let i = 0; i < currEventNames.length; ++i) {
       const evName = currEventNames[i];
@@ -177,13 +195,16 @@ class ReactFC extends React.Component {
   checkAndUpdateRestOptions(restOptions, currentOptions, oldOptions) {
     let optionsUpdated = false;
 
-    restOptions.forEach((optionName) => {
+    restOptions.forEach(optionName => {
       const currValue = currentOptions[optionName];
       const oldValue = oldOptions[optionName];
 
       if (!this.isSameOptionValue(currValue, oldValue)) {
         if (!utils.isUndefined(currValue)) {
-          if (this.chartObj.options && this.chartObj.options.hasOwnProperty(optionName)) {
+          if (
+            this.chartObj.options &&
+            this.chartObj.options.hasOwnProperty(optionName)
+          ) {
             this.chartObj.options[optionName] = currValue;
             optionsUpdated = true;
           }
@@ -203,14 +224,13 @@ class ReactFC extends React.Component {
     return String(currValue) === String(oldValue);
   }
 
-
   renderChart() {
     const currentOptions = this.resolveChartOptions(this.props);
     const events = {};
 
     currentOptions.renderAt = this.containerId;
 
-    Object.keys(this.props).forEach((value) => {
+    Object.keys(this.props).forEach(value => {
       const event = value.match(/^fcEvent-.*/i);
       if (event && typeof this.props[value] === 'function') {
         const eventName = value.replace(/^fcEvent-/i, '');
@@ -256,9 +276,7 @@ class ReactFC extends React.Component {
   }
 
   render() {
-    return (
-      <div className={this.props.className} id={this.containerId} />
-    );
+    return <div className={this.props.className} id={this.containerId} />;
   }
 }
 
