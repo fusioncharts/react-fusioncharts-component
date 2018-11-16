@@ -1,27 +1,83 @@
-# react-fusioncharts
+A simple and lightweight official React component for FusionCharts JavaScript charting library. `react-fusioncharts` enables you to add JavaScript charts in your React application or project without any hassle.
 
-A simple and lightweight `React` component which provides bindings for `FusionCharts` JavaScript Charting Library. It easily adds rich and interactive charts to any `React` Projects.
+## [Demo](https://fusioncharts.github.io/react-fusioncharts-component/)
 
-## Installation
+- Github Repo: [https://github.com/fusioncharts/react-fusioncharts-component](https://github.com/fusioncharts/react-fusioncharts-component)
+- Documentation: [https://www.fusioncharts.com/dev/getting-started/react/your-first-chart-using-react](https://www.fusioncharts.com/dev/getting-started/react/your-first-chart-using-react)
+- Support: [https://www.fusioncharts.com/contact-support](https://www.fusioncharts.com/contact-support)
+- FusionCharts
+  - Official Website: [https://www.fusioncharts.com/](https://www.fusioncharts.com/)
+  - Official NPM Package: [https://www.npmjs.com/package/fusioncharts](https://www.npmjs.com/package/fusioncharts)
+- Issues: [https://github.com/fusioncharts/react-fusioncharts-component/issues](https://github.com/fusioncharts/react-fusioncharts-component/issues)
 
-To install `react-fusioncharts`, run:
+---
 
-```bash
-$ npm install react-fusioncharts --save
-```
+## Table of Contents
 
-Also install `fusioncharts`, if it is not already installed:
-
-```bash
-$ npm install fusioncharts --save
-```
+- [Getting Started](#getting-started)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Working with chart API](#working-with-apis)
+  - [Working with events](#working-with-events)
+- [Quick Start](#quick-start)
+- [Custom Components](#custom-components)
+  - [Drill Down](#drill-down-component)
+- [Going Beyond Charts](#going-beyond-charts)
+- [For Contributors](#for-contributors)
+- [Licensing](#licensing)
 
 ## Getting Started
 
-After installing `react-fusioncharts`, import it in your `React` app:
+### Requirements
 
-```javascript
+- **Node.js**, **NPM/Yarn** installed globally in your OS.
+- **FusionCharts** and **React** installed in your project, as detailed below:
+
+### Installation
+
+There are multiple ways to install `react-fusioncharts` component.
+
+**Direct Download**
+All binaries are located on our [github repository](https://github.com/fusioncharts/react-fusioncharts-component).
+
+**Install from NPM**
+
+```
+npm install --save react-fusioncharts
+```
+
+See [npm documentation](https://docs.npmjs.com/) to know more about npm usage.
+
+**Install from Yarn**
+
+```
+yarn add react-fusioncharts
+```
+
+See [yarn documentation](https://yarnpkg.com/en/docs) to know more about yarn usage.
+
+For general instructions, refer to this [developer docs page](https://www.fusioncharts.com/dev/getting-started/react/your-first-chart-using-react#installation-2).
+
+### Usage
+
+Import React, `react-fusioncharts` and FusionCharts in your app:
+
+```
 import React from 'react';
+import ReactDOM from 'react-dom';
+import FusionCharts from 'fusioncharts';
+import ReactFC from 'react-fusioncharts';
+
+ReactFC.fcRoot(FusionCharts);
+```
+
+## Quick Start
+
+Here is a basic sample that shows how to create a chart using `react-fusioncharts`:
+
+```
+import React from 'react;
 import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
@@ -30,7 +86,6 @@ import ReactFC from 'react-fusioncharts';
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
-// DataSource A
 const dataSource = {
   chart: {
     caption: 'Countries With Most Oil Reserves [2017-18]',
@@ -208,7 +263,7 @@ class Chart extends Component {
 ReactDOM.render(<Chart />, document.getElementById('root'));
 ```
 
-## DrillDown Component
+## Drill Down Component
 
 A custom component to easily add drill down to your react application.
 
@@ -355,32 +410,32 @@ class Chart extends Component {
 ReactDOM.render(<Chart />, document.getElementById('root'));
 ```
 
-## Test
+links to help you get started:
 
-```sh
-$ npm test
+- [Live samples with code](https://fusioncharts.github.io/react-fusioncharts-component/)
+- [Documentation](https://www.fusioncharts.com/dev/getting-started/react/your-first-chart-using-react)
+- [Use Chart API events & methods in React](https://www.fusioncharts.com/dev/getting-started/react/configure-your-chart-using-react)
+- [Chart gallery](https://www.fusioncharts.com/explore/chart-gallery)
+- [FusionCharts API](https://www.fusioncharts.com/dev/api/fusioncharts)
+
+## Going Beyond Charts
+
+- Explore 20+ pre-built business specific dashboards for different industries like energy and manufacturing to business functions like sales, marketing and operations [here](https://www.fusioncharts.com/explore/dashboards).
+- See [Data Stories](https://www.fusioncharts.com/explore/data-stories) built using FusionCharts’ interactive JavaScript visualizations and learn how to communicate real-world narratives through underlying data to tell compelling stories.
+
+## For Contributors
+
+- Clone the repository and install dependencies
+
 ```
-
-## Contributing
-
-We are actively accepting pull requests. For contributions create a pull request to the `develop` branch with the necessary details.
-
-- Clone the repository.
-- Install dependencies
-- Run `npm start` to start the dev server.
-- Open `http://localhost:5000/` in your browser.
-
-```sh
 $ git clone https://github.com/fusioncharts/react-fusioncharts-component.git
 $ cd react-fusioncharts-component
 $ npm i
 $ npm start
 ```
 
-To build, run:
+- Run `npm run build` to start the dev server and point your browser at [http://localhost:3000/](http://localhost:3000/).
 
-```sh
-$ npm run build
-```
+## Licensing
 
-### [Demos and Documentation](https://fusioncharts.github.io/react-fusioncharts-component/)
+The FusionCharts React component is open-source and distributed under the terms of the MIT/X11 License. However, you will need to download and include FusionCharts library in your page separately, which has a [separate license](https://www.fusioncharts.com/buy).
