@@ -1355,7 +1355,7 @@ function (_React$Component) {
       }
 
       modules.forEach(function (m) {
-        if (m.getName || m.name) {
+        if (m.getName && m.getType || m.name && m.type) {
           core.addDep(m);
         } else {
           m(core);
