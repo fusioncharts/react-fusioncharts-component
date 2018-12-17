@@ -263,8 +263,11 @@ function (_React$Component) {
           // animate the chart to show the changes
 
           this.chartObj.render();
+          return;
         }
-      } else if (!this.isSameChartData(currData, oldData)) {
+      }
+
+      if (!this.isSameChartData(currData, oldData)) {
         if (!_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isUndefined"](currData)) {
           this.chartObj.setChartData(currData, // When dataFormat is not given, but data is changed,
           // then use 'json' as default dataFormat
@@ -275,11 +278,35 @@ function (_React$Component) {
   }, {
     key: "isSameChartData",
     value: function isSameChartData(currData, oldData) {
-      if (_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isObject"](currData) && _utils_utils__WEBPACK_IMPORTED_MODULE_3__["isObject"](oldData)) {
-        return _utils_utils__WEBPACK_IMPORTED_MODULE_3__["isSameObjectContent"](currData, oldData);
-      }
+      /* TODO
+        1. Current has DataStore and Old doesn't
+        2. Old has and Current doesn't
+        3. Both has, check ref is equal, return false only if not equal
+        4. Clone oldData for diff
+        5. Clone currentData for diff
+        6. return string check.
+      */
+      // 1. Current has DataStore and Old doesn't
+      if (_utils_utils__WEBPACK_IMPORTED_MODULE_3__["checkIfDataTableExists"](currData) && !_utils_utils__WEBPACK_IMPORTED_MODULE_3__["checkIfDataTableExists"](oldData)) {
+        return false;
+      } // 2. Old has and Current doesn't
 
-      return currData === oldData;
+
+      if (!_utils_utils__WEBPACK_IMPORTED_MODULE_3__["checkIfDataTableExists"](currData) && _utils_utils__WEBPACK_IMPORTED_MODULE_3__["checkIfDataTableExists"](oldData)) {
+        return false;
+      } // 3. Both has, check ref is equal, return false only if not equal
+
+
+      if (_utils_utils__WEBPACK_IMPORTED_MODULE_3__["checkIfDataTableExists"](currData) && _utils_utils__WEBPACK_IMPORTED_MODULE_3__["checkIfDataTableExists"](oldData) && currData.data !== oldData.data) {
+        return false;
+      } // 4. Clone oldData for diff
+
+
+      var oldDataStringified = JSON.stringify(_utils_utils__WEBPACK_IMPORTED_MODULE_3__["cloneDataSource"](oldData, 'diff')); // 5. Clone currentData for diff
+
+      var currentDataStringified = JSON.stringify(_utils_utils__WEBPACK_IMPORTED_MODULE_3__["cloneDataSource"](currData, 'diff')); // 6. return string check.
+
+      return oldDataStringified === currentDataStringified;
     }
   }, {
     key: "checkAndUpdateEvents",
@@ -414,8 +441,10 @@ function (_React$Component) {
       }, {});
       Object.assign(inlineOptions, chartConfig);
 
-      if (_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isObject"](inlineOptions.dataSource)) {
+      if (_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isObject"](inlineOptions.dataSource) && !_utils_utils__WEBPACK_IMPORTED_MODULE_3__["checkIfDataTableExists"](inlineOptions.dataSource)) {
         inlineOptions.dataSource = _utils_utils__WEBPACK_IMPORTED_MODULE_3__["deepCopyOf"](inlineOptions.dataSource);
+      } else if (_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isObject"](inlineOptions.dataSource) && _utils_utils__WEBPACK_IMPORTED_MODULE_3__["checkIfDataTableExists"](inlineOptions.dataSource)) {
+        inlineOptions.dataSource = _utils_utils__WEBPACK_IMPORTED_MODULE_3__["cloneDataSource"](inlineOptions.dataSource, 'clone');
       }
 
       if (_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isObject"](inlineOptions.link)) {
@@ -571,8 +600,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isSameObjectContent", function() { return isSameObjectContent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isUndefined", function() { return isUndefined; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deepCopyOf", function() { return deepCopyOf; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkIfDataTableExists", function() { return checkIfDataTableExists; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cloneDataSource", function() { return cloneDataSource; });
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+/* eslint-disable guard-for-in */
 function isObject(value) {
   return value !== null && _typeof(value) === 'object';
 }
@@ -607,6 +639,64 @@ function isUndefined(value) {
 }
 function deepCopyOf(obj) {
   return JSON.parse(JSON.stringify(obj));
+}
+function checkIfDataTableExists(dataSource) {
+  // eslint-disable-next-line no-underscore-dangle
+  if (dataSource && dataSource.data && dataSource.data._dataStore) {
+    return true;
+  }
+
+  return false;
+}
+function cloneDataSource(obj) {
+  var purpose = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'clone';
+
+  var type = _typeof(obj);
+
+  if (type === 'string' || type === 'number' || type === 'function' || type === 'boolean') {
+    return obj;
+  }
+
+  if (obj === null || obj === undefined) {
+    return obj;
+  }
+
+  if (Array.isArray(obj)) {
+    var arr = [];
+
+    for (var i = 0; i < obj.length; i++) {
+      arr.push(this.cloneDataSource(obj[i]));
+    }
+
+    return arr;
+  }
+
+  if (_typeof(obj) === 'object') {
+    var clonedObj = {}; // eslint-disable-next-line guard-for-in
+    // eslint-disable-next-line no-restricted-syntax
+
+    for (var prop in obj) {
+      // Edge case handling for DataTable
+      if (prop === 'data') {
+        // eslint-disable-next-line no-underscore-dangle
+        if (obj[prop]._dataStore && purpose === 'clone') {
+          clonedObj[prop] = obj[prop]; // eslint-disable-next-line no-underscore-dangle
+        } else if (obj[prop]._dataStore && purpose === 'diff') {
+          clonedObj[prop] = '-';
+        } else {
+          clonedObj[prop] = this.cloneDataSource(obj[prop]);
+        }
+
+        continue;
+      }
+
+      clonedObj[prop] = this.cloneDataSource(obj[prop]);
+    }
+
+    return clonedObj;
+  }
+
+  return undefined;
 }
 
 /***/ }),
