@@ -137,7 +137,12 @@ class ReactFC extends React.Component {
   }
 
   isSameChartData(currData, oldData) {
-    if (utils.isObject(currData) && utils.isObject(oldData)) {
+    if (
+      utils.isObject(currData) &&
+      utils.isObject(oldData) &&
+      !utils.checkIfDataTableExists(currData) &&
+      !utils.checkIfDataTableExists(oldData)
+    ) {
       return utils.isSameObjectContent(currData, oldData);
     }
     return currData === oldData;
@@ -263,7 +268,10 @@ class ReactFC extends React.Component {
     }, {});
     Object.assign(inlineOptions, chartConfig);
 
-    if (utils.isObject(inlineOptions.dataSource)) {
+    if (
+      utils.isObject(inlineOptions.dataSource) &&
+      !utils.checkIfDataTableExists(inlineOptions.dataSource)
+    ) {
       inlineOptions.dataSource = utils.deepCopyOf(inlineOptions.dataSource);
     }
     if (utils.isObject(inlineOptions.link)) {
