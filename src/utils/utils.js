@@ -44,7 +44,7 @@ export function checkIfDataTableExists(dataSource) {
   return false;
 }
 
-export function cloneDataSource(obj) {
+export function cloneDataSource(obj, purpose = 'clone') {
   const type = typeof obj;
   if (
     type === 'string' ||
@@ -72,7 +72,10 @@ export function cloneDataSource(obj) {
       // Edge case handling for DataTable
       if (prop === 'data') {
         // eslint-disable-next-line no-underscore-dangle
-        if (obj[prop]._dataStore) {
+        if (obj[prop]._dataStore && purpose === 'clone') {
+          clonedObj[prop] = obj[prop];
+          // eslint-disable-next-line no-underscore-dangle
+        } else if (obj[prop]._dataStore && purpose === 'diff') {
           clonedObj[prop] = '-';
         } else {
           clonedObj[prop] = this.cloneDataSource(obj[prop]);
