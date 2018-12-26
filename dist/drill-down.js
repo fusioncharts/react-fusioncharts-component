@@ -1463,8 +1463,11 @@ function (_React$Component) {
           // animate the chart to show the changes
 
           this.chartObj.render();
+          return;
         }
-      } else if (!this.isSameChartData(currData, oldData)) {
+      }
+
+      if (!this.isSameChartData(currData, oldData)) {
         if (!utils.isUndefined(currData)) {
           this.chartObj.setChartData(currData, // When dataFormat is not given, but data is changed,
           // then use 'json' as default dataFormat
@@ -1475,11 +1478,35 @@ function (_React$Component) {
   }, {
     key: "isSameChartData",
     value: function isSameChartData(currData, oldData) {
-      if (utils.isObject(currData) && utils.isObject(oldData)) {
-        return utils.isSameObjectContent(currData, oldData);
-      }
+      /* TODO
+        1. Current has DataStore and Old doesn't
+        2. Old has and Current doesn't
+        3. Both has, check ref is equal, return false only if not equal
+        4. Clone oldData for diff
+        5. Clone currentData for diff
+        6. return string check.
+      */
+      // 1. Current has DataStore and Old doesn't
+      if (utils.checkIfDataTableExists(currData) && !utils.checkIfDataTableExists(oldData)) {
+        return false;
+      } // 2. Old has and Current doesn't
 
-      return currData === oldData;
+
+      if (!utils.checkIfDataTableExists(currData) && utils.checkIfDataTableExists(oldData)) {
+        return false;
+      } // 3. Both has, check ref is equal, return false only if not equal
+
+
+      if (utils.checkIfDataTableExists(currData) && utils.checkIfDataTableExists(oldData) && currData.data !== oldData.data) {
+        return false;
+      } // 4. Clone oldData for diff
+
+
+      var oldDataStringified = JSON.stringify(utils.cloneDataSource(oldData, 'diff')); // 5. Clone currentData for diff
+
+      var currentDataStringified = JSON.stringify(utils.cloneDataSource(currData, 'diff')); // 6. return string check.
+
+      return oldDataStringified === currentDataStringified;
     }
   }, {
     key: "checkAndUpdateEvents",
@@ -1616,8 +1643,10 @@ function (_React$Component) {
 
       Object.assign(inlineOptions, chartConfig);
 
-      if (utils.isObject(inlineOptions.dataSource)) {
+      if (utils.isObject(inlineOptions.dataSource) && !utils.checkIfDataTableExists(inlineOptions.dataSource)) {
         inlineOptions.dataSource = utils.deepCopyOf(inlineOptions.dataSource);
+      } else if (utils.isObject(inlineOptions.dataSource) && utils.checkIfDataTableExists(inlineOptions.dataSource)) {
+        inlineOptions.dataSource = utils.cloneDataSource(inlineOptions.dataSource, 'clone');
       }
 
       if (utils.isObject(inlineOptions.link)) {
@@ -1774,6 +1803,8 @@ exports.isCallable = isCallable;
 exports.isSameObjectContent = isSameObjectContent;
 exports.isUndefined = isUndefined;
 exports.deepCopyOf = deepCopyOf;
+exports.checkIfDataTableExists = checkIfDataTableExists;
+exports.cloneDataSource = cloneDataSource;
 
 function _typeof(obj) {
   if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
@@ -1788,6 +1819,8 @@ function _typeof(obj) {
 
   return _typeof(obj);
 }
+/* eslint-disable guard-for-in */
+
 
 function isObject(value) {
   return value !== null && _typeof(value) === 'object';
@@ -1827,6 +1860,66 @@ function isUndefined(value) {
 
 function deepCopyOf(obj) {
   return JSON.parse(JSON.stringify(obj));
+}
+
+function checkIfDataTableExists(dataSource) {
+  // eslint-disable-next-line no-underscore-dangle
+  if (dataSource && dataSource.data && dataSource.data._dataStore) {
+    return true;
+  }
+
+  return false;
+}
+
+function cloneDataSource(obj) {
+  var purpose = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'clone';
+
+  var type = _typeof(obj);
+
+  if (type === 'string' || type === 'number' || type === 'function' || type === 'boolean') {
+    return obj;
+  }
+
+  if (obj === null || obj === undefined) {
+    return obj;
+  }
+
+  if (Array.isArray(obj)) {
+    var arr = [];
+
+    for (var i = 0; i < obj.length; i++) {
+      arr.push(this.cloneDataSource(obj[i]));
+    }
+
+    return arr;
+  }
+
+  if (_typeof(obj) === 'object') {
+    var clonedObj = {}; // eslint-disable-next-line guard-for-in
+    // eslint-disable-next-line no-restricted-syntax
+
+    for (var prop in obj) {
+      // Edge case handling for DataTable
+      if (prop === 'data') {
+        // eslint-disable-next-line no-underscore-dangle
+        if (obj[prop]._dataStore && purpose === 'clone') {
+          clonedObj[prop] = obj[prop]; // eslint-disable-next-line no-underscore-dangle
+        } else if (obj[prop]._dataStore && purpose === 'diff') {
+          clonedObj[prop] = '-';
+        } else {
+          clonedObj[prop] = this.cloneDataSource(obj[prop]);
+        }
+
+        continue;
+      }
+
+      clonedObj[prop] = this.cloneDataSource(obj[prop]);
+    }
+
+    return clonedObj;
+  }
+
+  return undefined;
 }
 
 /***/ }),

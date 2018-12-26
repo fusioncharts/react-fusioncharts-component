@@ -110,7 +110,6 @@ class ReactFC extends React.Component {
     const currData = currentOptions.dataSource;
     const oldDataFormat = oldOptions.dataFormat;
     const oldData = oldOptions.dataSource;
-
     if (
       String(currDataFormat).toLowerCase() !==
       String(oldDataFormat).toLowerCase()
@@ -123,8 +122,10 @@ class ReactFC extends React.Component {
         // If the chart dataFormat is changed then
         // animate the chart to show the changes
         this.chartObj.render();
+        return;
       }
-    } else if (!this.isSameChartData(currData, oldData)) {
+    }
+    if (!this.isSameChartData(currData, oldData)) {
       if (!utils.isUndefined(currData)) {
         this.chartObj.setChartData(
           currData,
@@ -137,10 +138,46 @@ class ReactFC extends React.Component {
   }
 
   isSameChartData(currData, oldData) {
-    if (utils.isObject(currData) && utils.isObject(oldData)) {
-      return utils.isSameObjectContent(currData, oldData);
+    /* TODO
+      1. Current has DataStore and Old doesn't
+      2. Old has and Current doesn't
+      3. Both has, check ref is equal, return false only if not equal
+      4. Clone oldData for diff
+      5. Clone currentData for diff
+      6. return string check.
+    */
+    // 1. Current has DataStore and Old doesn't
+    if (
+      utils.checkIfDataTableExists(currData) &&
+      !utils.checkIfDataTableExists(oldData)
+    ) {
+      return false;
     }
-    return currData === oldData;
+    // 2. Old has and Current doesn't
+    if (
+      !utils.checkIfDataTableExists(currData) &&
+      utils.checkIfDataTableExists(oldData)
+    ) {
+      return false;
+    }
+    // 3. Both has, check ref is equal, return false only if not equal
+    if (
+      utils.checkIfDataTableExists(currData) &&
+      utils.checkIfDataTableExists(oldData) &&
+      currData.data !== oldData.data
+    ) {
+      return false;
+    }
+    // 4. Clone oldData for diff
+    const oldDataStringified = JSON.stringify(
+      utils.cloneDataSource(oldData, 'diff')
+    );
+    // 5. Clone currentData for diff
+    const currentDataStringified = JSON.stringify(
+      utils.cloneDataSource(currData, 'diff')
+    );
+    // 6. return string check.
+    return oldDataStringified === currentDataStringified;
   }
 
   checkAndUpdateEvents(currentOptions, oldOptions) {
@@ -263,8 +300,19 @@ class ReactFC extends React.Component {
     }, {});
     Object.assign(inlineOptions, chartConfig);
 
-    if (utils.isObject(inlineOptions.dataSource)) {
+    if (
+      utils.isObject(inlineOptions.dataSource) &&
+      !utils.checkIfDataTableExists(inlineOptions.dataSource)
+    ) {
       inlineOptions.dataSource = utils.deepCopyOf(inlineOptions.dataSource);
+    } else if (
+      utils.isObject(inlineOptions.dataSource) &&
+      utils.checkIfDataTableExists(inlineOptions.dataSource)
+    ) {
+      inlineOptions.dataSource = utils.cloneDataSource(
+        inlineOptions.dataSource,
+        'clone'
+      );
     }
     if (utils.isObject(inlineOptions.link)) {
       inlineOptions.link = utils.deepCopyOf(inlineOptions.link);
