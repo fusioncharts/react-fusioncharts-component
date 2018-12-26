@@ -24,6 +24,7 @@ A simple and lightweight official React component for FusionCharts JavaScript ch
 - [Custom Components](#custom-components)
   - [Drill Down](#drill-down-component)
 - [Going Beyond Charts](#going-beyond-charts)
+- [Usage and Integration of FusionTime](#usage-and-integration-of-fusionTime)
 - [For Contributors](#for-contributors)
 - [Licensing](#licensing)
 
@@ -76,7 +77,7 @@ ReactFC.fcRoot(FusionCharts);
 
 Here is a basic sample that shows how to create a chart using `react-fusioncharts`:
 
-```
+```javascript
 import React from 'react;
 import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';
@@ -261,6 +262,92 @@ class Chart extends Component {
 }
 
 ReactDOM.render(<Chart />, document.getElementById('root'));
+```
+
+## Usage and integration of FusionTime
+
+From `fusioncharts@3.13.3-sr.1` and `react-fusioncharts@3.0.0`, You can visualize timeseries data easily on react.
+
+Learn more about FusionTime [here](https://www.fusioncharts.com/fusiontime).
+
+### Consider the example below for integration of FusionTime
+
+```javascript
+import React from 'react';
+import FusionCharts from 'fusioncharts';
+import TimeSeries from 'fusioncharts/fusioncharts.timeseries';
+import ReactFC from '../lib/ReactFC';
+
+ReactFC.fcRoot(FusionCharts, TimeSeries);
+
+const jsonify = res => res.json();
+const dataFetch = fetch(
+  'https://raw.githubusercontent.com/fusioncharts/dev_centre_docs/fusiontime-beta-release/charts-resources/fusiontime/online-sales-single-series/data.json'
+).then(jsonify);
+const schemaFetch = fetch(
+  'https://raw.githubusercontent.com/fusioncharts/dev_centre_docs/fusiontime-beta-release/charts-resources/fusiontime/online-sales-single-series/schema.json'
+).then(jsonify);
+
+class ChartViewer extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      timeseriesDs: {
+        type: 'timeseries',
+        renderAt: 'container',
+        width: '600',
+        height: '400',
+        dataSource: {
+          caption: { text: 'Online Sales of a SuperStore in the US' },
+          data: null,
+          yAxis: [
+            {
+              plot: [
+                {
+                  value: 'Sales ($)'
+                }
+              ]
+            }
+          ]
+        }
+      }
+    };
+    this.onFetchData = this.onFetchData.bind(this);
+  }
+
+  componentDidMount() {
+    this.onFetchData();
+  }
+
+  onFetchData() {
+    Promise.all([dataFetch, schemaFetch]).then(res => {
+      const data = res[0];
+      const schema = res[1];
+      const fusionTable = new FusionCharts.DataStore().createDataTable(
+        data,
+        schema
+      );
+      const timeseriesDs = Object.assign({}, this.state.timeseriesDs);
+      timeseriesDs.dataSource.data = fusionTable;
+      this.setState({
+        timeseriesDs
+      });
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        {this.state.timeseriesDs.dataSource.data ? (
+          <ReactFC {...this.state.timeseriesDs} />
+        ) : (
+          'loading'
+        )}
+      </div>
+    );
+  }
+}
 ```
 
 ## Drill Down Component

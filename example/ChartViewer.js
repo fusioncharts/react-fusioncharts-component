@@ -5,9 +5,10 @@ import TimeSeries from 'fusioncharts/fusioncharts.timeseries';
 import OceanTheme from 'fusioncharts/themes/fusioncharts.theme.ocean';
 import ReactFC from '../lib/ReactFC';
 
-Charts(FusionCharts);
-TimeSeries(FusionCharts);
-OceanTheme(FusionCharts);
+// Charts(FusionCharts);
+// TimeSeries(FusionCharts);
+// OceanTheme(FusionCharts);
+ReactFC.fcRoot(FusionCharts, Charts, TimeSeries);
 
 const myDataSource = {
   chart: {
@@ -77,6 +78,7 @@ class ChartViewer extends React.Component {
     this.onChangeSize = this.onChangeSize.bind(this);
     this.onFetchData = this.onFetchData.bind(this);
     this.onChangeCaption = this.onChangeCaption.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
@@ -88,7 +90,7 @@ class ChartViewer extends React.Component {
     timeseriesDs.height = 600;
     timeseriesDs.width = 600;
     this.setState({ timeseriesDs }, () => {
-      // console.log(this.state.timeseriesDs);
+      console.log(this.state.timeseriesDs);
     });
   }
 
@@ -96,28 +98,15 @@ class ChartViewer extends React.Component {
     Promise.all([dataFetch, schemaFetch]).then(res => {
       const data = res[0];
       const schema = res[1];
-
-      // console.log(data);
-      // console.log(schema);
       const fusionTable = new FusionCharts.DataStore().createDataTable(
         data,
         schema
       );
-
-      this.setState(
-        {
-          timeseriesDs: {
-            ...this.state.timeseriesDs,
-            dataSource: {
-              ...this.state.timeseriesDs.dataSource,
-              data: fusionTable
-            }
-          }
-        },
-        () => {
-          // console.log(this.state.timeseriesDs);
-        }
-      );
+      const timeseriesDs = Object.assign({}, this.state.timeseriesDs);
+      timeseriesDs.dataSource.data = fusionTable;
+      this.setState({
+        timeseriesDs
+      });
     });
   }
 
@@ -130,9 +119,14 @@ class ChartViewer extends React.Component {
         timeseriesDs
       },
       () => {
-        // console.log(this.state.timeseriesDs);
+        // this.onChangeSize();
       }
     );
+  }
+
+  onChange() {
+    this.onChangeCaption();
+    this.onChangeSize();
   }
 
   render() {
@@ -147,6 +141,7 @@ class ChartViewer extends React.Component {
         <div>
           <button onClick={this.onChangeSize}>Change Size</button>
           <button onClick={this.onChangeCaption}>Change Caption</button>
+          <button onClick={this.onChange}>Change Both</button>
         </div>
       </div>
     );
