@@ -78,7 +78,7 @@ ReactFC.fcRoot(FusionCharts);
 Here is a basic sample that shows how to create a chart using `react-fusioncharts`:
 
 ```javascript
-import React from 'react;
+import React from 'react';
 import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
