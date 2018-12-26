@@ -78,7 +78,6 @@ class ChartViewer extends React.Component {
     this.onChangeSize = this.onChangeSize.bind(this);
     this.onFetchData = this.onFetchData.bind(this);
     this.onChangeCaption = this.onChangeCaption.bind(this);
-    this.onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
@@ -124,11 +123,6 @@ class ChartViewer extends React.Component {
     );
   }
 
-  onChange() {
-    this.onChangeCaption();
-    this.onChangeSize();
-  }
-
   render() {
     return (
       <div>
@@ -141,7 +135,6 @@ class ChartViewer extends React.Component {
         <div>
           <button onClick={this.onChangeSize}>Change Size</button>
           <button onClick={this.onChangeCaption}>Change Caption</button>
-          <button onClick={this.onChange}>Change Both</button>
         </div>
       </div>
     );
