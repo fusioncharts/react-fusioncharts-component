@@ -1,6 +1,6 @@
 {
   "name": "react-fusioncharts",
-  "version": "2.0.7",
+  "version": "3.0.0",
   "description": "Simple and Lightweight React component for FusionCharts JavaScript Charting Library",
   "main": "lib/ReactFC.js",
   "author": {
@@ -18,6 +18,16 @@
       "name": "Subrata Mal",
       "email": "subrata@fusioncharts.com",
       "url": "https://github.com/subratamal"
+    },
+    {
+      "name": "Ashok Mandal",
+      "email": "askipop@gmail.com",
+      "url": "https://github.com/ashok1994"
+    },
+    {
+      "name": "Rohan Dey",
+      "email": "rohanoid5@gmail.com",
+      "url": "https://github.com/rohanoid5"
     }
   ],
   "homepage": "https://github.com/fusioncharts/react-fusioncharts-component",
@@ -45,7 +55,7 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "fusioncharts": "^3.13.1-sr.2",
+    "fusioncharts": "^3.13.3",
     "jest": "^22.4.2",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
