@@ -291,7 +291,7 @@ const schemaFetch = fetch(
 class ChartViewer extends React.Component {
   constructor(props) {
     super(props);
-
+    this.onFetchData = this.onFetchData.bind(this);
     this.state = {
       timeseriesDs: {
         type: 'timeseries',
@@ -313,7 +313,6 @@ class ChartViewer extends React.Component {
         }
       }
     };
-    this.onFetchData = this.onFetchData.bind(this);
   }
 
   componentDidMount() {
@@ -349,6 +348,11 @@ class ChartViewer extends React.Component {
   }
 }
 ```
+
+Useful links for FusionTime
+
+- [How FusionTime works](https://www.fusioncharts.com/dev/fusiontime/getting-started/how-fusion-time-works)
+- [Create your first chart](https://www.fusioncharts.com/dev/fusiontime/getting-started/create-your-first-chart-in-fusiontime)
 
 ## Drill Down Component
 
