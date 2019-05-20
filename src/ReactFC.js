@@ -1,5 +1,5 @@
 import React from 'react';
-import FusionCharts from 'fusioncharts';
+// import FusionCharts from 'fusioncharts/core';
 import uuid from 'uuid/v4';
 import * as utils from './utils/utils';
 import fusionChartsOptions from './utils/options';
@@ -21,8 +21,7 @@ class ReactFC extends React.Component {
 
     this.containerId = uuid();
     this.oldOptions = null;
-    this.FusionCharts =
-      props.fcLibrary || ReactFC.fusionChartsCore || FusionCharts;
+    this.FusionCharts = props.fcLibrary || ReactFC.fusionChartsCore;
   }
 
   componentDidMount() {
