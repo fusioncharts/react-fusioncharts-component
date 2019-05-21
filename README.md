@@ -62,16 +62,35 @@ For general instructions, refer to this [developer docs page](https://www.fusion
 
 ### Usage
 
+#### If you have created your app using `create-react-app`
+
 Import React, `react-fusioncharts` and FusionCharts in your app:
 
 ```
 import React from 'react';
 import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';
+import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
 
-ReactFC.fcRoot(FusionCharts);
+ReactFC.fcRoot(FusionCharts, Charts);
 ```
+
+#### If you have created your app using tools like `webpack` or `parcel`
+
+Import React, `react-fusioncharts` and FusionCharts in your app:
+
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+import FusionCharts from 'fusioncharts/core';
+import Column2d from 'fusioncharts/viz/column2d';
+import ReactFC from 'react-fusioncharts';
+
+ReactFC.fcRoot(FusionCharts, Column2d);
+```
+
+Note: This way of import will not work in IE11 and below.
 
 ## Quick Start
 
@@ -276,7 +295,7 @@ Learn more about FusionTime [here](https://www.fusioncharts.com/fusiontime).
 import React from 'react';
 import FusionCharts from 'fusioncharts';
 import TimeSeries from 'fusioncharts/fusioncharts.timeseries';
-import ReactFC from '../lib/ReactFC';
+import ReactFC from 'react-fusioncharts';
 
 ReactFC.fcRoot(FusionCharts, TimeSeries);
 

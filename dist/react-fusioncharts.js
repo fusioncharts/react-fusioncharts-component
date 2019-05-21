@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"), require("fusioncharts"));
+		module.exports = factory(require("react"));
 	else if(typeof define === 'function' && define.amd)
-		define("ReactFC", ["react", "fusioncharts"], factory);
+		define("ReactFC", ["react"], factory);
 	else if(typeof exports === 'object')
-		exports["ReactFC"] = factory(require("react"), require("fusioncharts"));
+		exports["ReactFC"] = factory(require("react"));
 	else
-		root["ReactFC"] = factory(root["React"], root["FusionCharts"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__) {
+		root["ReactFC"] = factory(root["React"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__2__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -102,7 +102,7 @@ return /******/ (function(modules) { // webpackBootstrap
 // Use this format to export ReactFC as default module
 // Ref: https://gist.github.com/iamakulov/966b91c0fc6363a16ff0650b51fb991b
 // export default ReactFC;
-module.exports = __webpack_require__(1).default;
+module.exports = __webpack_require__(1)["default"];
 
 /***/ }),
 /* 1 */
@@ -112,12 +112,10 @@ module.exports = __webpack_require__(1).default;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var fusioncharts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
-/* harmony import */ var fusioncharts__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(fusioncharts__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var uuid_v4__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4);
-/* harmony import */ var uuid_v4__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(uuid_v4__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
-/* harmony import */ var _utils_options__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8);
+/* harmony import */ var uuid_v4__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
+/* harmony import */ var uuid_v4__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(uuid_v4__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6);
+/* harmony import */ var _utils_options__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -136,7 +134,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-
+ // import FusionCharts from 'fusioncharts/core';
 
 
 
@@ -171,9 +169,9 @@ function (_React$Component) {
     _classCallCheck(this, ReactFC);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ReactFC).call(this, props));
-    _this.containerId = uuid_v4__WEBPACK_IMPORTED_MODULE_2___default()();
+    _this.containerId = uuid_v4__WEBPACK_IMPORTED_MODULE_1___default()();
     _this.oldOptions = null;
-    _this.FusionCharts = props.fcLibrary || ReactFC.fusionChartsCore || fusioncharts__WEBPACK_IMPORTED_MODULE_1___default.a;
+    _this.FusionCharts = props.fcLibrary || ReactFC.fusionChartsCore;
     return _this;
   }
 
@@ -206,7 +204,7 @@ function (_React$Component) {
       this.checkAndUpdateChartType(currentOptions, oldOptions);
       this.checkAndUpdateChartData(currentOptions, oldOptions);
       this.checkAndUpdateEvents(currentOptions, oldOptions);
-      this.checkAndUpdateRestOptions(_utils_options__WEBPACK_IMPORTED_MODULE_4__["default"].filter(function (option) {
+      this.checkAndUpdateRestOptions(_utils_options__WEBPACK_IMPORTED_MODULE_3__["default"].filter(function (option) {
         return optionsUpdatedNatively.indexOf(option) === -1;
       }), currentOptions, oldOptions);
       this.oldOptions = currentOptions;
@@ -220,16 +218,16 @@ function (_React$Component) {
       var oldHeight = oldOptions.height;
 
       if (String(currWidth) !== String(oldWidth) || String(currHeight) !== String(oldHeight)) {
-        if (!_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isUndefined"](currWidth) && !_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isUndefined"](currHeight)) {
+        if (!_utils_utils__WEBPACK_IMPORTED_MODULE_2__["isUndefined"](currWidth) && !_utils_utils__WEBPACK_IMPORTED_MODULE_2__["isUndefined"](currHeight)) {
           this.chartObj.resizeTo(currWidth, currHeight);
         } else {
-          if (!_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isUndefined"](currWidth)) {
+          if (!_utils_utils__WEBPACK_IMPORTED_MODULE_2__["isUndefined"](currWidth)) {
             this.chartObj.resizeTo({
               w: currWidth
             });
           }
 
-          if (!_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isUndefined"](currHeight)) {
+          if (!_utils_utils__WEBPACK_IMPORTED_MODULE_2__["isUndefined"](currHeight)) {
             this.chartObj.resizeTo({
               h: currHeight
             });
@@ -244,7 +242,7 @@ function (_React$Component) {
       var oldType = oldOptions.type;
 
       if (String(currType).toLowerCase() !== String(oldType).toLowerCase()) {
-        if (!_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isUndefined"](currType)) {
+        if (!_utils_utils__WEBPACK_IMPORTED_MODULE_2__["isUndefined"](currType)) {
           this.chartObj.chartType(String(currType).toLowerCase());
         }
       }
@@ -258,7 +256,7 @@ function (_React$Component) {
       var oldData = oldOptions.dataSource;
 
       if (String(currDataFormat).toLowerCase() !== String(oldDataFormat).toLowerCase()) {
-        if (!_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isUndefined"](currDataFormat) && !_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isUndefined"](currData)) {
+        if (!_utils_utils__WEBPACK_IMPORTED_MODULE_2__["isUndefined"](currDataFormat) && !_utils_utils__WEBPACK_IMPORTED_MODULE_2__["isUndefined"](currData)) {
           this.chartObj.setChartData(currData, String(currDataFormat).toLowerCase()); // If the chart dataFormat is changed then
           // animate the chart to show the changes
 
@@ -268,7 +266,7 @@ function (_React$Component) {
       }
 
       if (!this.isSameChartData(currData, oldData)) {
-        if (!_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isUndefined"](currData)) {
+        if (!_utils_utils__WEBPACK_IMPORTED_MODULE_2__["isUndefined"](currData)) {
           this.chartObj.setChartData(currData, // When dataFormat is not given, but data is changed,
           // then use 'json' as default dataFormat
           currDataFormat ? String(currDataFormat).toLowerCase() : 'json');
@@ -287,24 +285,24 @@ function (_React$Component) {
         6. return string check.
       */
       // 1. Current has DataStore and Old doesn't
-      if (_utils_utils__WEBPACK_IMPORTED_MODULE_3__["checkIfDataTableExists"](currData) && !_utils_utils__WEBPACK_IMPORTED_MODULE_3__["checkIfDataTableExists"](oldData)) {
+      if (_utils_utils__WEBPACK_IMPORTED_MODULE_2__["checkIfDataTableExists"](currData) && !_utils_utils__WEBPACK_IMPORTED_MODULE_2__["checkIfDataTableExists"](oldData)) {
         return false;
       } // 2. Old has and Current doesn't
 
 
-      if (!_utils_utils__WEBPACK_IMPORTED_MODULE_3__["checkIfDataTableExists"](currData) && _utils_utils__WEBPACK_IMPORTED_MODULE_3__["checkIfDataTableExists"](oldData)) {
+      if (!_utils_utils__WEBPACK_IMPORTED_MODULE_2__["checkIfDataTableExists"](currData) && _utils_utils__WEBPACK_IMPORTED_MODULE_2__["checkIfDataTableExists"](oldData)) {
         return false;
       } // 3. Both has, check ref is equal, return false only if not equal
 
 
-      if (_utils_utils__WEBPACK_IMPORTED_MODULE_3__["checkIfDataTableExists"](currData) && _utils_utils__WEBPACK_IMPORTED_MODULE_3__["checkIfDataTableExists"](oldData) && currData.data !== oldData.data) {
+      if (_utils_utils__WEBPACK_IMPORTED_MODULE_2__["checkIfDataTableExists"](currData) && _utils_utils__WEBPACK_IMPORTED_MODULE_2__["checkIfDataTableExists"](oldData) && currData.data !== oldData.data) {
         return false;
       } // 4. Clone oldData for diff
 
 
-      var oldDataStringified = JSON.stringify(_utils_utils__WEBPACK_IMPORTED_MODULE_3__["cloneDataSource"](oldData, 'diff')); // 5. Clone currentData for diff
+      var oldDataStringified = JSON.stringify(_utils_utils__WEBPACK_IMPORTED_MODULE_2__["cloneDataSource"](oldData, 'diff')); // 5. Clone currentData for diff
 
-      var currentDataStringified = JSON.stringify(_utils_utils__WEBPACK_IMPORTED_MODULE_3__["cloneDataSource"](currData, 'diff')); // 6. return string check.
+      var currentDataStringified = JSON.stringify(_utils_utils__WEBPACK_IMPORTED_MODULE_2__["cloneDataSource"](currData, 'diff')); // 6. return string check.
 
       return oldDataStringified === currentDataStringified;
     }
@@ -319,9 +317,9 @@ function (_React$Component) {
       var temp2;
 
       if (this.detectChartEventsChange(currEvents, oldEvents)) {
-        if (!_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isUndefined"](currEvents)) {
+        if (!_utils_utils__WEBPACK_IMPORTED_MODULE_2__["isUndefined"](currEvents)) {
           temp1 = Object.assign({}, currEvents);
-          temp2 = _utils_utils__WEBPACK_IMPORTED_MODULE_3__["isUndefined"](oldEvents) ? {} : Object.assign({}, oldEvents);
+          temp2 = _utils_utils__WEBPACK_IMPORTED_MODULE_2__["isUndefined"](oldEvents) ? {} : Object.assign({}, oldEvents);
           Object.keys(temp2).forEach(function (eventName) {
             if (temp2[eventName] === temp1[eventName]) {
               temp1[eventName] = undefined;
@@ -340,7 +338,7 @@ function (_React$Component) {
   }, {
     key: "detectChartEventsChange",
     value: function detectChartEventsChange(currEvents, oldEvents) {
-      if (_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isObject"](currEvents) && _utils_utils__WEBPACK_IMPORTED_MODULE_3__["isObject"](oldEvents)) {
+      if (_utils_utils__WEBPACK_IMPORTED_MODULE_2__["isObject"](currEvents) && _utils_utils__WEBPACK_IMPORTED_MODULE_2__["isObject"](oldEvents)) {
         return !this.isSameChartEvents(currEvents, oldEvents);
       }
 
@@ -376,7 +374,7 @@ function (_React$Component) {
         var oldValue = oldOptions[optionName];
 
         if (!_this3.isSameOptionValue(currValue, oldValue)) {
-          if (!_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isUndefined"](currValue)) {
+          if (!_utils_utils__WEBPACK_IMPORTED_MODULE_2__["isUndefined"](currValue)) {
             if (_this3.chartObj.options && _this3.chartObj.options.hasOwnProperty(optionName)) {
               _this3.chartObj.options[optionName] = currValue;
               optionsUpdated = true;
@@ -392,8 +390,8 @@ function (_React$Component) {
   }, {
     key: "isSameOptionValue",
     value: function isSameOptionValue(currValue, oldValue) {
-      if (_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isObject"](currValue) && _utils_utils__WEBPACK_IMPORTED_MODULE_3__["isObject"](oldValue)) {
-        return _utils_utils__WEBPACK_IMPORTED_MODULE_3__["isSameObjectContent"](currValue, oldValue);
+      if (_utils_utils__WEBPACK_IMPORTED_MODULE_2__["isObject"](currValue) && _utils_utils__WEBPACK_IMPORTED_MODULE_2__["isObject"](oldValue)) {
+        return _utils_utils__WEBPACK_IMPORTED_MODULE_2__["isSameObjectContent"](currValue, oldValue);
       }
 
       return String(currValue) === String(oldValue);
@@ -435,23 +433,23 @@ function (_React$Component) {
     key: "resolveChartOptions",
     value: function resolveChartOptions(props) {
       var chartConfig = props.chartConfig ? props.chartConfig : {};
-      var inlineOptions = _utils_options__WEBPACK_IMPORTED_MODULE_4__["default"].reduce(function (options, optionName) {
+      var inlineOptions = _utils_options__WEBPACK_IMPORTED_MODULE_3__["default"].reduce(function (options, optionName) {
         options[optionName] = props[optionName];
         return options;
       }, {});
       Object.assign(inlineOptions, chartConfig);
 
-      if (_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isObject"](inlineOptions.dataSource) && !_utils_utils__WEBPACK_IMPORTED_MODULE_3__["checkIfDataTableExists"](inlineOptions.dataSource)) {
-        inlineOptions.dataSource = _utils_utils__WEBPACK_IMPORTED_MODULE_3__["deepCopyOf"](inlineOptions.dataSource);
-      } else if (_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isObject"](inlineOptions.dataSource) && _utils_utils__WEBPACK_IMPORTED_MODULE_3__["checkIfDataTableExists"](inlineOptions.dataSource)) {
-        inlineOptions.dataSource = _utils_utils__WEBPACK_IMPORTED_MODULE_3__["cloneDataSource"](inlineOptions.dataSource, 'clone');
+      if (_utils_utils__WEBPACK_IMPORTED_MODULE_2__["isObject"](inlineOptions.dataSource) && !_utils_utils__WEBPACK_IMPORTED_MODULE_2__["checkIfDataTableExists"](inlineOptions.dataSource)) {
+        inlineOptions.dataSource = _utils_utils__WEBPACK_IMPORTED_MODULE_2__["deepCopyOf"](inlineOptions.dataSource);
+      } else if (_utils_utils__WEBPACK_IMPORTED_MODULE_2__["isObject"](inlineOptions.dataSource) && _utils_utils__WEBPACK_IMPORTED_MODULE_2__["checkIfDataTableExists"](inlineOptions.dataSource)) {
+        inlineOptions.dataSource = _utils_utils__WEBPACK_IMPORTED_MODULE_2__["cloneDataSource"](inlineOptions.dataSource, 'clone');
       }
 
-      if (_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isObject"](inlineOptions.link)) {
-        inlineOptions.link = _utils_utils__WEBPACK_IMPORTED_MODULE_3__["deepCopyOf"](inlineOptions.link);
+      if (_utils_utils__WEBPACK_IMPORTED_MODULE_2__["isObject"](inlineOptions.link)) {
+        inlineOptions.link = _utils_utils__WEBPACK_IMPORTED_MODULE_2__["deepCopyOf"](inlineOptions.link);
       }
 
-      if (_utils_utils__WEBPACK_IMPORTED_MODULE_3__["isObject"](inlineOptions.events)) {
+      if (_utils_utils__WEBPACK_IMPORTED_MODULE_2__["isObject"](inlineOptions.events)) {
         inlineOptions.events = Object.assign({}, inlineOptions.events);
       }
 
@@ -480,16 +478,10 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
-
-/***/ }),
-/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var rng = __webpack_require__(5);
-var bytesToUuid = __webpack_require__(6);
+var rng = __webpack_require__(4);
+var bytesToUuid = __webpack_require__(5);
 
 function v4(options, buf, offset) {
   var i = buf && offset || 0;
@@ -520,7 +512,7 @@ module.exports = v4;
 
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports) {
 
 // Unique ID creation requires a high quality random # generator.  In the
@@ -560,7 +552,7 @@ if (getRandomValues) {
 
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports) {
 
 /**
@@ -590,7 +582,7 @@ module.exports = bytesToUuid;
 
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -700,7 +692,7 @@ function cloneDataSource(obj) {
 }
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -11,7 +11,7 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _ReactFC = _interopRequireDefault(require("../lib/ReactFC"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -33,6 +33,8 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
@@ -40,8 +42,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 var DrillDown =
 /*#__PURE__*/
@@ -56,7 +56,7 @@ function (_React$Component) {
         modules[_key - 1] = arguments[_key];
       }
 
-      _ReactFC.default.fcRoot.apply(_ReactFC.default, [core].concat(modules));
+      _ReactFC["default"].fcRoot.apply(_ReactFC["default"], [core].concat(modules));
     }
   }]);
 
@@ -85,10 +85,10 @@ function (_React$Component) {
     };
     /* Function Bindings */
 
-    _this.plotClicked = _this.plotClicked.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.onChildRendered = _this.onChildRendered.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.toggleParentBtnVisibility = _this.toggleParentBtnVisibility.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.onBtnClick = _this.onBtnClick.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.plotClicked = _this.plotClicked.bind(_assertThisInitialized(_this));
+    _this.onChildRendered = _this.onChildRendered.bind(_assertThisInitialized(_this));
+    _this.toggleParentBtnVisibility = _this.toggleParentBtnVisibility.bind(_assertThisInitialized(_this));
+    _this.onBtnClick = _this.onBtnClick.bind(_assertThisInitialized(_this));
     /* Default styles */
 
     _this.wrapperStyle = {
@@ -174,7 +174,7 @@ function (_React$Component) {
   }, {
     key: "cloneReactFCChild",
     value: function cloneReactFCChild(reactFCElem, customProps) {
-      return _react.default.cloneElement(reactFCElem, customProps);
+      return _react["default"].cloneElement(reactFCElem, customProps);
     }
   }, {
     key: "onChildRendered",
@@ -220,14 +220,14 @@ function (_React$Component) {
       };
 
       if (!this.state.isDrilledDown) {
-        component = _react.default.createElement(_ReactFC.default, _extends({}, this.props, {
+        component = _react["default"].createElement(_ReactFC["default"], _extends({}, this.props, {
           "fcEvent-dataplotClick": this.plotClicked
         }));
       } else {
         var propChildren = Array.isArray(children) ? children : [children];
-        component = _react.default.createElement("div", {
+        component = _react["default"].createElement("div", {
           style: this.wrapperStyle
-        }, this.cloneReactFCChild(propChildren[selectedChild], clonedElemConfig), isBtnVisible ? _react.default.createElement("button", {
+        }, this.cloneReactFCChild(propChildren[selectedChild], clonedElemConfig), isBtnVisible ? _react["default"].createElement("button", {
           style: this.finBtnStyle,
           onClick: this.onBtnClick
         }, this.finalBtnConfig.text) : null);
@@ -238,7 +238,7 @@ function (_React$Component) {
   }]);
 
   return DrillDown;
-}(_react.default.Component);
+}(_react["default"].Component);
 
 DrillDown.defaultProps = {
   plotChildMap: [],
@@ -262,28 +262,28 @@ DrillDown.defaultProps = {
   width: ''
 };
 DrillDown.propTypes = {
-  plotChildMap: _propTypes.default.oneOfType([_propTypes.default.arrayOf(_propTypes.default.shape({
-    plotPosition: _propTypes.default.number,
-    childPosition: _propTypes.default.number
-  })), _propTypes.default.arrayOf(_propTypes.default.number)]),
-  btnConfig: _propTypes.default.shape({
-    text: _propTypes.default.string,
-    color: _propTypes.default.string,
-    backgroundColor: _propTypes.default.string,
-    borderColor: _propTypes.default.string,
-    fontSize: _propTypes.default.string,
-    fontWeight: _propTypes.default.string,
-    padding: _propTypes.default.string,
-    fontFamily: _propTypes.default.string,
-    placement: _propTypes.default.oneOf(['top-left', 'top-right', 'bottom-left', 'bottom-right']),
-    margin: _propTypes.default.string
+  plotChildMap: _propTypes["default"].oneOfType([_propTypes["default"].arrayOf(_propTypes["default"].shape({
+    plotPosition: _propTypes["default"].number,
+    childPosition: _propTypes["default"].number
+  })), _propTypes["default"].arrayOf(_propTypes["default"].number)]),
+  btnConfig: _propTypes["default"].shape({
+    text: _propTypes["default"].string,
+    color: _propTypes["default"].string,
+    backgroundColor: _propTypes["default"].string,
+    borderColor: _propTypes["default"].string,
+    fontSize: _propTypes["default"].string,
+    fontWeight: _propTypes["default"].string,
+    padding: _propTypes["default"].string,
+    fontFamily: _propTypes["default"].string,
+    placement: _propTypes["default"].oneOf(['top-left', 'top-right', 'bottom-left', 'bottom-right']),
+    margin: _propTypes["default"].string
   }),
-  btnStyle: _propTypes.default.object,
-  dataSource: _propTypes.default.object,
-  dataFormat: _propTypes.default.string,
-  type: _propTypes.default.string,
-  height: _propTypes.default.string,
-  width: _propTypes.default.string
+  btnStyle: _propTypes["default"].object,
+  dataSource: _propTypes["default"].object,
+  dataFormat: _propTypes["default"].string,
+  type: _propTypes["default"].string,
+  height: _propTypes["default"].string,
+  width: _propTypes["default"].string
 };
 var _default = DrillDown;
-exports.default = _default;
+exports["default"] = _default;
