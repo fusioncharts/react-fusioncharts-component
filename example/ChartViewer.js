@@ -41,12 +41,11 @@ class ChartViewer extends React.Component {
   }
 
   onChange() {
-    this.setState(({ dataSource, inverted }) => ({
+    this.setState(({ dataSource }) => ({
       dataSource: {
         ...dataSource,
-        chart: { ...dataSource.chart, caption: 'CHANGED IT!!!' }
-      },
-      inverted: !inverted
+        chart: { ...dataSource.chart, caption: 'CHANGED IT!!!!!!!' }
+      }
     }));
   }
 
