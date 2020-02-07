@@ -134,7 +134,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
- // import FusionCharts from 'fusioncharts/core';
 
 
 
@@ -171,7 +170,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ReactFC).call(this, props));
     _this.containerId = uuid_v4__WEBPACK_IMPORTED_MODULE_1___default()();
     _this.oldOptions = null;
-    _this.FusionCharts = props.fcLibrary || ReactFC.fusionChartsCore;
+    _this.FusionCharts = props.fcLibrary || ReactFC.fusionChartsCore || window.FusionCharts;
     return _this;
   }
 
@@ -181,13 +180,11 @@ function (_React$Component) {
       this.renderChart();
     }
   }, {
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(nextProps) {
-      if (!this.oldOptions) {
-        return;
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (prevProps !== this.props) {
+        this.detectChanges(this.props);
       }
-
-      this.detectChanges(nextProps);
     }
   }, {
     key: "componentWillUnmount",
