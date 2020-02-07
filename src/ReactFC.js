@@ -1,5 +1,4 @@
 import React from 'react';
-// import FusionCharts from 'fusioncharts/core';
 import uuid from 'uuid/v4';
 import * as utils from './utils/utils';
 import fusionChartsOptions from './utils/options';
@@ -21,18 +20,18 @@ class ReactFC extends React.Component {
 
     this.containerId = uuid();
     this.oldOptions = null;
-    this.FusionCharts = props.fcLibrary || ReactFC.fusionChartsCore;
+    this.FusionCharts =
+      props.fcLibrary || ReactFC.fusionChartsCore || window.FusionCharts;
   }
 
   componentDidMount() {
     this.renderChart();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!this.oldOptions) {
-      return;
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.detectChanges(this.props);
     }
-    this.detectChanges(nextProps);
   }
 
   componentWillUnmount() {
