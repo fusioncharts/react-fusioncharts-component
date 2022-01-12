@@ -39,7 +39,7 @@
     "url": "https://github.com/fusioncharts/react-fusioncharts-component/issues"
   },
   "dependencies": {
-    "uuid": "^3.2.1"
+    "uuid": "8.3.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
