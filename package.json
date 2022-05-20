@@ -1,6 +1,6 @@
 {
   "name": "react-fusioncharts",
-  "version": "3.1.2",
+  "version": "3.1.3",
   "description": "Simple and Lightweight React component for FusionCharts JavaScript Charting Library",
   "main": "lib/ReactFC.js",
   "author": {
@@ -55,7 +55,7 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "fusioncharts": "^3.13.5-sr.1",
+    "fusioncharts": "^3.18",
     "jest": "^22.4.2",
     "lodash": "^4.17.11",
     "nodemon": "^2.0.2",
