@@ -1,6 +1,6 @@
 {
   "name": "react-fusioncharts",
-  "version": "3.1.2",
+  "version": "4.0.0",
   "description": "Simple and Lightweight React component for FusionCharts JavaScript Charting Library",
   "main": "lib/ReactFC.js",
   "author": {
@@ -55,22 +55,22 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "fusioncharts": "^3.13.5-sr.1",
+    "fusioncharts": "^3.18",
     "jest": "^22.4.2",
     "lodash": "^4.17.11",
     "nodemon": "^2.0.2",
     "prop-types": "^15.6.2",
-    "react": "^16.12.0",
+    "react": "^18.0.2",
     "react-addons-test-utils": "15.3.0",
     "react-component-gulp-tasks": "^0.7.6",
-    "react-dom": "^16.12.0",
+    "react-dom": "^18.0.2",
     "react-test-renderer": "^16.2.0",
     "serve": "^10.0.1",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.1"
   },
   "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0"
+    "react": "0.14.0 - 18.x"
   },
   "scripts": {
     "build:lib": "babel ./src -d ./lib && mv ./lib/DrillDown.js ./components/DrillDown.js",
