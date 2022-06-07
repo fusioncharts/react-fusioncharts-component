@@ -12,6 +12,10 @@ A simple and lightweight official React component for FusionCharts JavaScript ch
 
 ---
 
+## Validation and Verification
+
+The FusionCharts React integration component has been verified and validated with different versions of Fusioncharts (3.19 / 3.18 / 3.17) with React versions 16/17/18
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)

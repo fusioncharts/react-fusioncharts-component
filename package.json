@@ -10,24 +10,9 @@
   "license": "MIT",
   "contributors": [
     {
-      "name": "Rousan Ali",
-      "email": "rousan@fusioncharts.com",
-      "url": "https://github.com/rousan"
-    },
-    {
-      "name": "Subrata Mal",
-      "email": "subrata@fusioncharts.com",
-      "url": "https://github.com/subratamal"
-    },
-    {
-      "name": "Ashok Mandal",
-      "email": "askipop@gmail.com",
-      "url": "https://github.com/ashok1994"
-    },
-    {
-      "name": "Rohan Dey",
-      "email": "rohanoid5@gmail.com",
-      "url": "https://github.com/rohanoid5"
+      "name": "Sanjay Bhan",
+      "email": "sanjay.bhan@idera.com",
+      "url": "https://github.com/SanjayBhan/"
     }
   ],
   "homepage": "https://github.com/fusioncharts/react-fusioncharts-component",
