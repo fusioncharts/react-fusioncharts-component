@@ -1,6 +1,6 @@
 {
   "name": "react-fusioncharts",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "Simple and Lightweight React component for FusionCharts JavaScript Charting Library",
   "main": "lib/ReactFC.js",
   "author": {
@@ -45,10 +45,10 @@
     "lodash": "^4.17.11",
     "nodemon": "^2.0.2",
     "prop-types": "^15.6.2",
-    "react": "^18.0.2",
+    "react": "^18.3.1",
     "react-addons-test-utils": "15.3.0",
     "react-component-gulp-tasks": "^0.7.6",
-    "react-dom": "^18.0.2",
+    "react-dom": "^18.3.1",
     "react-test-renderer": "^16.2.0",
     "serve": "^10.0.1",
     "webpack": "^4.20.2",
