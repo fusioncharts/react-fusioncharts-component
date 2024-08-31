@@ -51,7 +51,7 @@
     "react-dom": "^18.3.1",
     "react-test-renderer": "^16.2.0",
     "serve": "^10.0.1",
-    "webpack": "5.91.0",
+    "webpack": "5.94.0",
     "webpack-cli": "5.1.4"
   },
   "peerDependencies": {
