@@ -4,7 +4,6 @@ import * as utils from './utils/utils';
 import fusionChartsOptions from './utils/options';
 
 class ReactFC extends React.Component {
-  initialUnmount = false;
   static fcRoot(core, ...modules) {
     modules.forEach(m => {
       if ((m.getName && m.getType) || (m.name && m.type)) {
@@ -36,8 +35,7 @@ class ReactFC extends React.Component {
   }
 
   componentWillUnmount() {
-    if (!this.initialUnmount) this.initialUnmount = true;
-    else this.chartObj.dispose();    
+    this.chartObj.dispose();  
   }
 
   detectChanges(nextProps) {
