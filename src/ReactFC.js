@@ -18,6 +18,7 @@ class ReactFC extends React.Component {
   constructor(props) {
     super(props);
 
+    this.containerRef = React.createRef();
     this.containerId = uuid();
     this.oldOptions = null;
     this.FusionCharts =
@@ -262,8 +263,12 @@ class ReactFC extends React.Component {
   renderChart() {
     const currentOptions = this.resolveChartOptions(this.props);
     const events = {};
-
-    currentOptions.renderAt = this.containerId;
+    // passing the actual DOM element
+    if (this.containerRef.current) {
+      currentOptions.renderAt = this.containerRef.current; 
+    } else {
+      currentOptions.renderAt = this.containerId; // Fall back to ID
+    }
 
     Object.keys(this.props).forEach(value => {
       const event = value.match(/^fcEvent-.*/i);
@@ -322,7 +327,7 @@ class ReactFC extends React.Component {
   }
 
   render() {
-    return <div className={this.props.className} id={this.containerId} />;
+    return <div ref={this.containerRef} className={this.props.className} id={this.containerId} />;
   }
 }
 
