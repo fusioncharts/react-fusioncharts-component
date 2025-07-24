@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 const config = {
   entry: path.join(__dirname, 'example', 'index.js'),
@@ -20,6 +21,18 @@ const config = {
         }
       }
     ],
+  },
+  plugins: [
+    // Add ProvidePlugin to polyfill `process` in the browser
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
+  ],
+  resolve: {
+    // Add this alias for completeness
+    alias: {
+      process: 'process/browser',
+    },
   },
 };
 
