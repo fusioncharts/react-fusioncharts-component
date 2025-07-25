@@ -264,10 +264,10 @@ class ReactFC extends React.Component {
     const currentOptions = this.resolveChartOptions(this.props);
     const events = {};
     // passing the actual DOM element
-    if (this.containerRef.current) {
+    if (this.containerRef.current && this.props.renderInShadowDom) {
       currentOptions.renderAt = this.containerRef.current; 
     } else {
-      currentOptions.renderAt = this.containerId; // Fall back to ID
+      currentOptions.renderAt = this.containerId;
     }
 
     Object.keys(this.props).forEach(value => {
