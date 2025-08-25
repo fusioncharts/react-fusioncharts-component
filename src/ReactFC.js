@@ -4,6 +4,7 @@ import * as utils from './utils/utils';
 import fusionChartsOptions from './utils/options';
 
 class ReactFC extends React.Component {
+  reactUnmountPhase = false;
   static fcRoot(core, ...modules) {
     modules.forEach(m => {
       if ((m.getName && m.getType) || (m.name && m.type)) {
@@ -34,8 +35,14 @@ class ReactFC extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    this.chartObj.dispose();  
+ componentWillUnmount() {
+    if(this.props.type != "msline"){
+      if (!this.reactUnmountPhase)
+        this.reactUnmountPhase = true;
+      else
+        this.chartObj.dispose();
+    }else
+      this.chartObj.dispose();
   }
 
   detectChanges(nextProps) {
