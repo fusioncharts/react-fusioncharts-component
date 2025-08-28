@@ -39,7 +39,7 @@ class ReactFC extends React.Component {
  componentWillUnmount() {
     if (!this.initialUnmount){
       this.initialUnmount = true;
-      const isMapChart = this.props.type && this.props.type.toLowerCase().includes('map');
+      const isMapChart = this.props.type?.toLowerCase().includes("map");
       if(!isMapChart)
         this.chartObj.dispose();
     }else{
