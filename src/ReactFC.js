@@ -17,7 +17,7 @@ class ReactFC extends React.Component {
 
   constructor(props) {
     super(props);
-
+    this.initialUnmount = false;
     this.containerRef = React.createRef();
     this.containerId = uuid();
     this.oldOptions = null;
@@ -35,8 +35,15 @@ class ReactFC extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    this.chartObj.dispose();  
+ componentWillUnmount() {
+    if (!this.initialUnmount) {
+      this.initialUnmount = true;
+      const isMapChart = this.props.type?.toLowerCase().includes("map");
+      if (!isMapChart)
+        this.chartObj.dispose();
+    } else {
+      this.chartObj.dispose(); 
+    }
   }
 
   detectChanges(nextProps) {
