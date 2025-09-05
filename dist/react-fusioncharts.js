@@ -32,14 +32,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var uuid_v4__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
-/* harmony import */ var uuid_v4__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(uuid_v4__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6);
-/* harmony import */ var _utils_options__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5);
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
+/* harmony import */ var _utils_options__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4);
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
 function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
 function _assertThisInitialized(e) { if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); return e; }
@@ -47,9 +48,6 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
 function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) { return t.__proto__ || Object.getPrototypeOf(t); }, _getPrototypeOf(t); }
 function _inherits(t, e) { if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function"); t.prototype = Object.create(e && e.prototype, { constructor: { value: t, writable: !0, configurable: !0 } }), Object.defineProperty(t, "prototype", { writable: !1 }), e && _setPrototypeOf(t, e); }
 function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); }
-function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
@@ -59,8 +57,9 @@ var ReactFC = /*#__PURE__*/function (_React$Component) {
     var _this;
     _classCallCheck(this, ReactFC);
     _this = _callSuper(this, ReactFC, [props]);
-    _defineProperty(_this, "initialUnmount", false);
-    _this.containerId = uuid_v4__WEBPACK_IMPORTED_MODULE_1___default()();
+    _this.initialUnmount = false;
+    _this.containerRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createRef();
+    _this.containerId = (0,uuid__WEBPACK_IMPORTED_MODULE_3__["default"])();
     _this.oldOptions = null;
     _this.FusionCharts = props.fcLibrary || ReactFC.fusionChartsCore || window.FusionCharts;
     return _this;
@@ -81,7 +80,14 @@ var ReactFC = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      if (!this.initialUnmount) this.initialUnmount = true;else this.chartObj.dispose();
+      if (!this.initialUnmount) {
+        var _this$props$type;
+        this.initialUnmount = true;
+        var isMapChart = (_this$props$type = this.props.type) === null || _this$props$type === void 0 ? void 0 : _this$props$type.toLowerCase().includes("map");
+        if (!isMapChart) this.chartObj.dispose();
+      } else {
+        this.chartObj.dispose();
+      }
     }
   }, {
     key: "detectChanges",
@@ -93,7 +99,7 @@ var ReactFC = /*#__PURE__*/function (_React$Component) {
       this.checkAndUpdateChartType(currentOptions, oldOptions);
       this.checkAndUpdateChartData(currentOptions, oldOptions);
       this.checkAndUpdateEvents(currentOptions, oldOptions);
-      this.checkAndUpdateRestOptions(_utils_options__WEBPACK_IMPORTED_MODULE_3__["default"].filter(function (option) {
+      this.checkAndUpdateRestOptions(_utils_options__WEBPACK_IMPORTED_MODULE_2__["default"].filter(function (option) {
         return optionsUpdatedNatively.indexOf(option) === -1;
       }), currentOptions, oldOptions);
       this.oldOptions = currentOptions;
@@ -106,15 +112,15 @@ var ReactFC = /*#__PURE__*/function (_React$Component) {
       var oldWidth = oldOptions.width;
       var oldHeight = oldOptions.height;
       if (String(currWidth) !== String(oldWidth) || String(currHeight) !== String(oldHeight)) {
-        if (!_utils_utils__WEBPACK_IMPORTED_MODULE_2__.isUndefined(currWidth) && !_utils_utils__WEBPACK_IMPORTED_MODULE_2__.isUndefined(currHeight)) {
+        if (!_utils_utils__WEBPACK_IMPORTED_MODULE_1__.isUndefined(currWidth) && !_utils_utils__WEBPACK_IMPORTED_MODULE_1__.isUndefined(currHeight)) {
           this.chartObj.resizeTo(currWidth, currHeight);
         } else {
-          if (!_utils_utils__WEBPACK_IMPORTED_MODULE_2__.isUndefined(currWidth)) {
+          if (!_utils_utils__WEBPACK_IMPORTED_MODULE_1__.isUndefined(currWidth)) {
             this.chartObj.resizeTo({
               w: currWidth
             });
           }
-          if (!_utils_utils__WEBPACK_IMPORTED_MODULE_2__.isUndefined(currHeight)) {
+          if (!_utils_utils__WEBPACK_IMPORTED_MODULE_1__.isUndefined(currHeight)) {
             this.chartObj.resizeTo({
               h: currHeight
             });
@@ -128,7 +134,7 @@ var ReactFC = /*#__PURE__*/function (_React$Component) {
       var currType = currentOptions.type;
       var oldType = oldOptions.type;
       if (String(currType).toLowerCase() !== String(oldType).toLowerCase()) {
-        if (!_utils_utils__WEBPACK_IMPORTED_MODULE_2__.isUndefined(currType)) {
+        if (!_utils_utils__WEBPACK_IMPORTED_MODULE_1__.isUndefined(currType)) {
           this.chartObj.chartType(String(currType).toLowerCase());
         }
       }
@@ -141,7 +147,7 @@ var ReactFC = /*#__PURE__*/function (_React$Component) {
       var oldDataFormat = oldOptions.dataFormat;
       var oldData = oldOptions.dataSource;
       if (String(currDataFormat).toLowerCase() !== String(oldDataFormat).toLowerCase()) {
-        if (!_utils_utils__WEBPACK_IMPORTED_MODULE_2__.isUndefined(currDataFormat) && !_utils_utils__WEBPACK_IMPORTED_MODULE_2__.isUndefined(currData)) {
+        if (!_utils_utils__WEBPACK_IMPORTED_MODULE_1__.isUndefined(currDataFormat) && !_utils_utils__WEBPACK_IMPORTED_MODULE_1__.isUndefined(currData)) {
           this.chartObj.setChartData(currData, String(currDataFormat).toLowerCase());
           // If the chart dataFormat is changed then
           // animate the chart to show the changes
@@ -150,7 +156,7 @@ var ReactFC = /*#__PURE__*/function (_React$Component) {
         }
       }
       if (!this.isSameChartData(currData, oldData)) {
-        if (!_utils_utils__WEBPACK_IMPORTED_MODULE_2__.isUndefined(currData)) {
+        if (!_utils_utils__WEBPACK_IMPORTED_MODULE_1__.isUndefined(currData)) {
           this.chartObj.setChartData(currData,
           // When dataFormat is not given, but data is changed,
           // then use 'json' as default dataFormat
@@ -170,21 +176,21 @@ var ReactFC = /*#__PURE__*/function (_React$Component) {
         6. return string check.
       */
       // 1. Current has DataStore and Old doesn't
-      if (_utils_utils__WEBPACK_IMPORTED_MODULE_2__.checkIfDataTableExists(currData) && !_utils_utils__WEBPACK_IMPORTED_MODULE_2__.checkIfDataTableExists(oldData)) {
+      if (_utils_utils__WEBPACK_IMPORTED_MODULE_1__.checkIfDataTableExists(currData) && !_utils_utils__WEBPACK_IMPORTED_MODULE_1__.checkIfDataTableExists(oldData)) {
         return false;
       }
       // 2. Old has and Current doesn't
-      if (!_utils_utils__WEBPACK_IMPORTED_MODULE_2__.checkIfDataTableExists(currData) && _utils_utils__WEBPACK_IMPORTED_MODULE_2__.checkIfDataTableExists(oldData)) {
+      if (!_utils_utils__WEBPACK_IMPORTED_MODULE_1__.checkIfDataTableExists(currData) && _utils_utils__WEBPACK_IMPORTED_MODULE_1__.checkIfDataTableExists(oldData)) {
         return false;
       }
       // 3. Both has, check ref is equal, return false only if not equal
-      if (_utils_utils__WEBPACK_IMPORTED_MODULE_2__.checkIfDataTableExists(currData) && _utils_utils__WEBPACK_IMPORTED_MODULE_2__.checkIfDataTableExists(oldData) && currData.data !== oldData.data) {
+      if (_utils_utils__WEBPACK_IMPORTED_MODULE_1__.checkIfDataTableExists(currData) && _utils_utils__WEBPACK_IMPORTED_MODULE_1__.checkIfDataTableExists(oldData) && currData.data !== oldData.data) {
         return false;
       }
       // 4. Clone oldData for diff
-      var oldDataStringified = JSON.stringify(_utils_utils__WEBPACK_IMPORTED_MODULE_2__.cloneDataSource(oldData, 'diff'));
+      var oldDataStringified = JSON.stringify(_utils_utils__WEBPACK_IMPORTED_MODULE_1__.cloneDataSource(oldData, 'diff'));
       // 5. Clone currentData for diff
-      var currentDataStringified = JSON.stringify(_utils_utils__WEBPACK_IMPORTED_MODULE_2__.cloneDataSource(currData, 'diff'));
+      var currentDataStringified = JSON.stringify(_utils_utils__WEBPACK_IMPORTED_MODULE_1__.cloneDataSource(currData, 'diff'));
       // 6. return string check.
       return oldDataStringified === currentDataStringified;
     }
@@ -197,9 +203,9 @@ var ReactFC = /*#__PURE__*/function (_React$Component) {
       var temp1;
       var temp2;
       if (this.detectChartEventsChange(currEvents, oldEvents)) {
-        if (!_utils_utils__WEBPACK_IMPORTED_MODULE_2__.isUndefined(currEvents)) {
+        if (!_utils_utils__WEBPACK_IMPORTED_MODULE_1__.isUndefined(currEvents)) {
           temp1 = Object.assign({}, currEvents);
-          temp2 = _utils_utils__WEBPACK_IMPORTED_MODULE_2__.isUndefined(oldEvents) ? {} : Object.assign({}, oldEvents);
+          temp2 = _utils_utils__WEBPACK_IMPORTED_MODULE_1__.isUndefined(oldEvents) ? {} : Object.assign({}, oldEvents);
           Object.keys(temp2).forEach(function (eventName) {
             if (temp2[eventName] === temp1[eventName]) {
               temp1[eventName] = undefined;
@@ -218,7 +224,7 @@ var ReactFC = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "detectChartEventsChange",
     value: function detectChartEventsChange(currEvents, oldEvents) {
-      if (_utils_utils__WEBPACK_IMPORTED_MODULE_2__.isObject(currEvents) && _utils_utils__WEBPACK_IMPORTED_MODULE_2__.isObject(oldEvents)) {
+      if (_utils_utils__WEBPACK_IMPORTED_MODULE_1__.isObject(currEvents) && _utils_utils__WEBPACK_IMPORTED_MODULE_1__.isObject(oldEvents)) {
         return !this.isSameChartEvents(currEvents, oldEvents);
       }
       return !(currEvents === oldEvents);
@@ -247,7 +253,7 @@ var ReactFC = /*#__PURE__*/function (_React$Component) {
         var currValue = currentOptions[optionName];
         var oldValue = oldOptions[optionName];
         if (!_this3.isSameOptionValue(currValue, oldValue)) {
-          if (!_utils_utils__WEBPACK_IMPORTED_MODULE_2__.isUndefined(currValue)) {
+          if (!_utils_utils__WEBPACK_IMPORTED_MODULE_1__.isUndefined(currValue)) {
             if (_this3.chartObj.options && _this3.chartObj.options.hasOwnProperty(optionName)) {
               _this3.chartObj.options[optionName] = currValue;
               optionsUpdated = true;
@@ -262,8 +268,8 @@ var ReactFC = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "isSameOptionValue",
     value: function isSameOptionValue(currValue, oldValue) {
-      if (_utils_utils__WEBPACK_IMPORTED_MODULE_2__.isObject(currValue) && _utils_utils__WEBPACK_IMPORTED_MODULE_2__.isObject(oldValue)) {
-        return _utils_utils__WEBPACK_IMPORTED_MODULE_2__.isSameObjectContent(currValue, oldValue);
+      if (_utils_utils__WEBPACK_IMPORTED_MODULE_1__.isObject(currValue) && _utils_utils__WEBPACK_IMPORTED_MODULE_1__.isObject(oldValue)) {
+        return _utils_utils__WEBPACK_IMPORTED_MODULE_1__.isSameObjectContent(currValue, oldValue);
       }
       return String(currValue) === String(oldValue);
     }
@@ -273,7 +279,12 @@ var ReactFC = /*#__PURE__*/function (_React$Component) {
       var _this4 = this;
       var currentOptions = this.resolveChartOptions(this.props);
       var events = {};
-      currentOptions.renderAt = this.containerId;
+      // passing the actual DOM element
+      if (this.containerRef.current && this.props.renderInShadowDom) {
+        currentOptions.renderAt = this.containerRef.current;
+      } else {
+        currentOptions.renderAt = this.containerId;
+      }
       Object.keys(this.props).forEach(function (value) {
         var event = value.match(/^fcEvent-.*/i);
         if (event && typeof _this4.props[value] === 'function') {
@@ -299,20 +310,20 @@ var ReactFC = /*#__PURE__*/function (_React$Component) {
     key: "resolveChartOptions",
     value: function resolveChartOptions(props) {
       var chartConfig = props.chartConfig ? props.chartConfig : {};
-      var inlineOptions = _utils_options__WEBPACK_IMPORTED_MODULE_3__["default"].reduce(function (options, optionName) {
+      var inlineOptions = _utils_options__WEBPACK_IMPORTED_MODULE_2__["default"].reduce(function (options, optionName) {
         options[optionName] = props[optionName];
         return options;
       }, {});
       Object.assign(inlineOptions, chartConfig);
-      if (_utils_utils__WEBPACK_IMPORTED_MODULE_2__.isObject(inlineOptions.dataSource) && !_utils_utils__WEBPACK_IMPORTED_MODULE_2__.checkIfDataTableExists(inlineOptions.dataSource)) {
-        inlineOptions.dataSource = _utils_utils__WEBPACK_IMPORTED_MODULE_2__.deepCopyOf(inlineOptions.dataSource);
-      } else if (_utils_utils__WEBPACK_IMPORTED_MODULE_2__.isObject(inlineOptions.dataSource) && _utils_utils__WEBPACK_IMPORTED_MODULE_2__.checkIfDataTableExists(inlineOptions.dataSource)) {
-        inlineOptions.dataSource = _utils_utils__WEBPACK_IMPORTED_MODULE_2__.cloneDataSource(inlineOptions.dataSource, 'clone');
+      if (_utils_utils__WEBPACK_IMPORTED_MODULE_1__.isObject(inlineOptions.dataSource) && !_utils_utils__WEBPACK_IMPORTED_MODULE_1__.checkIfDataTableExists(inlineOptions.dataSource)) {
+        inlineOptions.dataSource = _utils_utils__WEBPACK_IMPORTED_MODULE_1__.deepCopyOf(inlineOptions.dataSource);
+      } else if (_utils_utils__WEBPACK_IMPORTED_MODULE_1__.isObject(inlineOptions.dataSource) && _utils_utils__WEBPACK_IMPORTED_MODULE_1__.checkIfDataTableExists(inlineOptions.dataSource)) {
+        inlineOptions.dataSource = _utils_utils__WEBPACK_IMPORTED_MODULE_1__.cloneDataSource(inlineOptions.dataSource, 'clone');
       }
-      if (_utils_utils__WEBPACK_IMPORTED_MODULE_2__.isObject(inlineOptions.link)) {
-        inlineOptions.link = _utils_utils__WEBPACK_IMPORTED_MODULE_2__.deepCopyOf(inlineOptions.link);
+      if (_utils_utils__WEBPACK_IMPORTED_MODULE_1__.isObject(inlineOptions.link)) {
+        inlineOptions.link = _utils_utils__WEBPACK_IMPORTED_MODULE_1__.deepCopyOf(inlineOptions.link);
       }
-      if (_utils_utils__WEBPACK_IMPORTED_MODULE_2__.isObject(inlineOptions.events)) {
+      if (_utils_utils__WEBPACK_IMPORTED_MODULE_1__.isObject(inlineOptions.events)) {
         inlineOptions.events = Object.assign({}, inlineOptions.events);
       }
       return inlineOptions;
@@ -321,6 +332,7 @@ var ReactFC = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        ref: this.containerRef,
         className: this.props.className,
         id: this.containerId
       });
@@ -353,113 +365,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
 
 /***/ }),
 /* 3 */
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-var rng = __webpack_require__(4);
-var bytesToUuid = __webpack_require__(5);
-
-function v4(options, buf, offset) {
-  var i = buf && offset || 0;
-
-  if (typeof(options) == 'string') {
-    buf = options === 'binary' ? new Array(16) : null;
-    options = null;
-  }
-  options = options || {};
-
-  var rnds = options.random || (options.rng || rng)();
-
-  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
-  rnds[6] = (rnds[6] & 0x0f) | 0x40;
-  rnds[8] = (rnds[8] & 0x3f) | 0x80;
-
-  // Copy bytes to buffer, if provided
-  if (buf) {
-    for (var ii = 0; ii < 16; ++ii) {
-      buf[i + ii] = rnds[ii];
-    }
-  }
-
-  return buf || bytesToUuid(rnds);
-}
-
-module.exports = v4;
-
-
-/***/ }),
-/* 4 */
-/***/ ((module) => {
-
-// Unique ID creation requires a high quality random # generator.  In the
-// browser this is a little complicated due to unknown quality of Math.random()
-// and inconsistent support for the `crypto` API.  We do the best we can via
-// feature-detection
-
-// getRandomValues needs to be invoked in a context where "this" is a Crypto
-// implementation. Also, find the complete implementation of crypto on IE11.
-var getRandomValues = (typeof(crypto) != 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto)) ||
-                      (typeof(msCrypto) != 'undefined' && typeof window.msCrypto.getRandomValues == 'function' && msCrypto.getRandomValues.bind(msCrypto));
-
-if (getRandomValues) {
-  // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto
-  var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef
-
-  module.exports = function whatwgRNG() {
-    getRandomValues(rnds8);
-    return rnds8;
-  };
-} else {
-  // Math.random()-based (RNG)
-  //
-  // If all else fails, use Math.random().  It's fast, but is of unspecified
-  // quality.
-  var rnds = new Array(16);
-
-  module.exports = function mathRNG() {
-    for (var i = 0, r; i < 16; i++) {
-      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
-      rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
-    }
-
-    return rnds;
-  };
-}
-
-
-/***/ }),
-/* 5 */
-/***/ ((module) => {
-
-/**
- * Convert array of 16 byte values to UUID string format of the form:
- * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
- */
-var byteToHex = [];
-for (var i = 0; i < 256; ++i) {
-  byteToHex[i] = (i + 0x100).toString(16).substr(1);
-}
-
-function bytesToUuid(buf, offset) {
-  var i = offset || 0;
-  var bth = byteToHex;
-  // join used to fix memory issue caused by concatenation: https://bugs.chromium.org/p/v8/issues/detail?id=3175#c4
-  return ([
-    bth[buf[i++]], bth[buf[i++]],
-    bth[buf[i++]], bth[buf[i++]], '-',
-    bth[buf[i++]], bth[buf[i++]], '-',
-    bth[buf[i++]], bth[buf[i++]], '-',
-    bth[buf[i++]], bth[buf[i++]], '-',
-    bth[buf[i++]], bth[buf[i++]],
-    bth[buf[i++]], bth[buf[i++]],
-    bth[buf[i++]], bth[buf[i++]]
-  ]).join('');
-}
-
-module.exports = bytesToUuid;
-
-
-/***/ }),
-/* 6 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -555,7 +460,7 @@ function cloneDataSource(obj) {
 }
 
 /***/ }),
-/* 7 */
+/* 4 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -564,6 +469,159 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (['type', 'id', 'width', 'height', 'dataFormat', 'dataSource', 'events', 'link', 'showDataLoadingMessage', 'showChartLoadingMessage', 'baseChartMessageFont', 'baseChartMessageFontSize', 'baseChartMessageColor', 'dataLoadStartMessage', 'dataLoadErrorMessage', 'dataInvalidMessage', 'dataEmptyMessage', 'typeNotSupportedMessage', 'loadMessage', 'renderErrorMessage', 'containerBackgroundColor', 'containerBackgroundOpacity', 'containerClassName', 'baseChartMessageImageHAlign', 'baseChartMessageImageVAlign', 'baseChartMessageImageAlpha', 'baseChartMessageImageScale', 'typeNotSupportedMessageImageHAalign', 'typeNotSupportedMessageImageVAlign', 'typeNotSupportedMessageImageAlpha', 'typeNotSupportedMessageImageScale', 'dataLoadErrorMessageImageHAlign', 'dataLoadErrorMessageImageVAlign', 'dataLoadErrorMessageImageAlpha', 'dataLoadErrorMessageImageScale', 'dataLoadStartMessageImageHAlign', 'dataLoadStartMessageImageVAlign', 'dataLoadStartMessageImageAlpha', 'dataLoadStartMessageImageScale', 'dataInvalidMessageImageHAlign', 'dataInvalidMessageImageVAlign', 'dataInvalidMessageImageAlpha', 'dataInvalidMessageImageScale', 'dataEmptyMessageImageHAlign', 'dataEmptyMessageImageVAlign', 'dataEmptyMessageImageAlpha', 'dataEmptyMessageImageScale', 'renderErrorMessageImageHAlign', 'renderErrorMessageImageVAlign', 'renderErrorMessageImageAlpha', 'renderErrorMessageImageScale', 'loadMessageImageHAlign', 'loadMessageImageVAlign', 'loadMessageImageAlpha', 'loadMessageImageScale']);
+
+/***/ }),
+/* 5 */
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _native_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6);
+/* harmony import */ var _rng_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
+/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8);
+
+
+
+function v4(options, buf, offset) {
+    if (_native_js__WEBPACK_IMPORTED_MODULE_0__["default"].randomUUID && !buf && !options) {
+        return _native_js__WEBPACK_IMPORTED_MODULE_0__["default"].randomUUID();
+    }
+    options = options || {};
+    const rnds = options.random ?? options.rng?.() ?? (0,_rng_js__WEBPACK_IMPORTED_MODULE_1__["default"])();
+    if (rnds.length < 16) {
+        throw new Error('Random bytes length must be >= 16');
+    }
+    rnds[6] = (rnds[6] & 0x0f) | 0x40;
+    rnds[8] = (rnds[8] & 0x3f) | 0x80;
+    if (buf) {
+        offset = offset || 0;
+        if (offset < 0 || offset + 16 > buf.length) {
+            throw new RangeError(`UUID byte range ${offset}:${offset + 15} is out of buffer bounds`);
+        }
+        for (let i = 0; i < 16; ++i) {
+            buf[offset + i] = rnds[i];
+        }
+        return buf;
+    }
+    return (0,_stringify_js__WEBPACK_IMPORTED_MODULE_2__.unsafeStringify)(rnds);
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (v4);
+
+
+/***/ }),
+/* 6 */
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const randomUUID = typeof crypto !== 'undefined' && crypto.randomUUID && crypto.randomUUID.bind(crypto);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({ randomUUID });
+
+
+/***/ }),
+/* 7 */
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ rng)
+/* harmony export */ });
+let getRandomValues;
+const rnds8 = new Uint8Array(16);
+function rng() {
+    if (!getRandomValues) {
+        if (typeof crypto === 'undefined' || !crypto.getRandomValues) {
+            throw new Error('crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported');
+        }
+        getRandomValues = crypto.getRandomValues.bind(crypto);
+    }
+    return getRandomValues(rnds8);
+}
+
+
+/***/ }),
+/* 8 */
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   unsafeStringify: () => (/* binding */ unsafeStringify)
+/* harmony export */ });
+/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9);
+
+const byteToHex = [];
+for (let i = 0; i < 256; ++i) {
+    byteToHex.push((i + 0x100).toString(16).slice(1));
+}
+function unsafeStringify(arr, offset = 0) {
+    return (byteToHex[arr[offset + 0]] +
+        byteToHex[arr[offset + 1]] +
+        byteToHex[arr[offset + 2]] +
+        byteToHex[arr[offset + 3]] +
+        '-' +
+        byteToHex[arr[offset + 4]] +
+        byteToHex[arr[offset + 5]] +
+        '-' +
+        byteToHex[arr[offset + 6]] +
+        byteToHex[arr[offset + 7]] +
+        '-' +
+        byteToHex[arr[offset + 8]] +
+        byteToHex[arr[offset + 9]] +
+        '-' +
+        byteToHex[arr[offset + 10]] +
+        byteToHex[arr[offset + 11]] +
+        byteToHex[arr[offset + 12]] +
+        byteToHex[arr[offset + 13]] +
+        byteToHex[arr[offset + 14]] +
+        byteToHex[arr[offset + 15]]).toLowerCase();
+}
+function stringify(arr, offset = 0) {
+    const uuid = unsafeStringify(arr, offset);
+    if (!(0,_validate_js__WEBPACK_IMPORTED_MODULE_0__["default"])(uuid)) {
+        throw TypeError('Stringified UUID is invalid');
+    }
+    return uuid;
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (stringify);
+
+
+/***/ }),
+/* 9 */
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _regex_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(10);
+
+function validate(uuid) {
+    return typeof uuid === 'string' && _regex_js__WEBPACK_IMPORTED_MODULE_0__["default"].test(uuid);
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (validate);
+
+
+/***/ }),
+/* 10 */
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$/i);
+
 
 /***/ })
 /******/ 	]);
